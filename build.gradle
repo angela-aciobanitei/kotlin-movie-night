@@ -1,8 +1,10 @@
 buildscript {
     ext {
-        build_tools_version = '7.0.0-beta03'
+        gradle_version = '7.0.0-beta03'
+        jvm_version = '1.8'
+        jvm_inject_version = '1'
         koltin_version = '1.5.10'
-        coroutines_version = '1.5.0'
+        koltin_coroutines_version = '1.5.0'
         androidx_core_version = '1.5.0'
         appcompat_version = '1.3.0'
         compose_version = '1.0.0-beta08'
@@ -10,7 +12,6 @@ buildscript {
         compose_navigation_version = '1.0.0-alpha09'
         compose_paging_version = '1.0.0-alpha09'
         accompanist_version = '0.10.0'
-        lifecycle_version = '2.3.1'
         junit_version = '4.13.2'
         junit_ext_version = '1.1.2'
         espresso_core_version = '3.3.0'
@@ -19,14 +20,18 @@ buildscript {
         okhttp_version = '4.8.0'
         threetenbp_version = '1.2.4'
         timber_version = '4.7.1'
+        hilt_version = "2.36"
+        hilt_compiler_version = "1.0.0"
+        hilt_navigation_version = "1.0.0"
     }
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:$build_tools_version"
+        classpath "com.android.tools.build:gradle:$gradle_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$koltin_version"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
     }
 }
 

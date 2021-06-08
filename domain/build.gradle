@@ -10,4 +10,5 @@ java {
 
 dependencies {
     implementation "javax.inject:javax.inject:$jvm_inject_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$koltin_coroutines_version"
 }

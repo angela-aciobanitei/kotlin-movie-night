@@ -28,17 +28,25 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    buildTypes.each {
+        it.buildConfigField 'String', 'TMDB_API_KEY', TMDB_API_KEY
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = jvm_version
         useIR = true
     }
+
     buildFeatures {
         compose true
     }
+
     composeOptions {
         kotlinCompilerExtensionVersion compose_version
         kotlinCompilerVersion koltin_version
@@ -68,20 +76,22 @@ dependencies {
     implementation "androidx.compose.material:material-icons-extended:$compose_version"
     implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
     implementation "androidx.activity:activity-compose:$compose_activity_version"
-    implementation "androidx.paging:paging-compose:$compose_paging_version"
     implementation "androidx.navigation:navigation-compose:$compose_navigation_version"
+    implementation "androidx.paging:paging-compose:$compose_paging_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$compose_viewmodel_version"
     implementation "androidx.hilt:hilt-navigation-fragment:$hilt_navigation_version"
 
     implementation "com.google.android.material:material:$material_version"
     implementation "com.google.accompanist:accompanist-glide:$accompanist_version"
-
-    // Networking
+    
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-scalars:$retrofit_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+    implementation "com.squareup.moshi:moshi:$moshi_version"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
 
-    // Utils
     implementation "com.jakewharton.threetenabp:threetenabp:$threetenbp_version"
     implementation "com.jakewharton.timber:timber:$timber_version"
 

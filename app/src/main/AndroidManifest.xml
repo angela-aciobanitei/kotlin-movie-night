@@ -3,6 +3,7 @@
     package="com.ang.acb.movienight">
 
     <application
+        android:name=".MovieNightApplication"
         android:allowBackup="true"
         android:fullBackupOnly="true"
         android:icon="@mipmap/ic_launcher"

@@ -1,6 +1,8 @@
 package com.ang.acb.movienight.di
 
 import com.ang.acb.movienight.BuildConfig
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,11 +22,14 @@ object NetworkModule {
     @Singleton
     @Provides
     fun provideAuthInterceptor(): Interceptor {
+        // Because we are requesting an API which accepts an API key as a
+        // request parameter, we'll use an interceptor that will add the
+        // query parameter to every request method.
         return Interceptor { chain: Interceptor.Chain ->
             val initialRequest = chain.request()
 
             val url = initialRequest.url.newBuilder()
-                .addQueryParameter("api_key", "") // todo add api key from gradle. properties
+                .addQueryParameter("api_key", BuildConfig.TMDB_API_KEY)
                 .build()
 
             val newRequest = initialRequest.newBuilder()
@@ -59,6 +64,16 @@ object NetworkModule {
         return OkHttpClient.Builder()
             .addInterceptor(authInterceptor)
             .addInterceptor(loggingInterceptor)
+            .build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideMoshi() : Moshi {
+        // Build the Moshi object that Retrofit will be using, making sure
+        // to add the Kotlin adapter for full Kotlin compatibility.
+        return Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
             .build()
     }
 

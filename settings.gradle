@@ -8,5 +8,3 @@ dependencyResolutionManagement {
 }
 rootProject.name = "MovieNight"
 include ':app'
-include ':domain'
-include ':data'

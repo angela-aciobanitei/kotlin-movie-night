@@ -1,4 +1,4 @@
-package com.ang.acb.movienight.di
+package com.ang.acb.movienight.hilt
 
 import com.ang.acb.movienight.data.MovieRepository
 import com.ang.acb.movienight.data.MovieService

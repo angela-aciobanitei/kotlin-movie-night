@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Movies</string>
+    <string name="movies_topbar_label_popular">Popular Movies</string>
 </resources>

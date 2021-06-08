@@ -58,9 +58,6 @@ kapt {
 }
 
 dependencies {
-    implementation(project(":domain"))
-    implementation(project(":data"))
-
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$koltin_coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$koltin_coroutines_version"
 

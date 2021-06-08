@@ -1,7 +1,8 @@
 package com.ang.acb.movienight.domain
 
+import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 
 interface MovieGateway {
-    suspend fun getPopularMovies() : List<Movie>
+    fun getPopularMovies(): Flow<PagingData<Movie>>
 }

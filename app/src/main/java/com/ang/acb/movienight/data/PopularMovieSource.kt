@@ -7,7 +7,7 @@ import timber.log.Timber
 
 private const val STARTING_PAGE_INDEX = 1
 
-class MovieSource(
+class PopularMovieSource(
     private val movieService: MovieService
 ) : PagingSource<Int, Movie>() {
 
@@ -16,21 +16,18 @@ class MovieSource(
 
         return try {
             val response = movieService.getPopularMovies(page)
-
-            Timber.d("asd ${response.results.asMovies()}")
-
             LoadResult.Page(
                 data = response.results.asMovies(),
                 prevKey = if (page == STARTING_PAGE_INDEX) null else page - 1,
                 nextKey = if (page == response.totalPages) null else page + 1
             )
         } catch (e: Exception) {
-            Timber.e("asd $e")
+            Timber.e(e)
             LoadResult.Error(e)
         }
     }
 
     override fun getRefreshKey(state: PagingState<Int, Movie>): Int? {
-        TODO("Not yet implemented")
+        return state.anchorPosition
     }
 }

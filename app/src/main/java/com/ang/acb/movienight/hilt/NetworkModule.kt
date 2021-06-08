@@ -1,8 +1,6 @@
-package com.ang.acb.movienight.di
+package com.ang.acb.movienight.hilt
 
 import com.ang.acb.movienight.BuildConfig
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -67,16 +65,6 @@ object NetworkModule {
             .build()
     }
 
-    @Singleton
-    @Provides
-    fun provideMoshi() : Moshi {
-        // Build the Moshi object that Retrofit will be using, making sure
-        // to add the Kotlin adapter for full Kotlin compatibility.
-        return Moshi.Builder()
-            .add(KotlinJsonAdapterFactory())
-            .build()
-    }
-
     @Provides
     @Singleton
     fun provideRetrofit(
@@ -84,7 +72,7 @@ object NetworkModule {
     ): Retrofit = Retrofit.Builder()
         .baseUrl("https://api.themoviedb.org/3/") // todo extract this away
         .client(client)
-        .addConverterFactory(ScalarsConverterFactory.create()) // todo use moshi maybe?
+        .addConverterFactory(ScalarsConverterFactory.create())
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 }

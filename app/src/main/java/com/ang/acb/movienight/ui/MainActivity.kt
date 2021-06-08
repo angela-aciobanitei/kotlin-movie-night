@@ -1,4 +1,4 @@
-package com.ang.acb.movienight
+package com.ang.acb.movienight.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

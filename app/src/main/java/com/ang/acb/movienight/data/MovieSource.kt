@@ -7,7 +7,7 @@ import timber.log.Timber
 
 private const val STARTING_PAGE_INDEX = 1
 
-class PopularMovieSource(
+class MovieSource(
     private val movieService: MovieService
 ) : PagingSource<Int, Movie>() {
 

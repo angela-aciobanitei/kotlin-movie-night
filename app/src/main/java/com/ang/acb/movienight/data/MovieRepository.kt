@@ -15,7 +15,7 @@ class MovieRepository @Inject constructor(
     override fun getPopularMovies(): Flow<PagingData<Movie>> {
         return Pager(
             config = PagingConfig(enablePlaceholders = false, pageSize = NETWORK_PAGE_SIZE),
-            pagingSourceFactory = { PopularMovieSource(movieService) }
+            pagingSourceFactory = { MovieSource(movieService) }
         ).flow
     }
 

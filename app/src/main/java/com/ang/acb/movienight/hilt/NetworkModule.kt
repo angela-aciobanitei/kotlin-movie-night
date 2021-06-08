@@ -1,6 +1,7 @@
 package com.ang.acb.movienight.hilt
 
 import com.ang.acb.movienight.BuildConfig
+import com.ang.acb.movienight.utils.Constants.TMDB_BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -70,7 +71,7 @@ object NetworkModule {
     fun provideRetrofit(
         client: OkHttpClient
     ): Retrofit = Retrofit.Builder()
-        .baseUrl("https://api.themoviedb.org/3/") // todo extract this away
+        .baseUrl(TMDB_BASE_URL)
         .client(client)
         .addConverterFactory(ScalarsConverterFactory.create())
         .addConverterFactory(GsonConverterFactory.create())

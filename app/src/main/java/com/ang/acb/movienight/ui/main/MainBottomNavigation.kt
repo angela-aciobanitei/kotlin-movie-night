@@ -18,7 +18,7 @@ fun MainBottomNavigation(
 ) {
     BottomNavigation {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
-        val currentRoute = navBackStackEntry?.destination?.route
+        val currentRoute = navBackStackEntry?.destination?.route ?: MainDestinations.DISCOVER
 
         items.forEach { screen ->
             BottomNavigationItem(

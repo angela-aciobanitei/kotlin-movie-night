@@ -10,20 +10,20 @@ sealed class MainBottomNavItem(
     @DrawableRes val iconResId: Int
 ) {
     object Discover : MainBottomNavItem(
-        route = "discover",
+        route = MainDestinations.DISCOVER,
         labelResId = R.string.discover_route_label,
-        iconResId = R.drawable.ic_movie_24
+        iconResId = R.drawable.ic_discover_movies
     )
 
     object Search : MainBottomNavItem(
-        route = "search",
+        route = MainDestinations.SEARCH,
         labelResId = R.string.search_route_label,
-        iconResId = R.drawable.ic_baseline_search_24
+        iconResId = R.drawable.ic_search
     )
 
     object Favorites : MainBottomNavItem(
-        route = "favorites",
+        route = MainDestinations.FAVORITES,
         labelResId = R.string.favorites_route_label,
-        iconResId = R.drawable.ic_baseline_favorite_border_24
+        iconResId = R.drawable.ic_favorite
     )
 }

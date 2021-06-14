@@ -40,7 +40,7 @@ fun SearchMoviesTextField(
             .padding(horizontal = 16.dp, vertical = 8.dp),
         leadingIcon = {
             Icon(
-                painter = painterResource(id = R.drawable.ic_baseline_search_24),
+                painter = painterResource(id = R.drawable.ic_search),
                 contentDescription = null,
                 tint = LighterGray,
             )

@@ -35,7 +35,7 @@ fun MoviesMenu(
     Box {
         IconButton(onClick = { expanded = true }) {
             Icon(
-                painter = painterResource(id = R.drawable.ic_baseline_sort_24),
+                painter = painterResource(id = R.drawable.ic_sort),
                 contentDescription = null,
                 tint = Color.White
             )

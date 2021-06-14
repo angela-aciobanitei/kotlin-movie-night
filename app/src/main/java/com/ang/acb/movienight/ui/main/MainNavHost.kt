@@ -18,15 +18,15 @@ fun MainNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = MainBottomNavItem.Discover.route
+        startDestination = MainDestinations.DISCOVER
     ) {
-        composable(MainBottomNavItem.Discover.route) {
+        composable(MainDestinations.DISCOVER) {
             MoviesScreen()
         }
-        composable(MainBottomNavItem.Search.route) {
+        composable(MainDestinations.SEARCH) {
             SearchMoviesScreen()
         }
-        composable(MainBottomNavItem.Favorites.route) {
+        composable(MainDestinations.FAVORITES) {
             Text(text = "Favorites")
         }
     }

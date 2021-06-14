@@ -60,7 +60,7 @@ fun DefaultMovieAvatar(
         contentAlignment = Alignment.Center,
     ) {
         Icon(
-            painter = painterResource(id = R.drawable.ic_movie_24),
+            painter = painterResource(id = R.drawable.ic_movie),
             contentDescription = null,
             tint = DarkGray,
             modifier = Modifier

@@ -7,25 +7,29 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.ang.acb.movienight.R
+import com.ang.acb.movienight.data.asStringResourceId
 import com.ang.acb.movienight.domain.MovieFilter
 
 @Composable
 fun MoviesTopBar(
-    viewModel: MoviesViewModel,
+    filterLabel: Int,
+    onFilterChanged: (filter: MovieFilter) -> Unit
 ) {
-    val titleResId by remember { viewModel.title }
+
     TopAppBar(
         title = {
-            Text(text = stringResource(titleResId))
+            Text(text = stringResource(filterLabel))
         },
         actions = {
-            MoviesMenu(viewModel)
+            MoviesMenu(onFilterChanged)
         }
     )
 }
 
 @Composable
-fun MoviesMenu(viewModel: MoviesViewModel) {
+fun MoviesMenu(
+    onFilterChanged: (filter: MovieFilter) -> Unit,
+) {
     var expanded by remember { mutableStateOf(false) }
 
     Box {
@@ -44,7 +48,7 @@ fun MoviesMenu(viewModel: MoviesViewModel) {
             FilterMenuItem(
                 filter = MovieFilter.POPULAR,
                 onClick = {
-                    viewModel.onFilterChanged(MovieFilter.POPULAR)
+                    onFilterChanged(MovieFilter.POPULAR)
                     expanded = false
                 },
             )
@@ -52,7 +56,7 @@ fun MoviesMenu(viewModel: MoviesViewModel) {
             FilterMenuItem(
                 filter = MovieFilter.TOP_RATED,
                 onClick = {
-                    viewModel.onFilterChanged(MovieFilter.TOP_RATED)
+                    onFilterChanged(MovieFilter.TOP_RATED)
                     expanded = false
                 },
             )
@@ -60,7 +64,7 @@ fun MoviesMenu(viewModel: MoviesViewModel) {
             FilterMenuItem(
                 filter = MovieFilter.NOW_PLAYING,
                 onClick = {
-                    viewModel.onFilterChanged(MovieFilter.NOW_PLAYING)
+                    onFilterChanged(MovieFilter.NOW_PLAYING)
                     expanded = false
                 },
             )
@@ -68,7 +72,7 @@ fun MoviesMenu(viewModel: MoviesViewModel) {
             FilterMenuItem(
                 filter = MovieFilter.UPCOMING,
                 onClick = {
-                    viewModel.onFilterChanged(MovieFilter.UPCOMING)
+                    onFilterChanged(MovieFilter.UPCOMING)
                     expanded = false
                 },
             )
@@ -82,12 +86,6 @@ fun FilterMenuItem(
     onClick: () -> Unit,
 ) {
     DropdownMenuItem(onClick = onClick) {
-        val menuItemTitle = when (filter) {
-            MovieFilter.POPULAR -> R.string.filter_by_popular
-            MovieFilter.TOP_RATED -> R.string.filter_by_top_rated
-            MovieFilter.NOW_PLAYING -> R.string.filter_by_now_playing
-            MovieFilter.UPCOMING -> R.string.filter_by_upcoming
-        }
-        Text(text = stringResource(id = menuItemTitle))
+        Text(text = stringResource(id = filter.asStringResourceId()))
     }
 }

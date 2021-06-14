@@ -1,6 +1,8 @@
 package com.ang.acb.movienight.domain
 
-class GetFilteredMoviesUseCase(
+import javax.inject.Inject
+
+class GetFilteredMoviesUseCase @Inject constructor(
     private val getPopularMoviesUseCase: GetPopularMoviesUseCase,
     private val getTopRatedMoviesUseCase: GetTopRatedMoviesUseCase,
     private val getNowPlayingMoviesUseCase: GetNowPlayingMoviesUseCase,

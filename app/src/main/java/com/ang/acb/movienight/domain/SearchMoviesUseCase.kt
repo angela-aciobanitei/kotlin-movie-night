@@ -6,7 +6,7 @@ class SearchMoviesUseCase @Inject constructor(
     private val movieGateway: MovieGateway,
 ) {
 
-    suspend fun searchMovies(query: String, page: Int): Movies {
+    suspend operator fun invoke(query: String, page: Int): Movies {
         return movieGateway.searchMovies(query, page)
     }
 }

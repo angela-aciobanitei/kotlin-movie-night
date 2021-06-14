@@ -1,4 +1,4 @@
-package com.ang.acb.movienight.data
+package com.ang.acb.movienight.ui.filtermovies
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
@@ -9,7 +9,7 @@ import timber.log.Timber
 
 private const val STARTING_PAGE_INDEX = 1
 
-class MoviesPagingSource(
+class FilteredMoviesPagingSource(
     private val filter: MovieFilter,
     private val getFilteredMoviesUseCase: GetFilteredMoviesUseCase,
 ) : PagingSource<Int, Movie>() {

@@ -1,4 +1,4 @@
-package com.ang.acb.movienight.ui.movielist
+package com.ang.acb.movienight.ui.filtermovies
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.material.*

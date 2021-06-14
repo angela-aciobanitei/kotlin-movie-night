@@ -3,20 +3,20 @@ package com.ang.acb.movienight.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
-import androidx.compose.foundation.ExperimentalFoundationApi
-import com.ang.acb.movienight.ui.movielist.MoviesScreen
-import com.ang.acb.movienight.ui.movielist.MoviesViewModel
+import androidx.compose.ui.ExperimentalComposeUiApi
+import com.ang.acb.movienight.ui.searchmovies.SearchMoviesScreen
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.FlowPreview
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    @ExperimentalFoundationApi
+    @FlowPreview
+    @ExperimentalComposeUiApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MoviesScreen()
+            SearchMoviesScreen()
         }
     }
 }

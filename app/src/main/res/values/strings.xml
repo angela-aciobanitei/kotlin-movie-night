@@ -6,4 +6,6 @@
     <string name="filter_by_top_rated">Top Rated</string>
     <string name="filter_by_now_playing">Now Playing</string>
     <string name="filter_by_upcoming">Upcoming</string>
+    <string name="search_movies_topbar_label">Search movies</string>
+    <string name="search_movies_hint">Search movies</string>
 </resources>

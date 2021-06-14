@@ -1,10 +1,9 @@
-package com.ang.acb.movienight.ui.movielist
+package com.ang.acb.movienight.ui.filtermovies
 
 import androidx.lifecycle.ViewModel
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.ang.acb.movienight.data.MoviesPagingSource
 import com.ang.acb.movienight.domain.GetFilteredMoviesUseCase
 import com.ang.acb.movienight.domain.Movie
 import com.ang.acb.movienight.domain.MovieFilter
@@ -23,7 +22,7 @@ class MoviesViewModel @Inject constructor(
         return Pager(
             config = PagingConfig(enablePlaceholders = false, pageSize = 50),
             pagingSourceFactory = {
-                MoviesPagingSource(
+                FilteredMoviesPagingSource(
                     getFilteredMoviesUseCase = getFilteredMoviesUseCase,
                     filter = filter
                 )

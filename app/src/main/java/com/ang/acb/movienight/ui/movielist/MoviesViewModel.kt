@@ -1,5 +1,6 @@
 package com.ang.acb.movienight.ui.movielist
 
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.paging.Pager
@@ -14,7 +15,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flatMapMerge
 import javax.inject.Inject
 
@@ -23,14 +23,11 @@ class MoviesViewModel @Inject constructor(
     private val getFilteredMoviesUseCase: GetFilteredMoviesUseCase,
 ) : ViewModel() {
 
-    private val _movieFilter: MutableStateFlow<MovieFilter> = MutableStateFlow(MovieFilter.POPULAR)
-    val movieFilter: StateFlow<MovieFilter> = _movieFilter
-
-    var title = mutableStateOf(R.string.filter_by_popular)
-    var filter = mutableStateOf(MovieFilter.POPULAR)
+    private val movieFilter = MutableStateFlow(MovieFilter.POPULAR)
+    var title: MutableState<Int> = mutableStateOf(R.string.filter_by_popular)
 
     @FlowPreview
-    fun getPagedStuff(): Flow<PagingData<Movie>> {
+    fun getPagedMovies(): Flow<PagingData<Movie>> {
         return movieFilter.flatMapMerge {
             Pager(
                 config = PagingConfig(enablePlaceholders = false, pageSize = 50),
@@ -50,16 +47,15 @@ class MoviesViewModel @Inject constructor(
     }
 
     private fun updateFilter(filter: MovieFilter) {
-        _movieFilter.value = filter
+        movieFilter.value = filter
     }
 
     private fun updateTitle(filter: MovieFilter) {
-        when (filter) {
-            MovieFilter.POPULAR -> title.value = R.string.filter_by_popular
-            MovieFilter.TOP_RATED -> title.value = R.string.filter_by_top_rated
-            MovieFilter.NOW_PLAYING -> title.value = R.string.filter_by_now_playing
-            MovieFilter.UPCOMING -> title.value = R.string.filter_by_upcoming
+        title.value = when (filter) {
+            MovieFilter.POPULAR -> R.string.filter_by_popular
+            MovieFilter.TOP_RATED -> R.string.filter_by_top_rated
+            MovieFilter.NOW_PLAYING -> R.string.filter_by_now_playing
+            MovieFilter.UPCOMING -> R.string.filter_by_upcoming
         }
     }
-
 }

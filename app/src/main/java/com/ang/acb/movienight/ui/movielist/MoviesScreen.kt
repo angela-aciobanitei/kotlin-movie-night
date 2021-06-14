@@ -17,7 +17,7 @@ fun MoviesScreen(
     MovieNightTheme {
         Scaffold(topBar = { MoviesTopBar(viewModel) }) {
             // TODO Handle lazy paging items load states: loading, error etc
-            val lazyPagingItems = viewModel.getPagedStuff().collectAsLazyPagingItems()
+            val lazyPagingItems = viewModel.getPagedMovies().collectAsLazyPagingItems()
 
             LazyColumn {
                 items(lazyPagingItems) { item ->

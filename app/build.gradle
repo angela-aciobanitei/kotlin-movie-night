@@ -77,13 +77,12 @@ dependencies {
     implementation "androidx.navigation:navigation-compose:$compose_navigation_version"
     implementation "androidx.paging:paging-compose:$compose_paging_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$compose_viewmodel_version"
-    implementation "androidx.hilt:hilt-navigation-fragment:$hilt_navigation_version"
+    implementation "androidx.hilt:hilt-navigation-fragment:$hilt_navigation_fragment_version"
+    implementation "androidx.hilt:hilt-navigation-compose:$hilt_navigation_compose_version"
 
     implementation "com.google.android.material:material:$material_version"
     implementation "com.google.accompanist:accompanist-glide:$accompanist_version"
 
-    implementation "com.airbnb.android:lottie:$lottie_version"
-    
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-scalars:$retrofit_version"
@@ -98,7 +97,7 @@ dependencies {
     testImplementation "junit:junit:$junit_version"
     testImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
     kaptTest "com.google.dagger:hilt-compiler:$hilt_version"
-    androidTestImplementation  "com.google.dagger:hilt-android-testing:$hilt_version"
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
     kaptAndroidTest "com.google.dagger:hilt-compiler:$hilt_version"
     androidTestImplementation "androidx.test.ext:junit: $junit_ext_version"
     androidTestImplementation "androidx.test.espresso:espresso-core: $espresso_core_version"

@@ -1,11 +1,12 @@
 <resources>
     <string name="app_name">Movies</string>
-    <string name="movies_topbar_label_popular">Popular Movies</string>
-    <string name="movie_search_topbar_label">Movie Search</string>
     <string name="filter_by_popular">Popular</string>
     <string name="filter_by_top_rated">Top Rated</string>
     <string name="filter_by_now_playing">Now Playing</string>
     <string name="filter_by_upcoming">Upcoming</string>
     <string name="search_movies_topbar_label">Search movies</string>
     <string name="search_movies_hint">Search movies</string>
+    <string name="discover_route_label">Discover</string>
+    <string name="search_route_label">Search</string>
+    <string name="favorites_route_label">Favorites</string>
 </resources>

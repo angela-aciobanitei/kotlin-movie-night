@@ -13,60 +13,52 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.paging.PagingData
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
-import com.ang.acb.movienight.domain.Movie
 import com.ang.acb.movienight.ui.filtermovies.MovieItem
-import com.ang.acb.movienight.ui.theme.MovieNightTheme
 import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.flow.Flow
 
 @ExperimentalComposeUiApi
 @FlowPreview
 @Composable
 fun SearchMoviesScreen(
-    viewModel: SearchMoviesViewModel = viewModel()
+    viewModel: SearchMoviesViewModel = hiltViewModel()
 ) {
     var query: String? by remember { mutableStateOf(null) }
-    var result: Flow<PagingData<Movie>>? by remember { mutableStateOf(null) }
     val textState = remember { mutableStateOf(TextFieldValue()) }
 
     // todo hide keyboard before navigating to movie details
     val keyboardController = LocalSoftwareKeyboardController.current
 
-    MovieNightTheme {
-        Scaffold(
-            topBar = { SearchMoviesTopBar() }
+    Scaffold(
+        topBar = { SearchMoviesTopBar() }
+    ) {
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-                Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
-                SearchMoviesTextField(
-                    textState = textState,
-                    onValueChange = { query = it },
-                    search = {
-                        if (query.isNullOrBlank().not()) {
-                            result = viewModel.searchMovies(query!!)
-                        }
-                    }
-                )
+            SearchMoviesTextField(
+                textState = textState,
+                onValueChange = { query = it },
+                search = {
 
-                // todo fix search
-                val lazyPagingItems = viewModel.searchMovies("star").collectAsLazyPagingItems()
 
-                LazyColumn {
-                    items(lazyPagingItems) { item ->
-                        if (item != null) {
-                            MovieItem(
-                                movie = item,
-                                onMovieClick = { /*TODO */ }
-                            )
-                        }
+                }
+            )
+
+            // todo fix search
+            val lazyPagingItems = viewModel.searchMovies("star").collectAsLazyPagingItems()
+
+            LazyColumn {
+                items(lazyPagingItems) { item ->
+                    if (item != null) {
+                        MovieItem(
+                            movie = item,
+                            onMovieClick = { /*TODO */ }
+                        )
                     }
                 }
             }

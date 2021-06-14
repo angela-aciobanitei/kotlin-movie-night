@@ -2,6 +2,7 @@ package com.ang.acb.movienight.data
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.ang.acb.movienight.domain.GetFilteredMoviesUseCase
 import com.ang.acb.movienight.domain.Movie
 import com.ang.acb.movienight.domain.MovieFilter
 import timber.log.Timber
@@ -9,23 +10,18 @@ import timber.log.Timber
 private const val STARTING_PAGE_INDEX = 1
 
 class MoviesPagingSource(
-    private val movieService: MovieService,
     private val filter: MovieFilter,
+    private val getFilteredMoviesUseCase: GetFilteredMoviesUseCase,
 ) : PagingSource<Int, Movie>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
         val page = params.key ?: STARTING_PAGE_INDEX
 
         return try {
-            val response = when (filter) {
-                MovieFilter.POPULAR -> movieService.getPopularMovies(page)
-                MovieFilter.TOP_RATED -> movieService.getTopRatedMovies(page)
-                MovieFilter.NOW_PLAYING -> movieService.getNowPlayingMovies(page)
-                MovieFilter.UPCOMING -> movieService.getUpcomingMovies(page)
-            }
+            val response = getFilteredMoviesUseCase(filter, page)
 
             LoadResult.Page(
-                data = response.results.asMovies(),
+                data = response.movies,
                 prevKey = if (page == STARTING_PAGE_INDEX) null else page - 1,
                 nextKey = if (page == response.totalPages) null else page + 1
             )

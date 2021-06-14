@@ -3,9 +3,6 @@ package com.ang.acb.movienight.data
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-/**
- * Defines the REST API access points for Retrofit.
- */
 interface MovieService {
     @GET("movie/popular")
     suspend fun getPopularMovies(@Query("page") page: Int): MoviesResponse

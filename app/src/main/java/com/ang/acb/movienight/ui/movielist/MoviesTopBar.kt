@@ -2,10 +2,8 @@ package com.ang.acb.movienight.ui.movielist
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -18,16 +16,7 @@ fun MoviesTopBar(
 ) {
     TopAppBar(
         title = {
-            Text(
-                text = stringResource(
-                    when (viewModel.movieFilter) {
-                        MovieFilter.POPULAR -> R.string.filter_by_popular
-                        MovieFilter.TOP_RATED -> R.string.filter_by_top_rated
-                        MovieFilter.NOW_PLAYING -> R.string.filter_by_now_playing
-                        MovieFilter.UPCOMING -> R.string.filter_by_upcoming
-                    }
-                )
-            )
+            Text(text = stringResource(R.string.filter_by_popular)) // todo: fix it, this depends on movie filter
         },
         actions = {
             MoviesMenu(viewModel)
@@ -54,7 +43,7 @@ fun MoviesMenu(viewModel: MoviesViewModel) {
         ) {
             MenuItem(
                 onClick = {
-                    viewModel.movieFilter = MovieFilter.POPULAR
+                    viewModel.updateFilter(MovieFilter.POPULAR)
                     expanded = false
                 },
                 titleResId = R.string.filter_by_popular,
@@ -62,7 +51,7 @@ fun MoviesMenu(viewModel: MoviesViewModel) {
 
             MenuItem(
                 onClick = {
-                    viewModel.movieFilter = MovieFilter.TOP_RATED
+                    viewModel.updateFilter(MovieFilter.TOP_RATED)
                     expanded = false
                 },
                 titleResId = R.string.filter_by_top_rated,
@@ -70,7 +59,7 @@ fun MoviesMenu(viewModel: MoviesViewModel) {
 
             MenuItem(
                 onClick = {
-                    viewModel.movieFilter = MovieFilter.NOW_PLAYING
+                    viewModel.updateFilter(MovieFilter.NOW_PLAYING)
                     expanded = false
                 },
                 titleResId = R.string.filter_by_now_playing,
@@ -78,7 +67,7 @@ fun MoviesMenu(viewModel: MoviesViewModel) {
 
             MenuItem(
                 onClick = {
-                    viewModel.movieFilter = MovieFilter.UPCOMING
+                    viewModel.updateFilter(MovieFilter.UPCOMING)
                     expanded = false
                 },
                 titleResId = R.string.filter_by_upcoming,

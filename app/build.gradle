@@ -81,6 +81,8 @@ dependencies {
 
     implementation "com.google.android.material:material:$material_version"
     implementation "com.google.accompanist:accompanist-glide:$accompanist_version"
+
+    implementation "com.airbnb.android:lottie:$lottie_version"
     
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"

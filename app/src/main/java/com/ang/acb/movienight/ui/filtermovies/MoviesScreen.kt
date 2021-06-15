@@ -58,16 +58,16 @@ fun MoviesScreen(
                             ErrorItem(
                                 modifier = Modifier.fillParentMaxSize(),
                                 message = errorState.error.localizedMessage!!,
-                                onClickRetry = { retry() }
+                                onRetryClick = { retry() }
                             )
                         }
                     }
                     loadState.append is LoadState.Error -> {
-                        val e = lazyPagingItems.loadState.append as LoadState.Error
+                        val errorState = lazyPagingItems.loadState.append as LoadState.Error
                         item {
                             ErrorItem(
-                                message = e.error.localizedMessage!!,
-                                onClickRetry = { retry() }
+                                message = errorState.error.localizedMessage!!,
+                                onRetryClick = { retry() }
                             )
                         }
                     }

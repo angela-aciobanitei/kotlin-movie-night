@@ -3,6 +3,8 @@ package com.ang.acb.movienight.ui.filtermovies
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
@@ -10,24 +12,30 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import com.ang.acb.movienight.R
-import com.ang.acb.movienight.ui.theme.DarkGray
-import com.ang.acb.movienight.ui.theme.LightGray
+import com.ang.acb.movienight.ui.theme.Purple700
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.google.accompanist.glide.rememberGlidePainter
 import com.google.accompanist.imageloading.ImageLoadState
 
+private const val posterWidth = 50
+private const val posterHeight = 75
+private const val roundingRadius = 12
+
 @Composable
 fun MovieAvatar(
     avatarUrl: String,
-    roundingRadius: Int = 12,
 ) {
     Box(
-        modifier = Modifier.clip(shape = RoundedCornerShape(roundingRadius)),
+        modifier = Modifier
+            .width(posterWidth.dp)
+            .height(posterHeight.dp)
+            .clip(shape = RoundedCornerShape(roundingRadius)),
         contentAlignment = Alignment.Center,
     ) {
         val painter = rememberGlidePainter(
@@ -49,23 +57,19 @@ fun MovieAvatar(
 }
 
 @Composable
-fun DefaultMovieAvatar(
-    roundingRadius: Int = 12,
-) {
+fun DefaultMovieAvatar() {
     Box(
-        modifier = Modifier.background(
-            shape = RoundedCornerShape(roundingRadius),
-            color = LightGray
-        ),
+        modifier = Modifier
+            .width(posterWidth.dp)
+            .height(posterHeight.dp)
+            .background(shape = RoundedCornerShape(roundingRadius), color = Color.LightGray),
         contentAlignment = Alignment.Center,
     ) {
         Icon(
-            painter = painterResource(id = R.drawable.ic_movie),
+            painter = painterResource(id = R.drawable.ic_discover_movies),
             contentDescription = null,
-            tint = DarkGray,
-            modifier = Modifier
-                .scale(2f)
-                .align(alignment = Alignment.Center)
+            tint = Purple700,
+            modifier = Modifier.align(alignment = Alignment.Center)
         )
     }
 }

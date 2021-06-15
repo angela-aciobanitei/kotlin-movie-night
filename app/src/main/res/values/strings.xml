@@ -9,4 +9,5 @@
     <string name="discover_route_label">Discover</string>
     <string name="search_route_label">Search</string>
     <string name="favorites_route_label">Favorites</string>
+    <string name="try_again_button_label">Try again</string>
 </resources>

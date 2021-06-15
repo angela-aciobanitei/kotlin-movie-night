@@ -1,10 +1,7 @@
 package com.ang.acb.movienight.ui.filtermovies
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -39,23 +36,15 @@ fun MovieItem(
                 style = TextStyle(fontWeight = FontWeight.W700, fontSize = 18.sp)
             )
 
+            Box(modifier = Modifier.width(16.dp))
+
             Text(
                 text = "Release date: ${movie.releaseDate}",
                 style = TextStyle(fontSize = 12.sp)
             )
 
             Text(
-                text = "Vote count: ${movie.voteCount}",
-                style = TextStyle(fontSize = 12.sp)
-            )
-
-            Text(
                 text = "Vote average: ${movie.voteAverage}",
-                style = TextStyle(fontSize = 12.sp)
-            )
-
-            Text(
-                text = "Popularity: ${movie.popularity}",
                 style = TextStyle(fontSize = 12.sp)
             )
         }

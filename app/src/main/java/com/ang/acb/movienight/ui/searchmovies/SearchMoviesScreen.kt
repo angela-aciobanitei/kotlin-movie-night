@@ -83,22 +83,21 @@ fun SearchMoviesScreen(
                             }
 
                             loadState.refresh is LoadState.Error -> {
-                                val errorState =
-                                    lazyPagingItems.loadState.refresh as LoadState.Error
+                                val state = lazyPagingItems.loadState.refresh as LoadState.Error
                                 item {
                                     ErrorItem(
                                         modifier = Modifier.fillParentMaxSize(),
-                                        message = errorState.error.localizedMessage!!,
-                                        onClickRetry = { retry() }
+                                        message = state.error.localizedMessage!!,
+                                        onRetryClick = { retry() }
                                     )
                                 }
                             }
                             loadState.append is LoadState.Error -> {
-                                val e = lazyPagingItems.loadState.append as LoadState.Error
+                                val state = lazyPagingItems.loadState.append as LoadState.Error
                                 item {
                                     ErrorItem(
-                                        message = e.error.localizedMessage!!,
-                                        onClickRetry = { retry() }
+                                        message = state.error.localizedMessage!!,
+                                        onRetryClick = { retry() }
                                     )
                                 }
                             }

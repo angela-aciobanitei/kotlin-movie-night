@@ -10,13 +10,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.ang.acb.movienight.R
 
 @Composable
 fun ErrorItem(
     message: String,
     modifier: Modifier = Modifier,
-    onClickRetry: () -> Unit
+    onRetryClick: () -> Unit
 ) {
     Row(
         modifier = modifier.padding(16.dp),
@@ -30,8 +32,8 @@ fun ErrorItem(
             style = MaterialTheme.typography.h6,
             color = Color.Red
         )
-        OutlinedButton(onClick = onClickRetry) {
-            Text(text = "Try again")
+        OutlinedButton(onClick = onRetryClick) {
+            Text(text = stringResource(R.string.try_again_button_label))
         }
     }
 }

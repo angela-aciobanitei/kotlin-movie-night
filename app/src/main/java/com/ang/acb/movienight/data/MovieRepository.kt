@@ -9,47 +9,22 @@ class MovieRepository @Inject constructor(
 ) : MovieGateway {
 
     override suspend fun getPopularMovies(page: Int): Movies {
-        val response = movieService.getPopularMovies(page)
-        return Movies(
-            movies = response.results.asMovies(),
-            currentPage = response.page,
-            totalPages = response.totalPages
-        )
+        return movieService.getPopularMovies(page).asMovies()
     }
 
     override suspend fun getTopRatedMovies(page: Int): Movies {
-        val response = movieService.getTopRatedMovies(page)
-        return Movies(
-            movies = response.results.asMovies(),
-            currentPage = response.page,
-            totalPages = response.totalPages
-        )
+        return movieService.getTopRatedMovies(page).asMovies()
     }
 
     override suspend fun getNowPlayingMovies(page: Int): Movies {
-        val response = movieService.getNowPlayingMovies(page)
-        return Movies(
-            movies = response.results.asMovies(),
-            currentPage = response.page,
-            totalPages = response.totalPages
-        )
+        return movieService.getNowPlayingMovies(page).asMovies()
     }
 
     override suspend fun getUpcomingMovies(page: Int): Movies {
-        val response = movieService.getUpcomingMovies(page)
-        return Movies(
-            movies = response.results.asMovies(),
-            currentPage = response.page,
-            totalPages = response.totalPages
-        )
+        return movieService.getUpcomingMovies(page).asMovies()
     }
 
     override suspend fun searchMovies(query: String, page: Int): Movies {
-        val response = movieService.searchMovies(query, page)
-        return Movies(
-            movies = response.results.asMovies(),
-            currentPage = response.page,
-            totalPages = response.totalPages
-        )
+        return movieService.searchMovies(query, page).asMovies()
     }
 }

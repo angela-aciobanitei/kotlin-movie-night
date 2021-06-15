@@ -1,6 +1,5 @@
 package com.ang.acb.movienight.data
 
-import com.ang.acb.movienight.domain.Movie
 import com.google.gson.annotations.SerializedName
 
 data class NetworkMovie(
@@ -14,19 +13,3 @@ data class NetworkMovie(
     @SerializedName("vote_average") val voteAverage: Double?,
     @SerializedName("vote_count") val voteCount: Int?
 )
-
-fun List<NetworkMovie>.asMovies(): List<Movie> {
-    return this.map {
-        Movie(
-            id = it.id,
-            title = it.title,
-            overview = it.overview,
-            releaseDate = it.releaseDate,
-            posterPath = it.posterPath,
-            backdropPath = it.backdropPath,
-            popularity = it.popularity,
-            voteAverage = it.voteAverage,
-            voteCount = it.voteCount,
-        )
-    }
-}

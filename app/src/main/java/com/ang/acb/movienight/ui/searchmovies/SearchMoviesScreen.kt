@@ -50,7 +50,7 @@ fun SearchMoviesScreen(
                 onValueChange = { query = it },
                 search = {
                     if (query.isNullOrBlank().not()) {
-                        searchResult = viewModel.searchMovies(query!!)
+                        searchResult = viewModel.searchMovies(query!!.trim())
                     }
                 }
             )

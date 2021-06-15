@@ -1,10 +1,15 @@
 package com.ang.acb.movienight.ui
 
 import android.app.Application
+import com.ang.acb.movienight.BuildConfig
 import dagger.hilt.android.HiltAndroidApp
+import timber.log.Timber
 
-// Note: beware of this error "Hilt Activity must be attached to an @HiltAndroidApp
-// Application. Did you forget to specify your Application's class name in your manifest's
-// <application />'s android:name attribute?"
 @HiltAndroidApp
-class MovieNightApplication : Application()
+class MovieNightApplication : Application(){
+
+    override fun onCreate() {
+        super.onCreate()
+        if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
+    }
+}

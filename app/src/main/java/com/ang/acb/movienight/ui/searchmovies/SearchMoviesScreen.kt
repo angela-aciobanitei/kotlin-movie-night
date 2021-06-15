@@ -14,10 +14,13 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
+import com.ang.acb.movienight.domain.Movie
 import com.ang.acb.movienight.ui.filtermovies.MovieItem
 import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.Flow
 
 @ExperimentalComposeUiApi
 @FlowPreview
@@ -25,8 +28,10 @@ import kotlinx.coroutines.FlowPreview
 fun SearchMoviesScreen(
     viewModel: SearchMoviesViewModel = hiltViewModel()
 ) {
-    var query: String? by remember { mutableStateOf(null) }
     val textState = remember { mutableStateOf(TextFieldValue()) }
+    var query: String? by remember { mutableStateOf(null) }
+    var searchResult: Flow<PagingData<Movie>>? by remember { mutableStateOf(null) }
+
 
     // todo hide keyboard before navigating to movie details
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -44,23 +49,27 @@ fun SearchMoviesScreen(
                 textState = textState,
                 onValueChange = { query = it },
                 search = {
-
-
+                    if (query.isNullOrBlank().not()) {
+                        searchResult = viewModel.searchMovies(query!!)
+                    }
                 }
             )
 
-            // todo fix search
-            val lazyPagingItems = viewModel.searchMovies("star").collectAsLazyPagingItems()
+            searchResult?.let {
+                // TODO Handle lazy paging items load states: loading, error etc
+                val lazyPagingItems = it.collectAsLazyPagingItems()
 
-            LazyColumn {
-                items(lazyPagingItems) { item ->
-                    if (item != null) {
-                        MovieItem(
-                            movie = item,
-                            onMovieClick = { /*TODO */ }
-                        )
+                LazyColumn {
+                    items(lazyPagingItems) { item ->
+                        if (item != null) {
+                            MovieItem(
+                                movie = item,
+                                onMovieClick = { /*TODO */ }
+                            )
+                        }
                     }
                 }
+
             }
         }
     }

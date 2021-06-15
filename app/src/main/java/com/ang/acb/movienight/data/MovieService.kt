@@ -17,7 +17,7 @@ interface MovieService {
     suspend fun getUpcomingMovies(@Query("page") page: Int): MoviesResponse
 
     @GET("search/movie")
-    fun searchMovies(
+    suspend fun searchMovies(
         @Query("query") query: String,
         @Query("page") page: Int
     ): MoviesResponse

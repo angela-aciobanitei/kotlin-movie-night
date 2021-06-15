@@ -1,4 +1,4 @@
-package com.ang.acb.movienight.ui.moviesearch
+package com.ang.acb.movienight.ui.search
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState

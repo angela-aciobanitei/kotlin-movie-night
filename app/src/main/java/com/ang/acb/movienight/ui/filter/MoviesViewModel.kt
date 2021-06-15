@@ -1,4 +1,4 @@
-package com.ang.acb.movienight.ui.moviefilter
+package com.ang.acb.movienight.ui.filter
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

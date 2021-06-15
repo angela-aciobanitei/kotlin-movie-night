@@ -10,8 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.ang.acb.movienight.ui.filtermovies.MoviesScreen
-import com.ang.acb.movienight.ui.searchmovies.SearchMoviesScreen
+import com.ang.acb.movienight.ui.moviefilter.MoviesScreen
+import com.ang.acb.movienight.ui.moviesearch.SearchMoviesScreen
 import kotlinx.coroutines.FlowPreview
 
 @FlowPreview

@@ -1,4 +1,4 @@
-package com.ang.acb.movienight.ui.filtermovies
+package com.ang.acb.movienight.ui.moviefilter
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Scaffold

@@ -1,24 +1,23 @@
-package com.ang.acb.movienight.ui.filtermovies
+package com.ang.acb.movienight.ui.moviesearch
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.ang.acb.movienight.domain.GetFilteredMoviesUseCase
 import com.ang.acb.movienight.domain.Movie
-import com.ang.acb.movienight.domain.MovieFilter
+import com.ang.acb.movienight.domain.SearchMoviesUseCase
 import timber.log.Timber
 
 private const val STARTING_PAGE_INDEX = 1
 
-class FilteredMoviesPagingSource(
-    private val filter: MovieFilter,
-    private val getFilteredMoviesUseCase: GetFilteredMoviesUseCase,
+class SearchMoviesPagingSource(
+    private val query: String,
+    private val searchMoviesUseCase: SearchMoviesUseCase,
 ) : PagingSource<Int, Movie>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
         val page = params.key ?: STARTING_PAGE_INDEX
 
         return try {
-            val response = getFilteredMoviesUseCase(filter, page)
+            val response = searchMoviesUseCase(query, page)
 
             LoadResult.Page(
                 data = response.movies,

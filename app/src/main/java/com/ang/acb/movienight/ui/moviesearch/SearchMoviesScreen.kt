@@ -1,4 +1,4 @@
-package com.ang.acb.movienight.ui.searchmovies
+package com.ang.acb.movienight.ui.moviesearch
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer

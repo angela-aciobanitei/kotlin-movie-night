@@ -1,4 +1,4 @@
-package com.ang.acb.movienight.ui.searchmovies
+package com.ang.acb.movienight.ui.moviesearch
 
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar

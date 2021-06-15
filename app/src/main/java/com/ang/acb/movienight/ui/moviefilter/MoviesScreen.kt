@@ -48,6 +48,7 @@ fun MoviesScreen(
             lazyPagingItems.apply {
                 when {
                     // Handle loading states
+                    // See: https://developer.android.com/reference/kotlin/androidx/paging/compose/package-summary#collectaslazypagingitems
                     loadState.refresh is LoadState.Loading -> {
                         item { LoadingView(modifier = Modifier.fillParentMaxSize()) }
                     }

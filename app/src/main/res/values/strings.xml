@@ -11,4 +11,5 @@
     <string name="favorites_route_label">Favorites</string>
     <string name="try_again_button_label">Try again</string>
     <string name="generic_error_message">Woops, there was an error. Try again!</string>
+    <string name="favorite_movies_topbar_label">Your favorites</string>
 </resources>

@@ -1,15 +1,11 @@
 package com.ang.acb.movienight.ui.main
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
-import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.ang.acb.movienight.ui.favorites.FavoriteMoviesScreen
 import com.ang.acb.movienight.ui.moviefilter.MoviesScreen
 import com.ang.acb.movienight.ui.moviesearch.SearchMoviesScreen
 import kotlinx.coroutines.FlowPreview
@@ -31,12 +27,7 @@ fun MainNavHost(
             SearchMoviesScreen()
         }
         composable(route = MainDestinations.FAVORITES) {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(text = "TODO Favorites")
-            }
+            FavoriteMoviesScreen()
         }
     }
 }

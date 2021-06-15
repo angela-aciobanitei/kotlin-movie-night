@@ -10,9 +10,10 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.ang.acb.movienight.data.asStringResourceId
 import com.ang.acb.movienight.domain.MovieFilter
-import com.ang.acb.movienight.ui.state.ErrorItem
-import com.ang.acb.movienight.ui.state.LoadingItem
-import com.ang.acb.movienight.ui.state.LoadingView
+import com.ang.acb.movienight.ui.common.ErrorItem
+import com.ang.acb.movienight.ui.common.LoadingItem
+import com.ang.acb.movienight.ui.common.LoadingView
+import com.ang.acb.movienight.ui.common.MovieItem
 import kotlinx.coroutines.FlowPreview
 
 @FlowPreview

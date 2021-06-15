@@ -1,4 +1,4 @@
-package com.ang.acb.movienight.ui.filtermovies
+package com.ang.acb.movienight.ui.common
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

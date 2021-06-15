@@ -1,4 +1,4 @@
-package com.ang.acb.movienight.ui.state
+package com.ang.acb.movienight.ui.common
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row

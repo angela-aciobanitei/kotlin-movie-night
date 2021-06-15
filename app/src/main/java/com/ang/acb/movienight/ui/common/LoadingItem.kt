@@ -1,4 +1,4 @@
-package com.ang.acb.movienight.ui.state
+package com.ang.acb.movienight.ui.common
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding

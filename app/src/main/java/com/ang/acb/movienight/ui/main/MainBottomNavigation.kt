@@ -35,9 +35,10 @@ fun MainBottomNavigation(
                     navController.navigate(screen.route) {
                         launchSingleTop = true
                         restoreState = true
-                        popUpTo(navController.graph.startDestinationId) {
-                            saveState = true
-                        }
+                        popUpTo(
+                            id = navController.graph.startDestinationId,
+                            popUpToBuilder = { saveState = true }
+                        )
                     }
                 }
             )

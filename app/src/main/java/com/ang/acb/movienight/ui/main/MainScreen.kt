@@ -4,6 +4,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.navigation.compose.rememberNavController
+import com.ang.acb.movienight.ui.main.MainBottomNavItem.*
 import kotlinx.coroutines.FlowPreview
 
 @FlowPreview
@@ -12,15 +13,14 @@ import kotlinx.coroutines.FlowPreview
 fun MainScreen() {
 
     val navController = rememberNavController()
+    val bottomNavItems = listOf(Discover, Search, Favorites)
 
-    val bottomNavigationItems = listOf(
-        MainBottomNavItem.Discover,
-        MainBottomNavItem.Search,
-        MainBottomNavItem.Favorites,
-    )
     Scaffold(
-        bottomBar = { MainBottomNavigation(navController, bottomNavigationItems) },
-    ) {
-        MainNavHost(navController)
-    }
+        bottomBar = {
+            MainBottomNavigation(navController, bottomNavItems)
+        },
+        content = {
+            MainNavHost(navController)
+        }
+    )
 }

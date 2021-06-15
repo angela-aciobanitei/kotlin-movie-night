@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.CircularProgressIndicator
@@ -50,7 +51,7 @@ fun MovieAvatar(
         Image(painter = painter, contentDescription = null)
 
         when (painter.loadState) {
-            is ImageLoadState.Loading -> CircularProgressIndicator(Modifier.align(Alignment.Center))
+            is ImageLoadState.Loading -> LoadingMovieAvatar()
             is ImageLoadState.Error -> DefaultMovieAvatar()
         }
     }
@@ -70,6 +71,22 @@ fun DefaultMovieAvatar() {
             contentDescription = null,
             tint = Purple700,
             modifier = Modifier.align(alignment = Alignment.Center)
+        )
+    }
+}
+
+@Composable
+fun LoadingMovieAvatar() {
+    Box(
+        modifier = Modifier
+            .width(posterWidth.dp)
+            .height(posterHeight.dp)
+            .background(shape = RoundedCornerShape(roundingRadius), color = Color.LightGray),
+        contentAlignment = Alignment.Center,
+    ) {
+        CircularProgressIndicator(
+            modifier = Modifier.size(24.dp),
+            strokeWidth = 2.dp
         )
     }
 }

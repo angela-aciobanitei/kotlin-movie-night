@@ -1,6 +1,7 @@
 package com.ang.acb.movienight.hilt
 
 import com.ang.acb.movienight.BuildConfig
+import com.ang.acb.movienight.data.remote.MovieService
 import com.ang.acb.movienight.utils.Constants.TMDB_BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -21,9 +22,6 @@ object NetworkModule {
     @Singleton
     @Provides
     fun provideAuthInterceptor(): Interceptor {
-        // Because we are requesting an API which accepts an API key as a
-        // request parameter, we'll use an interceptor that will add the
-        // query parameter to every request method.
         return Interceptor { chain: Interceptor.Chain ->
             val initialRequest = chain.request()
 
@@ -76,4 +74,10 @@ object NetworkModule {
         .addConverterFactory(ScalarsConverterFactory.create())
         .addConverterFactory(GsonConverterFactory.create())
         .build()
+
+    @Provides
+    @Singleton
+    fun provideMovieService(
+        retrofit: Retrofit
+    ): MovieService = retrofit.create(MovieService::class.java)
 }

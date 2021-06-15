@@ -15,11 +15,11 @@ import com.ang.acb.movienight.utils.Constants.IMAGE_URL
 @Composable
 fun MovieItem(
     movie: Movie,
-    onMovieClick: (movieId: Long) -> Unit
+    onMovieClick: (movie: Movie) -> Unit
 ) {
     Row(modifier = Modifier
         .fillMaxWidth()
-        .clickable { onMovieClick(movie.id) }
+        .clickable { onMovieClick(movie) }
         .padding(horizontal = 16.dp, vertical = 8.dp)
     ) {
         if (movie.posterPath == null) {

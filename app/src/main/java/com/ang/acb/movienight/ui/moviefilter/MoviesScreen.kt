@@ -4,16 +4,15 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
+import com.ang.acb.movienight.R
 import com.ang.acb.movienight.data.asStringResourceId
 import com.ang.acb.movienight.domain.MovieFilter
-import com.ang.acb.movienight.ui.common.ErrorItem
-import com.ang.acb.movienight.ui.common.LoadingItem
-import com.ang.acb.movienight.ui.common.LoadingView
-import com.ang.acb.movienight.ui.common.MovieItem
+import com.ang.acb.movienight.ui.common.*
 import kotlinx.coroutines.FlowPreview
 
 @FlowPreview
@@ -38,13 +37,17 @@ fun MoviesScreen(
                 if (item != null) {
                     MovieItem(
                         movie = item,
-                        onMovieClick = { /*TODO */ }
+                        onMovieClick = {
+                            // TODO Go to movie details
+                            viewModel.saveFavoriteMovie(it)
+                        }
                     )
                 }
             }
 
             lazyPagingItems.apply {
                 when {
+                    // Handle loading states
                     loadState.refresh is LoadState.Loading -> {
                         item { LoadingView(modifier = Modifier.fillParentMaxSize()) }
                     }
@@ -53,12 +56,15 @@ fun MoviesScreen(
                         item { LoadingItem() }
                     }
 
+                    // Handle error states
+                    // TODO Parse error response {"status_code":7,"status_message":"Invalid API key: You must be granted a valid key.","success":false}
                     loadState.refresh is LoadState.Error -> {
                         val errorState = lazyPagingItems.loadState.refresh as LoadState.Error
                         item {
-                            ErrorItem(
+                            ErrorMessage(
                                 modifier = Modifier.fillParentMaxSize(),
-                                message = errorState.error.localizedMessage!!,
+                                message = errorState.error.message
+                                    ?: stringResource(R.string.generic_error_message),
                                 onRetryClick = { retry() }
                             )
                         }
@@ -67,7 +73,8 @@ fun MoviesScreen(
                         val errorState = lazyPagingItems.loadState.append as LoadState.Error
                         item {
                             ErrorItem(
-                                message = errorState.error.localizedMessage!!,
+                                message = errorState.error.message
+                                    ?: stringResource(R.string.generic_error_message),
                                 onRetryClick = { retry() }
                             )
                         }

@@ -6,15 +6,24 @@ plugins {
 }
 
 android {
-    compileSdk 30
-    buildToolsVersion "30.0.3"
+    compileSdk rootProject.compile_sdk_version
+    buildToolsVersion rootProject.build_tools_version
 
     defaultConfig {
         applicationId "com.ang.acb.movienight"
-        minSdk 24
-        targetSdk 30
+        minSdk rootProject.min_sdk_version
+        targetSdk rootProject.target_sdk_version
         versionCode 1
         versionName "1.0"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += [
+                        "room.schemaLocation"  : "$projectDir/schemas".toString(),
+                        "room.incremental"     : "true",
+                        "room.expandProjection": "true"]
+            }
+        }
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -57,16 +66,29 @@ kapt {
     correctErrorTypes true
 }
 
+/*
+ Dependency versions are defined in the top level build.gradle file.
+ */
 dependencies {
+    // Couroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$koltin_coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$koltin_coroutines_version"
 
+    // Hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
 
+    // Room
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
     implementation "androidx.core:core-ktx:$androidx_core_version"
+    implementation "androidx.annotation:annotation:$androidx_annotations_version"
     implementation "androidx.appcompat:appcompat:$appcompat_version"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+
+    // Compose
     implementation "androidx.compose.ui:ui:$compose_version"
     implementation "androidx.compose.material:material:$compose_version"
     implementation "androidx.compose.ui:ui-tooling:$compose_version"
@@ -77,24 +99,23 @@ dependencies {
     implementation "androidx.navigation:navigation-compose:$compose_navigation_version"
     implementation "androidx.paging:paging-compose:$compose_paging_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$compose_viewmodel_version"
-    implementation "androidx.hilt:hilt-navigation-fragment:$hilt_navigation_fragment_version"
     implementation "androidx.hilt:hilt-navigation-compose:$hilt_navigation_compose_version"
 
     implementation "com.google.android.material:material:$material_version"
     implementation "com.google.accompanist:accompanist-glide:$accompanist_version"
 
+    // Networking
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-scalars:$retrofit_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
-    implementation "com.squareup.moshi:moshi:$moshi_version"
-    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
-    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
 
+    // Utils
     implementation "com.jakewharton.threetenabp:threetenabp:$threetenbp_version"
     implementation "com.jakewharton.timber:timber:$timber_version"
 
     testImplementation "junit:junit:$junit_version"
+    testImplementation "androidx.room:room-testing:$room_version"
     testImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
     kaptTest "com.google.dagger:hilt-compiler:$hilt_version"
     androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_version"

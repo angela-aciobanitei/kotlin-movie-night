@@ -1,4 +1,4 @@
-package com.ang.acb.movienight.data
+package com.ang.acb.movienight.data.remote
 
 import retrofit2.http.GET
 import retrofit2.http.Query

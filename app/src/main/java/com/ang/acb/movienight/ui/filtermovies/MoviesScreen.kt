@@ -3,11 +3,16 @@ package com.ang.acb.movienight.ui.filtermovies
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.ang.acb.movienight.data.asStringResourceId
 import com.ang.acb.movienight.domain.MovieFilter
+import com.ang.acb.movienight.ui.state.ErrorItem
+import com.ang.acb.movienight.ui.state.LoadingItem
+import com.ang.acb.movienight.ui.state.LoadingView
 import kotlinx.coroutines.FlowPreview
 
 @FlowPreview
@@ -25,7 +30,6 @@ fun MoviesScreen(
             )
         }
     ) {
-        // TODO Handle lazy paging items load states: loading, error etc
         val lazyPagingItems = viewModel.getPagedMovies(filter).collectAsLazyPagingItems()
 
         LazyColumn {
@@ -35,6 +39,38 @@ fun MoviesScreen(
                         movie = item,
                         onMovieClick = { /*TODO */ }
                     )
+                }
+            }
+
+            lazyPagingItems.apply {
+                when {
+                    loadState.refresh is LoadState.Loading -> {
+                        item { LoadingView(modifier = Modifier.fillParentMaxSize()) }
+                    }
+
+                    loadState.append is LoadState.Loading -> {
+                        item { LoadingItem() }
+                    }
+
+                    loadState.refresh is LoadState.Error -> {
+                        val errorState = lazyPagingItems.loadState.refresh as LoadState.Error
+                        item {
+                            ErrorItem(
+                                modifier = Modifier.fillParentMaxSize(),
+                                message = errorState.error.localizedMessage!!,
+                                onClickRetry = { retry() }
+                            )
+                        }
+                    }
+                    loadState.append is LoadState.Error -> {
+                        val e = lazyPagingItems.loadState.append as LoadState.Error
+                        item {
+                            ErrorItem(
+                                message = e.error.localizedMessage!!,
+                                onClickRetry = { retry() }
+                            )
+                        }
+                    }
                 }
             }
         }

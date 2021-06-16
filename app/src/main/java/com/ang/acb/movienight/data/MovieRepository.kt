@@ -1,11 +1,14 @@
 package com.ang.acb.movienight.data
 
-import com.ang.acb.movienight.data.local.FavoriteMovie
-import com.ang.acb.movienight.data.local.LocalMovieDataSource
-import com.ang.acb.movienight.data.remote.RemoteMovieDataSource
-import com.ang.acb.movienight.domain.Movie
-import com.ang.acb.movienight.domain.MovieGateway
-import com.ang.acb.movienight.domain.Movies
+import com.ang.acb.movienight.data.source.local.FavoriteMovie
+import com.ang.acb.movienight.data.source.local.LocalMovieDataSource
+import com.ang.acb.movienight.data.source.local.asMovie
+import com.ang.acb.movienight.data.source.local.asMovies
+import com.ang.acb.movienight.data.source.remote.RemoteMovieDataSource
+import com.ang.acb.movienight.domain.entities.Movie
+import com.ang.acb.movienight.domain.entities.MovieDetails
+import com.ang.acb.movienight.domain.entities.Movies
+import com.ang.acb.movienight.domain.gateway.MovieGateway
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -33,6 +36,10 @@ class MovieRepository @Inject constructor(
 
     override suspend fun searchMovies(query: String, page: Int): Movies {
         return remoteMovieDataSource.searchMovies(query, page)
+    }
+
+    override suspend fun getAllMovieDetails(movieId: Long): MovieDetails {
+        return remoteMovieDataSource.getAllMovieDetails(movieId)
     }
 
     override suspend fun saveFavoriteMovie(movie: Movie): Long {

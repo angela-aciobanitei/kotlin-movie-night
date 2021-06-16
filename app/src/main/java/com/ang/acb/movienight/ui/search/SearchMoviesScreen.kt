@@ -18,7 +18,7 @@ import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
-import com.ang.acb.movienight.domain.Movie
+import com.ang.acb.movienight.domain.entities.Movie
 import com.ang.acb.movienight.ui.common.ErrorItem
 import com.ang.acb.movienight.ui.common.LoadingItem
 import com.ang.acb.movienight.ui.common.LoadingView

@@ -5,8 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ang.acb.movienight.domain.GetAllFavoriteMoviesUseCase
-import com.ang.acb.movienight.domain.Movie
+import com.ang.acb.movienight.domain.entities.Movie
+import com.ang.acb.movienight.domain.usecases.GetAllFavoriteMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect

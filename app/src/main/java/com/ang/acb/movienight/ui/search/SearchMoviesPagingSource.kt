@@ -2,8 +2,8 @@ package com.ang.acb.movienight.ui.search
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.ang.acb.movienight.domain.Movie
-import com.ang.acb.movienight.domain.SearchMoviesUseCase
+import com.ang.acb.movienight.domain.entities.Movie
+import com.ang.acb.movienight.domain.usecases.SearchMoviesUseCase
 import timber.log.Timber
 
 private const val STARTING_PAGE_INDEX = 1

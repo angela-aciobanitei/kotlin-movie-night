@@ -10,8 +10,8 @@ import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.ang.acb.movienight.R
-import com.ang.acb.movienight.data.asStringResourceId
-import com.ang.acb.movienight.domain.MovieFilter
+import com.ang.acb.movienight.data.source.local.asStringResourceId
+import com.ang.acb.movienight.domain.entities.MovieFilter
 import com.ang.acb.movienight.ui.common.*
 import kotlinx.coroutines.FlowPreview
 
@@ -38,8 +38,9 @@ fun MoviesScreen(
                     MovieItem(
                         movie = item,
                         onMovieClick = {
-                            // TODO Go to movie details
+                            // TODO Go to movie details page on click
                             viewModel.saveFavoriteMovie(it)
+                            viewModel.getMovieDetails(it.id)
                         }
                     )
                 }
@@ -58,7 +59,8 @@ fun MoviesScreen(
                     }
 
                     // Handle error states
-                    // TODO Parse error response {"status_code":7,"status_message":"Invalid API key: You must be granted a valid key.","success":false}
+                    // TODO Parse error response to get status message
+                    // {"status_code":7,"status_message":"Invalid API key.","success":false}
                     loadState.refresh is LoadState.Error -> {
                         val errorState = lazyPagingItems.loadState.refresh as LoadState.Error
                         item {

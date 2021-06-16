@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.ang.acb.movienight.domain.Movie
-import com.ang.acb.movienight.domain.SearchMoviesUseCase
+import com.ang.acb.movienight.domain.entities.Movie
+import com.ang.acb.movienight.domain.usecases.SearchMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow

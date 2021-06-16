@@ -2,9 +2,9 @@ package com.ang.acb.movienight.ui.filter
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.ang.acb.movienight.domain.GetFilteredMoviesUseCase
-import com.ang.acb.movienight.domain.Movie
-import com.ang.acb.movienight.domain.MovieFilter
+import com.ang.acb.movienight.domain.entities.Movie
+import com.ang.acb.movienight.domain.entities.MovieFilter
+import com.ang.acb.movienight.domain.usecases.GetFilteredMoviesUseCase
 import timber.log.Timber
 
 private const val STARTING_PAGE_INDEX = 1

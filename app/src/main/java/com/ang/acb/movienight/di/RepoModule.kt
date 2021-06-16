@@ -1,7 +1,7 @@
 package com.ang.acb.movienight.di
 
 import com.ang.acb.movienight.data.MovieRepository
-import com.ang.acb.movienight.domain.gateway.MovieGateway
+import com.ang.acb.movienight.domain.gateways.MovieGateway
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

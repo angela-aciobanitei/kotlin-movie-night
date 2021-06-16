@@ -8,7 +8,7 @@ import com.ang.acb.movienight.data.source.remote.RemoteMovieDataSource
 import com.ang.acb.movienight.domain.entities.Movie
 import com.ang.acb.movienight.domain.entities.MovieDetails
 import com.ang.acb.movienight.domain.entities.Movies
-import com.ang.acb.movienight.domain.gateway.MovieGateway
+import com.ang.acb.movienight.domain.gateways.MovieGateway
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

@@ -1,4 +1,4 @@
-package com.ang.acb.movienight.domain.gateway
+package com.ang.acb.movienight.domain.gateways
 
 import com.ang.acb.movienight.domain.entities.Movie
 import com.ang.acb.movienight.domain.entities.MovieDetails

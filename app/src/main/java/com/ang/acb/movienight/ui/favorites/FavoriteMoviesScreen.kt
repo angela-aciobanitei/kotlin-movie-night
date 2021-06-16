@@ -4,19 +4,25 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import com.ang.acb.movienight.ui.common.MovieItem
 
 @Composable
 fun FavoriteMoviesScreen(
-    viewModel: FavoritesViewModel = hiltViewModel()
+    viewModel: FavoritesViewModel,
+    navController: NavHostController,
 ) {
     Scaffold(
         topBar = { FavoritesTopBar() }
     ) {
         LazyColumn {
-            items(viewModel.movies) {
-                MovieItem(movie = it, onMovieClick = { /*TODO*/ })
+            items(viewModel.movies) { item ->
+                MovieItem(
+                    movie = item,
+                    onMovieClick = { movieId ->
+                        navController.navigate("movies/details/$movieId")
+                    }
+                )
             }
         }
     }

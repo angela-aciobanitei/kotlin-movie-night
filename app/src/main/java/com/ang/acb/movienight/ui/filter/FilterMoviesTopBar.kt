@@ -11,7 +11,7 @@ import com.ang.acb.movienight.data.source.local.asStringResourceId
 import com.ang.acb.movienight.domain.entities.MovieFilter
 
 @Composable
-fun MoviesTopBar(
+fun FilterMoviesTopBar(
     filterLabel: Int,
     onFilterChanged: (filter: MovieFilter) -> Unit
 ) {

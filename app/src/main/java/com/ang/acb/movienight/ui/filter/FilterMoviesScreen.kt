@@ -5,7 +5,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
@@ -17,14 +17,15 @@ import kotlinx.coroutines.FlowPreview
 
 @FlowPreview
 @Composable
-fun MoviesScreen(
-    viewModel: MoviesViewModel = hiltViewModel()
+fun FilterMoviesScreen(
+    viewModel: FilterMoviesViewModel,
+    navController: NavHostController,
 ) {
     var filter by remember { mutableStateOf(MovieFilter.POPULAR) }
 
     Scaffold(
         topBar = {
-            MoviesTopBar(
+            FilterMoviesTopBar(
                 onFilterChanged = { filter = it },
                 filterLabel = filter.asStringResourceId()
             )
@@ -37,10 +38,9 @@ fun MoviesScreen(
                 if (item != null) {
                     MovieItem(
                         movie = item,
-                        onMovieClick = {
-                            // TODO Go to movie details page on click
-                            viewModel.saveFavoriteMovie(it)
-                            viewModel.getMovieDetails(it.id)
+                        onMovieClick = { movieId ->
+                            // details/{movieId}
+                            navController.navigate("movies/details/$movieId")
                         }
                     )
                 }

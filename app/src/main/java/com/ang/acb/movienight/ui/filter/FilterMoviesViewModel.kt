@@ -18,7 +18,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class MoviesViewModel @Inject constructor(
+class FilterMoviesViewModel @Inject constructor(
     private val getFilteredMoviesUseCase: GetFilteredMoviesUseCase,
     private val saveFavoriteMovieUseCase: SaveFavoriteMovieUseCase,
     private val getMovieDetailsUseCase: GetMovieDetailsUseCase,
@@ -29,7 +29,7 @@ class MoviesViewModel @Inject constructor(
         return Pager(
             config = PagingConfig(enablePlaceholders = false, pageSize = 50),
             pagingSourceFactory = {
-                FilteredMoviesPagingSource(
+                FilterMoviesPagingSource(
                     getFilteredMoviesUseCase = getFilteredMoviesUseCase,
                     filter = filter
                 )

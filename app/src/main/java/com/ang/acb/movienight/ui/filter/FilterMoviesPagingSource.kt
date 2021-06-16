@@ -9,7 +9,7 @@ import timber.log.Timber
 
 private const val STARTING_PAGE_INDEX = 1
 
-class FilteredMoviesPagingSource(
+class FilterMoviesPagingSource(
     private val filter: MovieFilter,
     private val getFilteredMoviesUseCase: GetFilteredMoviesUseCase,
 ) : PagingSource<Int, Movie>() {

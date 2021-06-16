@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -30,14 +30,13 @@ import kotlinx.coroutines.flow.Flow
 @FlowPreview
 @Composable
 fun SearchMoviesScreen(
-    viewModel: SearchMoviesViewModel = hiltViewModel()
+    viewModel: SearchMoviesViewModel,
+    navController: NavHostController,
 ) {
-    val textState = remember { mutableStateOf(TextFieldValue()) }
     var query: String? by remember { mutableStateOf(null) }
     var searchResult: Flow<PagingData<Movie>>? by remember { mutableStateOf(null) }
 
-
-    // todo hide keyboard before navigating to movie details
+    val textState = remember { mutableStateOf(TextFieldValue()) }
     val keyboardController = LocalSoftwareKeyboardController.current
 
     Scaffold(
@@ -67,7 +66,10 @@ fun SearchMoviesScreen(
                         if (item != null) {
                             MovieItem(
                                 movie = item,
-                                onMovieClick = { /*TODO */ }
+                                onMovieClick = { movieId ->
+                                    keyboardController?.hide()
+                                    navController.navigate("movies/details/$movieId")
+                                }
                             )
                         }
                     }

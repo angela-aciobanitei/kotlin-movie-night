@@ -14,9 +14,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 
 @Composable
-fun MoviesBottomNavigation(
+fun MoviesBottomBar(
     navController: NavHostController,
-    items: List<MoviesBottomNavItem>
+    items: List<TabScreen>
 ) {
     // See: https://developer.android.com/jetpack/compose/navigation#bottom-nav
     BottomNavigation {

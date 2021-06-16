@@ -13,20 +13,20 @@ import kotlinx.coroutines.FlowPreview
 @FlowPreview
 @ExperimentalComposeUiApi
 @Composable
-fun MainNavHost(
+fun MoviesNavHost(
     navController: NavHostController
 ) {
     NavHost(
         navController = navController,
-        startDestination = MainDestinations.DISCOVER
+        startDestination = Routes.DISCOVER
     ) {
-        composable(route = MainDestinations.DISCOVER) {
+        composable(route = Routes.DISCOVER) {
             MoviesScreen()
         }
-        composable(route = MainDestinations.SEARCH) {
+        composable(route = Routes.SEARCH) {
             SearchMoviesScreen()
         }
-        composable(route = MainDestinations.FAVORITES) {
+        composable(route = Routes.FAVORITES) {
             FavoriteMoviesScreen()
         }
     }

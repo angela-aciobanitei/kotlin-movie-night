@@ -4,25 +4,25 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.ang.acb.movienight.R
 
-sealed class MainBottomNavItem(
+sealed class MoviesBottomNavItem(
     val route: String,
     @StringRes val labelResId: Int,
     @DrawableRes val iconResId: Int
 ) {
-    object Discover : MainBottomNavItem(
-        route = MainDestinations.DISCOVER,
+    object Discover : MoviesBottomNavItem(
+        route = Routes.DISCOVER,
         labelResId = R.string.discover_route_label,
         iconResId = R.drawable.ic_discover_movies
     )
 
-    object Search : MainBottomNavItem(
-        route = MainDestinations.SEARCH,
+    object Search : MoviesBottomNavItem(
+        route = Routes.SEARCH,
         labelResId = R.string.search_route_label,
         iconResId = R.drawable.ic_search
     )
 
-    object Favorites : MainBottomNavItem(
-        route = MainDestinations.FAVORITES,
+    object Favorites : MoviesBottomNavItem(
+        route = Routes.FAVORITES,
         labelResId = R.string.favorites_route_label,
         iconResId = R.drawable.ic_favorite
     )

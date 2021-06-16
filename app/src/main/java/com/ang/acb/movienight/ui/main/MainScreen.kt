@@ -4,7 +4,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.navigation.compose.rememberNavController
-import com.ang.acb.movienight.ui.main.MainBottomNavItem.*
+import com.ang.acb.movienight.ui.main.MoviesBottomNavItem.*
 import kotlinx.coroutines.FlowPreview
 
 @FlowPreview
@@ -17,10 +17,10 @@ fun MainScreen() {
 
     Scaffold(
         bottomBar = {
-            MainBottomNavigation(navController, bottomNavItems)
+            MoviesBottomNavigation(navController, bottomNavItems)
         },
         content = {
-            MainNavHost(navController)
+            MoviesNavHost(navController)
         }
     )
 }

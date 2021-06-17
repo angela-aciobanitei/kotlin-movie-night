@@ -28,7 +28,7 @@ fun MoviesNavHost(
         startDestination = startDestination,
     ) {
         val openMovieDetails: (movieId: Long) -> Unit = { movieId ->
-            navController.navigate(LeafScreen.MovieDetails.createRoute(movieId))
+            navController.navigate(LeafScreen.ShowDetails.createRoute(movieId))
         }
 
         composable(route = BottomNavScreen.Discover.route) {
@@ -45,11 +45,10 @@ fun MoviesNavHost(
 
         // See: https://developer.android.com/jetpack/compose/navigation#nav-with-args
         composable(
-            route = LeafScreen.MovieDetails.route,
+            route = LeafScreen.ShowDetails.route,
             arguments = listOf(navArgument("movieId") { type = NavType.LongType }),
             content = { backStackEntry ->
                 MovieDetailsScreen(
-                    movieId = backStackEntry.arguments?.getLong("movieId")!!,
                     upPressed = { navController.navigateUp() }
                 )
             }

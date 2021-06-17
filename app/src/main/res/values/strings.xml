@@ -18,4 +18,5 @@
     <string name="search_no_results_end">search term. Try searching for something different.</string>
     <string name="get_favorites_error_message">Could not fetch your favorite movies</string>
     <string name="no_favorites_hint_message">You have no favorite movies yet.</string>
+    <string name="get_movie_details_error_message">Could not fetch movie details</string>
 </resources>

@@ -37,7 +37,7 @@ sealed class BottomNavScreen(
 }
 
 sealed class LeafScreen(val route: String) {
-    object MovieDetails : LeafScreen(MoviesRoutes.DETAILS) {
+    object ShowDetails : LeafScreen(MoviesRoutes.DETAILS) {
         fun createRoute(movieId: Long): String = "${MoviesRoutes.DETAILS_ROOT}/$movieId"
     }
 }

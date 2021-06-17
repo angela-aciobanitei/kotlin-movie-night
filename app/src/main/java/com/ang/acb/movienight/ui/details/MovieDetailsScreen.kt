@@ -4,20 +4,22 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavHostController
 
 @Composable
 fun MovieDetailsScreen(
-    navController: NavHostController,
-    movieId: Long
+    movieId: Long,
+    upPressed: () -> Unit
 ) {
-
     Scaffold(
-        topBar = { TopAppBar(title = { Text(text = "Movie Details") }) }
+        topBar = {
+            MovieDetailsTopBar(
+                title = "Movie Details",
+                upPressed = upPressed
+            )
+        }
     ) {
         Box(
             modifier = Modifier.fillMaxSize(),

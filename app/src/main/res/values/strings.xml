@@ -5,11 +5,12 @@
     <string name="filter_by_now_playing">Now Playing</string>
     <string name="filter_by_upcoming">Upcoming</string>
     <string name="search_movies_topbar_label">Search movies</string>
-    <string name="search_movies_hint">Search movies</string>
+    <string name="search_movies_hint">Search Movies</string>
     <string name="discover_route_label">Discover</string>
     <string name="search_route_label">Search</string>
     <string name="favorites_route_label">Favorites</string>
     <string name="try_again_button_label">Try again</string>
     <string name="generic_error_message">Woops, there was an error. Try again!</string>
-    <string name="favorite_movies_topbar_label">Your favorites</string>
+    <string name="favorite_movies_topbar_label">Your Favorites</string>
+    <string name="topbar_up_button_content_description">Top bar up button</string>
 </resources>

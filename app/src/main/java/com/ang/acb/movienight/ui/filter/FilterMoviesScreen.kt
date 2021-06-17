@@ -5,7 +5,6 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
@@ -19,7 +18,7 @@ import kotlinx.coroutines.FlowPreview
 @Composable
 fun FilterMoviesScreen(
     viewModel: FilterMoviesViewModel,
-    navController: NavHostController,
+    openMovieDetails: (movieId: Long) -> Unit
 ) {
     var filter by remember { mutableStateOf(MovieFilter.POPULAR) }
 
@@ -38,10 +37,7 @@ fun FilterMoviesScreen(
                 if (item != null) {
                     MovieItem(
                         movie = item,
-                        onMovieClick = { movieId ->
-                            // details/{movieId}
-                            navController.navigate("movies/details/$movieId")
-                        }
+                        onMovieClick = { openMovieDetails(it) }
                     )
                 }
             }

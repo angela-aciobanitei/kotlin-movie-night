@@ -8,7 +8,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -16,25 +15,18 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 @Composable
 fun MoviesBottomBar(
     navController: NavHostController,
-    items: List<TabScreen>
+    items: List<BottomNavScreen>
 ) {
     // See: https://developer.android.com/jetpack/compose/navigation#bottom-nav
     BottomNavigation {
-
-        // Get the current NavBackStackEntry using the currentBackStackEntryAsState() function.
-        // This entry gives you access to the current NavDestination.
-        val navBackStackEntry by navController.currentBackStackEntryAsState()
-        val currentDestination = navBackStackEntry?.destination
+        val currentBackStackEntry by navController.currentBackStackEntryAsState()
+        val currentRoute = currentBackStackEntry?.destination?.route ?: MoviesRoutes.DISCOVER
 
         items.forEach { screen ->
             BottomNavigationItem(
                 icon = { Icon(painterResource(screen.iconResId), contentDescription = null) },
                 label = { Text(stringResource(id = screen.labelResId)) },
-                // The selected state of each BottomNavigationItem can then be determined by
-                // comparing the item's route with the route of the current destination and
-                // its parent destinations (to handle cases when you are using nested navigation)
-                // via the hierarchy helper method.
-                selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
+                selected = currentRoute == screen.route,
                 onClick = {
                     navController.navigate(screen.route) {
                         // Pop up to the start destination of the graph to
@@ -43,8 +35,7 @@ fun MoviesBottomBar(
                         popUpTo(navController.graph.findStartDestination().id) {
                             saveState = true
                         }
-                        // Avoid multiple copies of the same destination when re-selecting
-                        // the same item
+                        // Avoid multiple copies of the same destination when re-selecting the same item
                         launchSingleTop = true
                         // Restore state when re-selecting a previously selected item
                         restoreState = true

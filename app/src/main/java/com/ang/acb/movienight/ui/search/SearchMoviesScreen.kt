@@ -13,7 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -31,7 +30,7 @@ import kotlinx.coroutines.flow.Flow
 @Composable
 fun SearchMoviesScreen(
     viewModel: SearchMoviesViewModel,
-    navController: NavHostController,
+    openMovieDetails: (movieId: Long) -> Unit
 ) {
     var query: String? by remember { mutableStateOf(null) }
     var searchResult: Flow<PagingData<Movie>>? by remember { mutableStateOf(null) }
@@ -68,7 +67,7 @@ fun SearchMoviesScreen(
                                 movie = item,
                                 onMovieClick = { movieId ->
                                     keyboardController?.hide()
-                                    navController.navigate("movies/details/$movieId")
+                                    openMovieDetails(movieId)
                                 }
                             )
                         }

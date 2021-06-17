@@ -2,22 +2,28 @@ package com.ang.acb.movienight.ui.main
 
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.ang.acb.movienight.ui.main.TabScreen.*
+import com.ang.acb.movienight.ui.main.BottomNavScreen.*
 import kotlinx.coroutines.FlowPreview
 
 @FlowPreview
 @ExperimentalComposeUiApi
 @Composable
-fun MovieNightScreen() {
+fun MainScreen() {
 
     val navController = rememberNavController()
     val bottomNavItems = listOf(Discover, Search, Favorites)
+    val bottomNavRoutes = bottomNavItems.map { it.route }
+
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
 
     Scaffold(
         bottomBar = {
-            MoviesBottomBar(navController, bottomNavItems)
+            if (currentRoute in bottomNavRoutes) MoviesBottomBar(navController, bottomNavItems)
         },
         content = {
             MoviesNavHost(navController)

@@ -11,9 +11,11 @@
     <string name="favorites_route_label">Favorites</string>
     <string name="try_again_button_label">Try again</string>
     <string name="generic_error_message">Woops, there was an error. Try again!</string>
-    <string name="favorite_movies_topbar_label">Your Favorites</string>
+    <string name="favorites_topbar_label">Your Favorites</string>
     <string name="topbar_up_button_content_description">Top bar up button</string>
     <string name="clear_txt_icon_cd">Clear text</string>
     <string name="search_no_results_start">No results for</string>
     <string name="search_no_results_end">search term. Try searching for something different.</string>
+    <string name="get_favorites_error_message">Could not fetch your favorite movies</string>
+    <string name="no_favorites_hint_message">You have no favorite movies yet.</string>
 </resources>

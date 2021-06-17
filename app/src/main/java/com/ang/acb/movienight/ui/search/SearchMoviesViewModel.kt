@@ -1,7 +1,6 @@
 package com.ang.acb.movienight.ui.search
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -9,8 +8,7 @@ import com.ang.acb.movienight.domain.entities.Movie
 import com.ang.acb.movienight.domain.usecases.SearchMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @FlowPreview
@@ -30,20 +28,5 @@ class SearchMoviesViewModel @Inject constructor(
                 )
             }
         ).flow
-    }
-
-    private val searchQuery = MutableStateFlow("")
-    private val pendingActions = MutableSharedFlow<SearchAction>()
-
-    fun search() {
-        viewModelScope.launch {
-            searchQuery.debounce(300)
-                .collectLatest { query ->
-                    val job = launch {
-
-                    }
-                    job.join()
-                }
-        }
     }
 }

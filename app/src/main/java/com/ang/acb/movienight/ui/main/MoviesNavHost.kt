@@ -3,7 +3,6 @@ package com.ang.acb.movienight.ui.main
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -33,24 +32,15 @@ fun MoviesNavHost(
         }
 
         composable(route = BottomNavScreen.Discover.route) {
-            FilterMoviesScreen(
-                viewModel = hiltViewModel(),
-                openMovieDetails = openMovieDetails
-            )
+            FilterMoviesScreen(openMovieDetails = openMovieDetails)
         }
 
         composable(route = BottomNavScreen.Search.route) {
-            SearchMoviesScreen(
-                viewModel = hiltViewModel(),
-                openMovieDetails = openMovieDetails
-            )
+            SearchMoviesScreen(openMovieDetails = openMovieDetails)
         }
 
         composable(route = BottomNavScreen.Favorites.route) {
-            FavoriteMoviesScreen(
-                viewModel = hiltViewModel(),
-                openMovieDetails = openMovieDetails
-            )
+            FavoriteMoviesScreen(openMovieDetails = openMovieDetails)
         }
 
         // See: https://developer.android.com/jetpack/compose/navigation#nav-with-args

@@ -23,7 +23,7 @@ class FilterMoviesPagingSource(
             LoadResult.Page(
                 data = response.movies,
                 prevKey = if (page == STARTING_PAGE_INDEX) null else page - 1,
-                nextKey = if (page == response.totalPages) null else page + 1
+                nextKey = if (page == response.totalPages || response.totalPages == 0) null else page + 1
             )
 
         } catch (e: Exception) {

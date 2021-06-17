@@ -1,39 +1,38 @@
 package com.ang.acb.movienight.ui.common
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.ang.acb.movienight.R
 import com.ang.acb.movienight.ui.theme.LightRed
 
 @Composable
-fun ErrorMessage(
-    modifier: Modifier = Modifier,
+fun PagingErrorItem(
     message: String,
+    modifier: Modifier = Modifier,
     onRetryClick: () -> Unit
 ) {
-    Column(
+    Row(
         modifier = modifier.padding(16.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             text = message,
+            maxLines = 1,
+            modifier = Modifier.weight(1f),
             style = MaterialTheme.typography.h6,
-            textAlign = TextAlign.Center,
-            color = LightRed
+            color = LightRed,
         )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Button(onClick = onRetryClick) {
+        OutlinedButton(onClick = onRetryClick) {
             Text(text = stringResource(R.string.try_again_button_label))
         }
     }

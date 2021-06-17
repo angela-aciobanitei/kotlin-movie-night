@@ -14,16 +14,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.ang.acb.movienight.R
 import com.ang.acb.movienight.domain.entities.Movie
-import com.ang.acb.movienight.ui.common.ErrorItem
-import com.ang.acb.movienight.ui.common.LoadingItem
-import com.ang.acb.movienight.ui.common.LoadingView
 import com.ang.acb.movienight.ui.common.MovieItem
+import com.ang.acb.movienight.ui.common.PagingErrorItem
+import com.ang.acb.movienight.ui.common.PagingLoadingItem
+import com.ang.acb.movienight.ui.common.PagingLoadingView
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 
@@ -32,7 +33,7 @@ import kotlinx.coroutines.flow.Flow
 @FlowPreview
 @Composable
 fun SearchMoviesScreen(
-    viewModel: SearchMoviesViewModel,
+    viewModel: SearchMoviesViewModel = hiltViewModel(),
     openMovieDetails: (movieId: Long) -> Unit
 ) {
 
@@ -80,17 +81,17 @@ fun SearchMoviesScreen(
                     lazyPagingItems.apply {
                         when {
                             loadState.refresh is LoadState.Loading -> {
-                                item { LoadingView(modifier = Modifier.fillParentMaxSize()) }
+                                item { PagingLoadingView(modifier = Modifier.fillParentMaxSize()) }
                             }
 
                             loadState.append is LoadState.Loading -> {
-                                item { LoadingItem() }
+                                item { PagingLoadingItem() }
                             }
 
                             loadState.refresh is LoadState.Error -> {
                                 val state = lazyPagingItems.loadState.refresh as LoadState.Error
                                 item {
-                                    ErrorItem(
+                                    PagingErrorItem(
                                         modifier = Modifier.fillParentMaxSize(),
                                         message = state.error.localizedMessage!!,
                                         onRetryClick = { retry() }
@@ -100,7 +101,7 @@ fun SearchMoviesScreen(
                             loadState.append is LoadState.Error -> {
                                 val state = lazyPagingItems.loadState.append as LoadState.Error
                                 item {
-                                    ErrorItem(
+                                    PagingErrorItem(
                                         message = state.error.localizedMessage!!,
                                         onRetryClick = { retry() }
                                     )

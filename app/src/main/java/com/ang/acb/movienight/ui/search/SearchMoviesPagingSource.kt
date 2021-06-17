@@ -22,9 +22,9 @@ class SearchMoviesPagingSource(
             LoadResult.Page(
                 data = response.movies,
                 prevKey = if (page == STARTING_PAGE_INDEX) null else page - 1,
-                nextKey = if (page == response.totalPages) null else page + 1
+                // Avoid infinite loading when the search response total_pages is 0
+                nextKey = if (page == response.totalPages || response.totalPages == 0) null else page + 1
             )
-
         } catch (e: Exception) {
             Timber.e(e)
             LoadResult.Error(e)

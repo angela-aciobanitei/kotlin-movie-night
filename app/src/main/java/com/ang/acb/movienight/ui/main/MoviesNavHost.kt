@@ -1,5 +1,6 @@
 package com.ang.acb.movienight.ui.main
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -15,8 +16,9 @@ import com.ang.acb.movienight.ui.filter.FilterMoviesScreen
 import com.ang.acb.movienight.ui.search.SearchMoviesScreen
 import kotlinx.coroutines.FlowPreview
 
-@FlowPreview
+@ExperimentalAnimationApi
 @ExperimentalComposeUiApi
+@FlowPreview
 @Composable
 fun MoviesNavHost(
     navController: NavHostController = rememberNavController(),

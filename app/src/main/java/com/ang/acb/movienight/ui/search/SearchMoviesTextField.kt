@@ -1,20 +1,22 @@
 package com.ang.acb.movienight.ui.search
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Icon
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
-import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -25,11 +27,12 @@ import com.ang.acb.movienight.ui.theme.DarkerGray
 import com.ang.acb.movienight.ui.theme.LightRed
 import com.ang.acb.movienight.ui.theme.LighterGray
 
+@ExperimentalAnimationApi
 @ExperimentalComposeUiApi
 @Composable
 fun SearchMoviesTextField(
-    textState: MutableState<TextFieldValue>,
-    onValueChange: (String) -> Unit,
+    value: TextFieldValue,
+    onValueChange: (TextFieldValue) -> Unit,
     search: () -> Unit,
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -40,10 +43,27 @@ fun SearchMoviesTextField(
             .padding(horizontal = 16.dp, vertical = 8.dp),
         leadingIcon = {
             Icon(
-                painter = painterResource(id = R.drawable.ic_search),
+                imageVector = Icons.Default.Search,
                 contentDescription = null,
                 tint = LighterGray,
             )
+        },
+        trailingIcon = {
+            AnimatedVisibility(
+                visible = value.text.isNotEmpty(),
+                enter = fadeIn(),
+                exit = fadeOut()
+            ) {
+                IconButton(
+                    onClick = { onValueChange(TextFieldValue()) },
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Clear,
+                        contentDescription = stringResource(R.string.clear_txt_icon_cd),
+                        tint = LighterGray,
+                    )
+                }
+            }
         },
         keyboardOptions = KeyboardOptions(
             imeAction = ImeAction.Search,
@@ -55,11 +75,8 @@ fun SearchMoviesTextField(
                 search()
             }
         ),
-        value = textState.value,
-        onValueChange = {
-            textState.value = it
-            onValueChange(it.text)
-        },
+        value = value,
+        onValueChange = onValueChange,
         placeholder = {
             Text(text = stringResource(id = R.string.search_movies_hint))
         },

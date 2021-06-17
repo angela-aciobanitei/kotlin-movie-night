@@ -1,5 +1,6 @@
 package com.ang.acb.movienight.ui.main
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -9,8 +10,9 @@ import androidx.navigation.compose.rememberNavController
 import com.ang.acb.movienight.ui.main.BottomNavScreen.*
 import kotlinx.coroutines.FlowPreview
 
-@FlowPreview
+@ExperimentalAnimationApi
 @ExperimentalComposeUiApi
+@FlowPreview
 @Composable
 fun MainScreen() {
 

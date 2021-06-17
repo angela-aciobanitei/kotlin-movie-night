@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -20,13 +21,17 @@ fun MoviesBottomBar(
     // See: https://developer.android.com/jetpack/compose/navigation#bottom-nav
     BottomNavigation {
         val currentBackStackEntry by navController.currentBackStackEntryAsState()
-        val currentRoute = currentBackStackEntry?.destination?.route ?: MoviesRoutes.DISCOVER
+        val currentDestination = currentBackStackEntry?.destination
 
         items.forEach { screen ->
             BottomNavigationItem(
                 icon = { Icon(painterResource(screen.iconResId), contentDescription = null) },
                 label = { Text(stringResource(id = screen.labelResId)) },
-                selected = currentRoute == screen.route,
+                // The selected state of each BottomNavigationItem can then be determined by
+                // comparing the item's route with the route of the current destination and
+                // its parent destinations (to handle cases when you are using nested navigation)
+                // via the hierarchy helper method.
+                selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
                 onClick = {
                     navController.navigate(screen.route) {
                         // Pop up to the start destination of the graph to

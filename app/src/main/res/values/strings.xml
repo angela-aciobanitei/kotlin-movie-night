@@ -13,4 +13,7 @@
     <string name="generic_error_message">Woops, there was an error. Try again!</string>
     <string name="favorite_movies_topbar_label">Your Favorites</string>
     <string name="topbar_up_button_content_description">Top bar up button</string>
+    <string name="clear_txt_icon_cd">Clear text</string>
+    <string name="search_no_results_start">No results for</string>
+    <string name="search_no_results_end">search term. Try searching for something different.</string>
 </resources>

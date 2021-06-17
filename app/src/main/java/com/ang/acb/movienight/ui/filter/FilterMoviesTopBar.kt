@@ -15,19 +15,14 @@ fun FilterMoviesTopBar(
     filterLabel: Int,
     onFilterChanged: (filter: MovieFilter) -> Unit
 ) {
-
     TopAppBar(
-        title = {
-            Text(text = stringResource(filterLabel))
-        },
-        actions = {
-            MoviesMenu(onFilterChanged)
-        }
+        title = { Text(text = stringResource(filterLabel)) },
+        actions = { FilterMoviesMenu(onFilterChanged) }
     )
 }
 
 @Composable
-fun MoviesMenu(
+fun FilterMoviesMenu(
     onFilterChanged: (filter: MovieFilter) -> Unit,
 ) {
     var expanded by remember { mutableStateOf(false) }

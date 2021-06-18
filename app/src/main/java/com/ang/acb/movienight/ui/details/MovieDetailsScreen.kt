@@ -18,6 +18,7 @@ import com.ang.acb.movienight.utils.Constants.BACKDROP_URL
 @Composable
 fun MovieDetailsScreen(
     viewModel: MovieDetailsViewModel = hiltViewModel(),
+    openCastDetails: (movieId: Long, castId: Long) -> Unit,
     upPressed: () -> Unit
 ) {
     val scrollState = rememberScrollState()
@@ -62,7 +63,10 @@ fun MovieDetailsScreen(
                             cast = movieDetails.cast,
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .height(160.dp)
+                                .height(160.dp),
+                            onItemClick = { movieId, castId ->
+                                openCastDetails(movieId, castId)
+                            }
                         )
                         Spacer(modifier = Modifier.height(16.dp))
 

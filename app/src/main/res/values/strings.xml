@@ -31,4 +31,5 @@
     <string name="movie_details_cast_label">Cast</string>
     <string name="movie_details_overview_label">Overview</string>
     <string name="movie_details_trailers_label">Trailers</string>
+    <string name="cast_details_biography_label">Biography</string>
 </resources>

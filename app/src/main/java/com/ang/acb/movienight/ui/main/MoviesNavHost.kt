@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
+import com.ang.acb.movienight.ui.details.CastDetailsScreen
 import com.ang.acb.movienight.ui.details.MovieDetailsScreen
 import com.ang.acb.movienight.ui.favorites.FavoriteMoviesScreen
 import com.ang.acb.movienight.ui.filter.FilterMoviesScreen
@@ -28,7 +29,11 @@ fun MoviesNavHost(
         startDestination = startDestination,
     ) {
         val openMovieDetails: (movieId: Long) -> Unit = { movieId ->
-            navController.navigate(LeafScreen.ShowDetails.createRoute(movieId))
+            navController.navigate(LeafScreen.ShowMovieDetails.createRoute(movieId))
+        }
+
+        val openCastDetails: (movieId: Long, castId: Long) -> Unit = { movieId, castId ->
+            navController.navigate(LeafScreen.ShowCastDetails.createRoute(movieId, castId))
         }
 
         composable(route = BottomNavScreen.Discover.route) {
@@ -45,10 +50,24 @@ fun MoviesNavHost(
 
         // See: https://developer.android.com/jetpack/compose/navigation#nav-with-args
         composable(
-            route = LeafScreen.ShowDetails.route,
+            route = LeafScreen.ShowMovieDetails.route,
             arguments = listOf(navArgument("movieId") { type = NavType.LongType }),
             content = { backStackEntry ->
                 MovieDetailsScreen(
+                    openCastDetails = openCastDetails,
+                    upPressed = { navController.navigateUp() }
+                )
+            }
+        )
+
+        composable(
+            route = LeafScreen.ShowCastDetails.route,
+            arguments = listOf(
+                navArgument("movieId") { type = NavType.LongType },
+                navArgument("castId") { type = NavType.LongType },
+            ),
+            content = { backStackEntry ->
+                CastDetailsScreen(
                     upPressed = { navController.navigateUp() }
                 )
             }

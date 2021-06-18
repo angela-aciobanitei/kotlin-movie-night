@@ -1,6 +1,7 @@
 package com.ang.acb.movienight.ui.details
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Card
@@ -25,37 +26,26 @@ import com.google.accompanist.imageloading.ImageLoadState
 fun CastCard(
     cast: Cast,
     modifier: Modifier = Modifier,
+    onItemClick: (movieId: Long, castId: Long) -> Unit,
 ) {
     Card(modifier = modifier) {
-        if (cast.profileImagePath != null) {
+        Box(modifier = Modifier.clickable { onItemClick(cast.movieId, cast.id) }) {
             val castAvatarUrl = CAST_AVATAR_URL + cast.profileImagePath
-            CastAvatar(avatarUrl = castAvatarUrl, modifier = modifier)
-        } else {
-            DefaultCastAvatar(modifier)
-        }
-    }
-}
+            val painter = rememberGlidePainter(request = castAvatarUrl, fadeIn = true)
 
-@Composable
-fun CastAvatar(
-    avatarUrl: String,
-    modifier: Modifier = Modifier,
-) {
-    Box {
-        val painter = rememberGlidePainter(request = avatarUrl, fadeIn = true)
+            Image(
+                painter = painter,
+                contentDescription = null,
+                modifier = Modifier
+                    .matchParentSize()
+                    .clip(MaterialTheme.shapes.medium),
+                contentScale = ContentScale.Crop,
+            )
 
-        Image(
-            painter = painter,
-            contentDescription = null,
-            modifier = Modifier
-                .matchParentSize()
-                .clip(MaterialTheme.shapes.medium),
-            contentScale = ContentScale.Crop,
-        )
-
-        when (painter.loadState) {
-            is ImageLoadState.Loading -> LoadingCastAvatar(modifier)
-            is ImageLoadState.Error -> DefaultCastAvatar(modifier)
+            when (painter.loadState) {
+                is ImageLoadState.Loading -> LoadingCastAvatar(modifier)
+                is ImageLoadState.Error -> DefaultCastAvatar(modifier)
+            }
         }
     }
 }

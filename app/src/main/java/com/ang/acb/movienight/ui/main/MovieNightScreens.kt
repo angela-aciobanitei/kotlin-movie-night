@@ -10,6 +10,7 @@ object MoviesRoutes {
     const val FAVORITES = "favorites"
     const val DETAILS_ROOT = "details"
     const val DETAILS = "details/{movieId}"
+    const val DETAILS_CAST = "details/{movieId}/{castId}"
 }
 
 sealed class BottomNavScreen(
@@ -37,7 +38,12 @@ sealed class BottomNavScreen(
 }
 
 sealed class LeafScreen(val route: String) {
-    object ShowDetails : LeafScreen(MoviesRoutes.DETAILS) {
+    object ShowMovieDetails : LeafScreen(MoviesRoutes.DETAILS) {
         fun createRoute(movieId: Long): String = "${MoviesRoutes.DETAILS_ROOT}/$movieId"
+    }
+
+    object ShowCastDetails : LeafScreen(MoviesRoutes.DETAILS_CAST) {
+        fun createRoute(movieId: Long, castId: Long): String =
+            "${MoviesRoutes.DETAILS_ROOT}/$movieId/$castId"
     }
 }

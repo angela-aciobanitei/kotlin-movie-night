@@ -13,6 +13,7 @@ import com.ang.acb.movienight.ui.common.Carousel
 fun CastCarousel(
     cast: List<Cast>,
     modifier: Modifier = Modifier,
+    onItemClick: (movieId: Long, castId: Long) -> Unit,
 ) {
     Carousel(
         items = cast,
@@ -25,7 +26,8 @@ fun CastCarousel(
             modifier = Modifier
                 .padding(padding)
                 .fillParentMaxHeight()
-                .aspectRatio(2 / 3f)
+                .aspectRatio(2 / 3f),
+            onItemClick = onItemClick
         )
     }
 }

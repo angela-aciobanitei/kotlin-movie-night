@@ -4,7 +4,7 @@ import com.ang.acb.movienight.R
 import com.ang.acb.movienight.domain.entities.Movie
 import com.ang.acb.movienight.domain.entities.MovieFilter
 
-fun MovieFilter.asStringResourceId() = when (this) {
+fun MovieFilter.asStringResId() = when (this) {
     MovieFilter.POPULAR -> R.string.filter_by_popular
     MovieFilter.TOP_RATED -> R.string.filter_by_top_rated
     MovieFilter.NOW_PLAYING -> R.string.filter_by_now_playing

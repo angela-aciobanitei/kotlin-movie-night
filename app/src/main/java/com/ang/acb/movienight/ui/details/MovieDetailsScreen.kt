@@ -7,11 +7,10 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.ang.acb.movienight.R
 import com.ang.acb.movienight.ui.common.LoadingBox
 import com.ang.acb.movienight.ui.common.MessageBox
 import com.ang.acb.movienight.utils.Constants.BACKDROP_URL
@@ -44,36 +43,37 @@ fun MovieDetailsScreen(
                         if (movieDetails.movie.backdropPath != null) {
                             MovieBackdropImage(backdropUrl = BACKDROP_URL + movieDetails.movie.backdropPath)
                         }
-                        Box(
-                            modifier = Modifier
-                                .height(16.dp)
-                                .fillMaxWidth()
-                        )
 
                         // Movie poster
                         MovieInfoPosterRow(movieDetails = movieDetails)
-                        Box(
-                            modifier = Modifier
-                                .height(16.dp)
-                                .fillMaxWidth()
-                        )
+                        Spacer(modifier = Modifier.height(16.dp))
 
                         // TODO Movie overview
-                        val modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
-                        val titleStyle = TextStyle(fontSize = 18.sp, fontWeight = FontWeight.W700)
-                        Text("Overview", modifier = modifier, style = titleStyle)
-                        Text("${movieDetails.movie.overview}", modifier = modifier)
+                        MovieInfoHeader(title = stringResource(R.string.movie_details_overview_label))
+                        Text(
+                            "${movieDetails.movie.overview}",
+                            modifier = Modifier.padding(horizontal = 16.dp)
+                        )
+                        Spacer(modifier = Modifier.height(16.dp))
 
-                        // TODO Movie cast
-                        Text("Cast", modifier = modifier, style = titleStyle)
-                        Text("${movieDetails.cast.map { it.actorName }}", modifier = modifier)
+                        // Movie cast
+                        MovieInfoHeader(title = stringResource(R.string.movie_details_cast_label))
+                        CastCarousel(
+                            cast = movieDetails.cast,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(160.dp)
+                        )
+                        Spacer(modifier = Modifier.height(16.dp))
 
                         // TODO Movie trailers
-                        Text("Trailers", modifier = modifier, style = titleStyle)
-                        Text("${movieDetails.trailers.map { it.name }}", modifier = modifier)
-
+                        MovieInfoHeader(title = stringResource(R.string.movie_details_trailers_label))
+                        Text(
+                            "${movieDetails.trailers.map { it.name }}",
+                            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+                        )
+                        Spacer(modifier = Modifier.height(16.dp))
                     }
-
                 }
             }
         }

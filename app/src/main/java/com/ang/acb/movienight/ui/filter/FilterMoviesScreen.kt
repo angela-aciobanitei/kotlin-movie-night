@@ -10,7 +10,7 @@ import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.ang.acb.movienight.R
-import com.ang.acb.movienight.data.source.local.asStringResourceId
+import com.ang.acb.movienight.data.source.local.asStringResId
 import com.ang.acb.movienight.domain.entities.MovieFilter
 import com.ang.acb.movienight.ui.common.*
 import kotlinx.coroutines.FlowPreview
@@ -27,7 +27,7 @@ fun FilterMoviesScreen(
         topBar = {
             FilterMoviesTopBar(
                 onFilterChanged = { filter = it },
-                filterLabel = filter.asStringResourceId()
+                filterLabel = filter.asStringResId()
             )
         }
     ) {

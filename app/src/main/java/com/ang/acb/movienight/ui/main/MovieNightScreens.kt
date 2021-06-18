@@ -19,19 +19,19 @@ sealed class BottomNavScreen(
 ) {
     object Discover : BottomNavScreen(
         route = MoviesRoutes.DISCOVER,
-        labelResId = R.string.discover_route_label,
+        labelResId = R.string.bottom_nav_item_label_discover,
         iconResId = R.drawable.ic_discover_movies
     )
 
     object Search : BottomNavScreen(
         route = MoviesRoutes.SEARCH,
-        labelResId = R.string.search_route_label,
+        labelResId = R.string.bottom_nav_item_label_search,
         iconResId = R.drawable.ic_search
     )
 
     object Favorites : BottomNavScreen(
         route = MoviesRoutes.FAVORITES,
-        labelResId = R.string.favorites_route_label,
+        labelResId = R.string.bottom_nav_item_label_favorites,
         iconResId = R.drawable.ic_favorite
     )
 }

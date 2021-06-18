@@ -5,6 +5,7 @@ import com.ang.acb.movienight.data.source.local.LocalMovieDataSource
 import com.ang.acb.movienight.data.source.local.asMovie
 import com.ang.acb.movienight.data.source.local.asMovies
 import com.ang.acb.movienight.data.source.remote.RemoteMovieDataSource
+import com.ang.acb.movienight.domain.entities.CastDetails
 import com.ang.acb.movienight.domain.entities.Movie
 import com.ang.acb.movienight.domain.entities.MovieDetails
 import com.ang.acb.movienight.domain.entities.Movies
@@ -40,6 +41,10 @@ class MovieRepository @Inject constructor(
 
     override suspend fun getAllMovieDetails(movieId: Long): MovieDetails {
         return remoteMovieDataSource.getAllMovieDetails(movieId)
+    }
+
+    override suspend fun getCastDetails(castId: Long): CastDetails {
+        return remoteMovieDataSource.getCastDetails(castId)
     }
 
     override suspend fun saveFavoriteMovie(movie: Movie): Long {

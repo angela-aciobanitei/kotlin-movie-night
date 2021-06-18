@@ -1,5 +1,6 @@
 package com.ang.acb.movienight.domain.gateways
 
+import com.ang.acb.movienight.domain.entities.CastDetails
 import com.ang.acb.movienight.domain.entities.Movie
 import com.ang.acb.movienight.domain.entities.MovieDetails
 import com.ang.acb.movienight.domain.entities.Movies
@@ -12,6 +13,7 @@ interface MovieGateway {
     suspend fun getUpcomingMovies(page: Int): Movies
     suspend fun searchMovies(query: String, page: Int): Movies
     suspend fun getAllMovieDetails(movieId: Long): MovieDetails
+    suspend fun getCastDetails(castId: Long): CastDetails
 
     suspend fun saveFavoriteMovie(movie: Movie): Long
     fun getFavoriteMovie(movieId: Long): Flow<Movie>

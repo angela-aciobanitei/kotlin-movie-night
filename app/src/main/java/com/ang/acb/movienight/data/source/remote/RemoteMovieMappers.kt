@@ -1,6 +1,7 @@
 package com.ang.acb.movienight.data.source.remote
 
 import com.ang.acb.movienight.data.source.remote.response.MoviesResponse
+import com.ang.acb.movienight.data.source.remote.response.NetworkCastDetails
 import com.ang.acb.movienight.data.source.remote.response.NetworkMovie
 import com.ang.acb.movienight.data.source.remote.response.NetworkMovieDetails
 import com.ang.acb.movienight.domain.entities.*
@@ -75,5 +76,15 @@ fun NetworkMovieDetails.asMovieDetails(): MovieDetails {
         genres = asGenres(),
         cast = asCast(),
         trailers = asVideos(),
+    )
+}
+
+fun NetworkCastDetails.asCastDetails(): CastDetails {
+    return CastDetails(
+        id = id,
+        name = name,
+        biography = biography,
+        birthday = birthday,
+        profilePath = profilePath
     )
 }

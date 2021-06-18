@@ -1,5 +1,6 @@
 package com.ang.acb.movienight.data.source.remote
 
+import com.ang.acb.movienight.domain.entities.CastDetails
 import com.ang.acb.movienight.domain.entities.MovieDetails
 import com.ang.acb.movienight.domain.entities.Movies
 import javax.inject.Inject
@@ -30,5 +31,9 @@ class RemoteMovieDataSource @Inject constructor(
 
     suspend fun getAllMovieDetails(movieId: Long): MovieDetails {
         return movieService.getAllMovieDetails(movieId).asMovieDetails()
+    }
+
+    suspend fun getCastDetails(castId: Long): CastDetails {
+        return movieService.getCastDetails(castId).asCastDetails()
     }
 }

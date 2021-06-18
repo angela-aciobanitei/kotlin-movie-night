@@ -1,6 +1,7 @@
 package com.ang.acb.movienight.data.source.remote
 
 import com.ang.acb.movienight.data.source.remote.response.MoviesResponse
+import com.ang.acb.movienight.data.source.remote.response.NetworkCastDetails
 import com.ang.acb.movienight.data.source.remote.response.NetworkMovieDetails
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -32,4 +33,7 @@ interface MovieService {
      */
     @GET("movie/{id}?append_to_response=videos,credits")
     suspend fun getAllMovieDetails(@Path("id") id: Long): NetworkMovieDetails
+
+    @GET("person/{person_id}")
+    suspend fun getCastDetails(@Path("person_id") id: Long): NetworkCastDetails
 }

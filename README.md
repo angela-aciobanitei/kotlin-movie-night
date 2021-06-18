@@ -3,12 +3,14 @@
 A movies app that fetches data using [The Movie DB API](https://www.themoviedb.org/documentation/api?language=en-US).
 
 ## Core Libraries
+*   [Hilt](https://dagger.dev/hilt/) for dependency injection
+*   [Kotlin Coroutines](https://kotlinlang.org/docs/coroutines-overview.html) and [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-flow/) for asynchronous programming
 *   [Compose](https://developer.android.com/jetpack/compose/documentation) for building the UI layer
 *   [Accompanist Glide](https://google.github.io/accompanist/glide/) for image loading
 *   [Paging 3](https://developer.android.com/topic/libraries/architecture/paging/v3-overview) for data loading
 *   [Retrofit 2](https://github.com/square/retrofit) and [OkHttp](https://github.com/square/okhttp) for networking
 *   [Gson](https://github.com/google/gson) for parsing JSON
-*   [Hilt](https://dagger.dev/hilt/) for dependency injection
+*   [Room](https://developer.android.com/topic/libraries/architecture/room) for data persistence 
   
 
 ## Installing the App

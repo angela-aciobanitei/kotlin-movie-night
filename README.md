@@ -1,11 +1,12 @@
 # Movie Night
 
-A movies app that fetches data using [The Movie DB API](https://www.themoviedb.org/documentation/api?language=en-US).
+A movies app that fetches data using [TMDB](https://www.themoviedb.org/documentation/api?language=en-US). The app uses clean architecture, MVVM, Kotlin coroutines, Flow and the latest Jetpack libraries, including Compose.
 
 ## Core Libraries
 *   [Hilt](https://dagger.dev/hilt/) for dependency injection
 *   [Kotlin Coroutines](https://kotlinlang.org/docs/coroutines-overview.html) and [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-flow/) for asynchronous programming
 *   [Compose](https://developer.android.com/jetpack/compose/documentation) for building the UI layer
+*   [Navigation](https://developer.android.com/jetpack/compose/navigation) to navigate between composables
 *   [Accompanist Glide](https://google.github.io/accompanist/glide/) for image loading
 *   [Paging 3](https://developer.android.com/topic/libraries/architecture/paging/v3-overview) for data loading
 *   [Retrofit 2](https://github.com/square/retrofit) and [OkHttp](https://github.com/square/okhttp) for networking

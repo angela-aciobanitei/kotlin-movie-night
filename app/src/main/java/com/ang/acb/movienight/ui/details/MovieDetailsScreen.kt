@@ -44,15 +44,19 @@ fun MovieDetailsScreen(
                         if (movieDetails.movie.backdropPath != null) {
                             MovieBackdropImage(backdropUrl = BACKDROP_URL + movieDetails.movie.backdropPath)
                         }
-                        Box(modifier = Modifier
-                            .height(16.dp)
-                            .fillMaxWidth())
+                        Box(
+                            modifier = Modifier
+                                .height(16.dp)
+                                .fillMaxWidth()
+                        )
 
                         // Movie poster
-                        MoviePosterInfo(movieDetails = movieDetails)
-                        Box(modifier = Modifier
-                            .height(16.dp)
-                            .fillMaxWidth())
+                        MovieInfoPosterRow(movieDetails = movieDetails)
+                        Box(
+                            modifier = Modifier
+                                .height(16.dp)
+                                .fillMaxWidth()
+                        )
 
                         // TODO Movie overview
                         val modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)

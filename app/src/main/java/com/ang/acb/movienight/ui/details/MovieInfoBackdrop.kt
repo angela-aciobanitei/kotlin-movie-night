@@ -29,7 +29,8 @@ fun MovieBackdropImage(
                 val options = RequestOptions()
                 options.transform(CenterCrop())
                 apply(options)
-            }
+            },
+            fadeIn = true
         )
 
         Image(painter = painter, contentDescription = null)

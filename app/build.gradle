@@ -101,6 +101,7 @@ dependencies {
     // Google
     implementation "com.google.android.material:material:$material_version"
     implementation "com.google.accompanist:accompanist-glide:$accompanist_glide_version"
+    implementation "com.google.accompanist:accompanist-flowlayout:$accompanist_flowlayout_version"
 
     // Networking
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"

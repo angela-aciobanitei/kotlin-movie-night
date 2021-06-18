@@ -1,9 +1,6 @@
 package com.ang.acb.movienight.ui.details
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Scaffold
@@ -17,6 +14,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ang.acb.movienight.ui.common.LoadingBox
 import com.ang.acb.movienight.ui.common.MessageBox
+import com.ang.acb.movienight.utils.Constants.BACKDROP_URL
 
 @Composable
 fun MovieDetailsScreen(
@@ -41,17 +39,37 @@ fun MovieDetailsScreen(
                 MessageBox(messageResId = viewModel.errorMessage!!)
             } else {
                 Column(Modifier.verticalScroll(scrollState)) {
-                    val modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
-                    val titleStyle = TextStyle(fontWeight = FontWeight.W700, fontSize = 18.sp)
-                    Text("${viewModel.movieDetails?.movie?.title}", modifier = modifier, style = titleStyle)
-                    Text("Overview", modifier = modifier, style = titleStyle)
-                    Text("${viewModel.movieDetails?.movie?.overview}", modifier = modifier)
-                    Text("Genres", modifier = modifier, style = titleStyle)
-                    Text("${viewModel.movieDetails?.genres?.map { it.name }}", modifier = modifier)
-                    Text("Cast", modifier = modifier, style = titleStyle)
-                    Text("${viewModel.movieDetails?.cast?.map { it.actorName }}", modifier = modifier)
-                    Text("Trailers", modifier = modifier, style = titleStyle)
-                    Text("${viewModel.movieDetails?.trailers?.map { it.name }}", modifier = modifier)
+                    viewModel.movieDetails?.let { movieDetails ->
+                        // Movie backdrop image
+                        if (movieDetails.movie.backdropPath != null) {
+                            MovieBackdropImage(backdropUrl = BACKDROP_URL + movieDetails.movie.backdropPath)
+                        }
+                        Box(modifier = Modifier
+                            .height(16.dp)
+                            .fillMaxWidth())
+
+                        // Movie poster
+                        MoviePosterInfo(movieDetails = movieDetails)
+                        Box(modifier = Modifier
+                            .height(16.dp)
+                            .fillMaxWidth())
+
+                        // TODO Movie overview
+                        val modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+                        val titleStyle = TextStyle(fontSize = 18.sp, fontWeight = FontWeight.W700)
+                        Text("Overview", modifier = modifier, style = titleStyle)
+                        Text("${movieDetails.movie.overview}", modifier = modifier)
+
+                        // TODO Movie cast
+                        Text("Cast", modifier = modifier, style = titleStyle)
+                        Text("${movieDetails.cast.map { it.actorName }}", modifier = modifier)
+
+                        // TODO Movie trailers
+                        Text("Trailers", modifier = modifier, style = titleStyle)
+                        Text("${movieDetails.trailers.map { it.name }}", modifier = modifier)
+
+                    }
+
                 }
             }
         }

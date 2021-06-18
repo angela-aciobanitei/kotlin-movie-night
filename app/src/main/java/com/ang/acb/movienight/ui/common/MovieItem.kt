@@ -10,7 +10,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ang.acb.movienight.domain.entities.Movie
-import com.ang.acb.movienight.utils.Constants.IMAGE_URL
+import com.ang.acb.movienight.utils.Constants.POSTER_URL
 
 @Composable
 fun MovieItem(
@@ -23,9 +23,9 @@ fun MovieItem(
         .padding(horizontal = 16.dp, vertical = 8.dp)
     ) {
         if (movie.posterPath == null) {
-            DefaultMovieAvatar()
+            DefaultMoviePoster()
         } else {
-            MovieAvatar(avatarUrl = IMAGE_URL + movie.posterPath)
+            MoviePoster(posterUrl = POSTER_URL + movie.posterPath)
         }
 
         Column(modifier = Modifier.padding(horizontal = 16.dp)) {

@@ -29,8 +29,8 @@ private const val posterHeight = 75
 private const val roundingRadius = 12
 
 @Composable
-fun MovieAvatar(
-    avatarUrl: String,
+fun MoviePoster(
+    posterUrl: String,
 ) {
     Box(
         modifier = Modifier
@@ -40,7 +40,7 @@ fun MovieAvatar(
         contentAlignment = Alignment.Center,
     ) {
         val painter = rememberGlidePainter(
-            request = avatarUrl,
+            request = posterUrl,
             requestBuilder = {
                 val options = RequestOptions()
                 options.transform(CenterCrop(), RoundedCorners(roundingRadius))
@@ -51,14 +51,14 @@ fun MovieAvatar(
         Image(painter = painter, contentDescription = null)
 
         when (painter.loadState) {
-            is ImageLoadState.Loading -> LoadingMovieAvatar()
-            is ImageLoadState.Error -> DefaultMovieAvatar()
+            is ImageLoadState.Loading -> LoadingMoviePoster()
+            is ImageLoadState.Error -> DefaultMoviePoster()
         }
     }
 }
 
 @Composable
-fun DefaultMovieAvatar() {
+fun DefaultMoviePoster() {
     Box(
         modifier = Modifier
             .width(posterWidth.dp)
@@ -76,7 +76,7 @@ fun DefaultMovieAvatar() {
 }
 
 @Composable
-fun LoadingMovieAvatar() {
+fun LoadingMoviePoster() {
     Box(
         modifier = Modifier
             .width(posterWidth.dp)

@@ -12,12 +12,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.ang.acb.movienight.R
 import com.ang.acb.movienight.ui.theme.Purple700
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.request.RequestOptions
 import com.google.accompanist.glide.rememberGlidePainter
 import com.google.accompanist.imageloading.ImageLoadState
 
@@ -30,16 +29,14 @@ fun MoviePoster(
         modifier = modifier.clip(MaterialTheme.shapes.medium),
         contentAlignment = Alignment.Center,
     ) {
-        val painter = rememberGlidePainter(
-            request = posterUrl,
-            requestBuilder = {
-                val options = RequestOptions()
-                options.transform(CenterCrop())
-                apply(options)
-            }
-        )
+        val painter = rememberGlidePainter(request = posterUrl)
 
-        Image(painter = painter, contentDescription = null)
+        Image(
+            painter = painter,
+            contentDescription = null,
+            modifier = Modifier.matchParentSize(),
+            contentScale = ContentScale.Crop,
+        )
 
         when (painter.loadState) {
             is ImageLoadState.Loading -> LoadingMoviePoster(modifier)

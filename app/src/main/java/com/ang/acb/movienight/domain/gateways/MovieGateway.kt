@@ -13,6 +13,7 @@ interface MovieGateway {
     suspend fun getUpcomingMovies(page: Int): Movies
     suspend fun searchMovies(query: String, page: Int): Movies
     suspend fun getAllMovieDetails(movieId: Long): MovieDetails
+    suspend fun getSimilarMovies(movieId: Long): Movies
     suspend fun getCastDetails(castId: Long): CastDetails
 
     suspend fun saveFavoriteMovie(movie: Movie): Long

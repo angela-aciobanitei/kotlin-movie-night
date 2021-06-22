@@ -33,6 +33,10 @@ class RemoteMovieDataSource @Inject constructor(
         return movieService.getAllMovieDetails(movieId).asMovieDetails()
     }
 
+    suspend fun getSimilarMovies(movieId: Long): Movies {
+        return movieService.getSimilarMovies(movieId).asMovies()
+    }
+
     suspend fun getCastDetails(castId: Long): CastDetails {
         return movieService.getCastDetails(castId).asCastDetails()
     }

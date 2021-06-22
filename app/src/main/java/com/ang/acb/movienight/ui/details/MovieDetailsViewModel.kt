@@ -7,8 +7,10 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ang.acb.movienight.R
+import com.ang.acb.movienight.domain.entities.Movie
 import com.ang.acb.movienight.domain.entities.MovieDetails
 import com.ang.acb.movienight.domain.usecases.GetMovieDetailsUseCase
+import com.ang.acb.movienight.domain.usecases.GetSimilarMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -18,16 +20,19 @@ import javax.inject.Inject
 class MovieDetailsViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val getMovieDetailsUseCase: GetMovieDetailsUseCase,
+    private val getSimilarMoviesUseCase: GetSimilarMoviesUseCase,
 ) : ViewModel() {
 
-    private val movieId: Long = savedStateHandle.get("movieId")!!
+    val movieId: Long = savedStateHandle.get("movieId")!!
 
     var movieDetails: MovieDetails? by mutableStateOf(null)
+    var similarMovies: List<Movie> by mutableStateOf(emptyList())
     var isLoading: Boolean by mutableStateOf(false)
     var errorMessage: Int? by mutableStateOf(null)
 
     init {
         getMovieDetails(movieId)
+        getSimilarMovies(movieId)
     }
 
     private fun getMovieDetails(movieId: Long) {
@@ -42,4 +47,18 @@ class MovieDetailsViewModel @Inject constructor(
             isLoading = false
         }
     }
+
+    private fun getSimilarMovies(movieId: Long) {
+        viewModelScope.launch {
+            isLoading = true
+            try {
+                similarMovies = getSimilarMoviesUseCase(movieId)
+            } catch (e: Exception) {
+                Timber.e(e)
+            }
+            isLoading = false
+        }
+    }
+
+
 }

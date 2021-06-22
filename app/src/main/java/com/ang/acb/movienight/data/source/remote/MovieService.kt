@@ -36,4 +36,7 @@ interface MovieService {
 
     @GET("person/{person_id}")
     suspend fun getCastDetails(@Path("person_id") id: Long): NetworkCastDetails
+
+    @GET("movie/{movie_id}/similar")
+    suspend fun getSimilarMovies(@Path("movie_id") id: Long): MoviesResponse
 }

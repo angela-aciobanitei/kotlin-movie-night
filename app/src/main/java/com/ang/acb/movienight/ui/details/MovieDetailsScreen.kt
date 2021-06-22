@@ -84,12 +84,22 @@ fun MovieDetailsScreen(
                             trailers = movieDetails.trailers,
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .height(160.dp),
+                                .height(128.dp),
                             onItemClick = { trailer ->
                                 playVideo(trailer, context)
                             }
                         )
-                        Spacer(modifier = Modifier.height(32.dp))
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        // Similar movies
+                        MovieInfoHeader(title = stringResource(R.string.movie_details_similar_label))
+                        SimilarMoviesCarousel(
+                            movies = viewModel.similarMovies,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(160.dp),
+                        )
+                        Spacer(modifier = Modifier.height(16.dp))
                     }
                 }
             }

@@ -43,6 +43,10 @@ class MovieRepository @Inject constructor(
         return remoteMovieDataSource.getAllMovieDetails(movieId)
     }
 
+    override suspend fun getSimilarMovies(movieId: Long): Movies {
+        return remoteMovieDataSource.getSimilarMovies(movieId)
+    }
+
     override suspend fun getCastDetails(castId: Long): CastDetails {
         return remoteMovieDataSource.getCastDetails(castId)
     }

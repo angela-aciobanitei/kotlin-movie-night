@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
  * See: https://developers.themoviedb.org/3/movies/get-movie-videos
  */
 data class VideosResponse(
-    @SerializedName("results") val videos: List<NetworkVideo>
+    @SerializedName("results") val videos: List<NetworkVideo>?
 )
 
 

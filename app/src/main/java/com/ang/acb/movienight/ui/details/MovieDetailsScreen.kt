@@ -57,49 +57,57 @@ fun MovieDetailsScreen(
                         MovieInfoPosterRow(movieDetails = movieDetails)
                         Spacer(modifier = Modifier.height(16.dp))
 
-                        // TODO Movie overview
-                        MovieInfoHeader(title = stringResource(R.string.movie_details_overview_label))
-                        Text(
-                            "${movieDetails.movie.overview}",
-                            modifier = Modifier.padding(horizontal = 16.dp)
-                        )
-                        Spacer(modifier = Modifier.height(16.dp))
+                        // Movie overview
+                        if (movieDetails.movie.overview != null) {
+                            MovieInfoHeader(title = stringResource(R.string.movie_details_overview_label))
+                            Text(
+                                "${movieDetails.movie.overview}",
+                                modifier = Modifier.padding(horizontal = 16.dp)
+                            )
+                            Spacer(modifier = Modifier.height(16.dp))
+                        }
 
                         // Movie cast
-                        MovieInfoHeader(title = stringResource(R.string.movie_details_cast_label))
-                        CastCarousel(
-                            cast = movieDetails.cast,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(160.dp),
-                            onItemClick = { movieId, castId ->
-                                openCastDetails(movieId, castId)
-                            }
-                        )
-                        Spacer(modifier = Modifier.height(16.dp))
+                        if (movieDetails.cast.isNotEmpty()) {
+                            MovieInfoHeader(title = stringResource(R.string.movie_details_cast_label))
+                            CastCarousel(
+                                cast = movieDetails.cast,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(160.dp),
+                                onItemClick = { movieId, castId ->
+                                    openCastDetails(movieId, castId)
+                                }
+                            )
+                            Spacer(modifier = Modifier.height(16.dp))
+                        }
 
                         // Movie trailers
-                        MovieInfoHeader(title = stringResource(R.string.movie_details_trailers_label))
-                        TrailerCarousel(
-                            trailers = movieDetails.trailers,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(128.dp),
-                            onItemClick = { trailer ->
-                                playVideo(trailer, context)
-                            }
-                        )
-                        Spacer(modifier = Modifier.height(16.dp))
+                        if (movieDetails.trailers.isNotEmpty()) {
+                            MovieInfoHeader(title = stringResource(R.string.movie_details_trailers_label))
+                            TrailerCarousel(
+                                trailers = movieDetails.trailers,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(128.dp),
+                                onItemClick = { trailer ->
+                                    playVideo(trailer, context)
+                                }
+                            )
+                            Spacer(modifier = Modifier.height(16.dp))
+                        }
 
                         // Similar movies
-                        MovieInfoHeader(title = stringResource(R.string.movie_details_similar_label))
-                        SimilarMoviesCarousel(
-                            movies = viewModel.similarMovies,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(160.dp),
-                        )
-                        Spacer(modifier = Modifier.height(16.dp))
+                        if (viewModel.similarMovies.isNotEmpty()) {
+                            MovieInfoHeader(title = stringResource(R.string.movie_details_similar_label))
+                            SimilarMoviesCarousel(
+                                movies = viewModel.similarMovies,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(160.dp),
+                            )
+                            Spacer(modifier = Modifier.height(16.dp))
+                        }
                     }
                 }
             }

@@ -39,35 +39,35 @@ fun NetworkMovieDetails.asMovie(): Movie {
 }
 
 fun NetworkMovieDetails.asGenres(): List<Genre> {
-    return genres.map {
+    return genres?.map {
         Genre(
             id = it.id,
             movieId = id,
             name = it.name
         )
-    }.toList()
+    }?.toList() ?: emptyList()
 }
 
 fun NetworkMovieDetails.asCast(): List<Cast> {
-    return creditsResponse.cast.map {
+    return creditsResponse.cast?.map {
         Cast(
             id = it.id,
             movieId = id,
             actorName = it.actorName,
             profileImagePath = it.profileImagePath
         )
-    }.toList()
+    }?.toList() ?: emptyList()
 }
 
 fun NetworkMovieDetails.asVideos(): List<Trailer> {
-    return videosResponse.videos.map {
+    return videosResponse.videos?.map {
         Trailer(
             id = it.id,
             movieId = id,
             key = it.key,
             name = it.name
         )
-    }.toList()
+    }?.toList() ?: emptyList()
 }
 
 fun NetworkMovieDetails.asMovieDetails(): MovieDetails {

@@ -7,5 +7,5 @@ import com.google.gson.annotations.SerializedName
  * See: https://developers.themoviedb.org/3/movies/get-movie-credits
  */
 data class CreditsResponse(
-    @SerializedName("cast") val cast: List<NetworkCast>
+    @SerializedName("cast") val cast: List<NetworkCast>?
 )

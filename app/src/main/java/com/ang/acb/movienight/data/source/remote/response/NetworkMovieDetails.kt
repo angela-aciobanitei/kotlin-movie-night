@@ -22,7 +22,7 @@ data class NetworkMovieDetails(
     @SerializedName("popularity") val popularity: Double?,
     @SerializedName("vote_average") val voteAverage: Double?,
     @SerializedName("vote_count") val voteCount: Int?,
-    @SerializedName("genres") val genres: List<NetworkGenre>,
+    @SerializedName("genres") val genres: List<NetworkGenre>?,
     @SerializedName("credits") val creditsResponse: CreditsResponse,
     @SerializedName("videos") val videosResponse: VideosResponse,
 )

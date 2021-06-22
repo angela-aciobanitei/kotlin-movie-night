@@ -9,7 +9,7 @@ object MoviesRoutes {
     const val SEARCH = "search"
     const val FAVORITES = "favorites"
     const val DETAILS_ROOT = "details"
-    const val DETAILS = "details/{movieId}"
+    const val DETAILS_MOVIE = "details/{movieId}"
     const val DETAILS_CAST = "details/{movieId}/{castId}"
 }
 
@@ -38,7 +38,7 @@ sealed class BottomNavScreen(
 }
 
 sealed class LeafScreen(val route: String) {
-    object ShowMovieDetails : LeafScreen(MoviesRoutes.DETAILS) {
+    object ShowMovieDetails : LeafScreen(MoviesRoutes.DETAILS_MOVIE) {
         fun createRoute(movieId: Long): String = "${MoviesRoutes.DETAILS_ROOT}/$movieId"
     }
 

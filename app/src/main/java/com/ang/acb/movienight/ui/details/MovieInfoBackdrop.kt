@@ -20,7 +20,7 @@ fun MovieBackdropImage(
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .aspectRatio(16f / 10),
+            .aspectRatio(16f / 9),
         contentAlignment = Alignment.Center,
     ) {
         val painter = rememberGlidePainter(
@@ -40,7 +40,7 @@ fun MovieBackdropImage(
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .aspectRatio(16f / 10),
+                        .aspectRatio(16f / 9),
                     contentAlignment = Alignment.Center,
                 ) {
                     CircularProgressIndicator()

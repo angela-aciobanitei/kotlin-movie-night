@@ -7,7 +7,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.ang.acb.movienight.ui.main.BottomNavScreen.*
 import kotlinx.coroutines.FlowPreview
 
 @ExperimentalAnimationApi
@@ -17,15 +16,17 @@ import kotlinx.coroutines.FlowPreview
 fun MainScreen() {
 
     val navController = rememberNavController()
-    val bottomNavItems = listOf(Discover, Search, Favorites)
-    val bottomNavRoutes = bottomNavItems.map { it.route }
+    val bottomNavItems = listOf(RootScreen.Discover, RootScreen.Search, RootScreen.Favorites)
+    val bottomNavRoutes = listOf(LeafScreen.Discover, LeafScreen.Search, LeafScreen.Favorites)
+        .map { it.route }
 
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentRoute = navBackStackEntry?.destination?.route
+    val currentBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = currentBackStackEntry?.destination?.route
+    val showBottomBar = currentRoute in bottomNavRoutes // todo find a better way to determine this
 
     Scaffold(
         bottomBar = {
-            if (currentRoute in bottomNavRoutes) MoviesBottomBar(navController, bottomNavItems)
+            if (showBottomBar) MoviesBottomBar(navController, bottomNavItems)
         },
         content = {
             MoviesNavHost(navController)

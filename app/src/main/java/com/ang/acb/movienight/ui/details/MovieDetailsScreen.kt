@@ -25,8 +25,9 @@ import com.ang.acb.movienight.utils.Constants.YOUTUBE_WEB_BASE_URL
 @Composable
 fun MovieDetailsScreen(
     viewModel: MovieDetailsViewModel = hiltViewModel(),
-    openCastDetails: (movieId: Long, castId: Long) -> Unit,
-    upPressed: () -> Unit
+    openCastDetails: (castId: Long) -> Unit,
+    openSimilarMovieDetails: (movieId: Long) -> Unit,
+    upPressed: () -> Unit,
 ) {
     val scrollState = rememberScrollState()
     val context: Context = LocalContext.current
@@ -75,8 +76,8 @@ fun MovieDetailsScreen(
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .height(160.dp),
-                                onItemClick = { movieId, castId ->
-                                    openCastDetails(movieId, castId)
+                                onItemClick = { castId ->
+                                    openCastDetails(castId)
                                 }
                             )
                             Spacer(modifier = Modifier.height(16.dp))
@@ -102,6 +103,7 @@ fun MovieDetailsScreen(
                             MovieInfoHeader(title = stringResource(R.string.movie_details_similar_label))
                             SimilarMoviesCarousel(
                                 movies = viewModel.similarMovies,
+                                onItemClick = { openSimilarMovieDetails(it) },
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .height(160.dp),

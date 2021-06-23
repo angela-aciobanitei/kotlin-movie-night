@@ -1,5 +1,7 @@
 package com.ang.acb.movienight.ui.details
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.padding
@@ -16,6 +18,7 @@ import com.ang.acb.movienight.utils.Constants
 fun SimilarMoviesCarousel(
     movies: List<Movie>,
     modifier: Modifier = Modifier,
+    onItemClick: (movieId: Long) -> Unit,
 ) {
     Carousel(
         items = movies,
@@ -24,13 +27,15 @@ fun SimilarMoviesCarousel(
         modifier = modifier
     ) { item, padding ->
         Card(modifier = modifier) {
-            MoviePoster(
-                posterUrl = Constants.POSTER_URL + item.posterPath,
-                modifier = Modifier
-                    .padding(padding)
-                    .fillParentMaxHeight()
-                    .aspectRatio(2 / 3f),
-            )
+            Box(modifier = Modifier.clickable { onItemClick(item.id) }) {
+                MoviePoster(
+                    posterUrl = Constants.POSTER_URL + item.posterPath,
+                    modifier = Modifier
+                        .padding(padding)
+                        .fillParentMaxHeight()
+                        .aspectRatio(2 / 3f),
+                )
+            }
         }
     }
 }

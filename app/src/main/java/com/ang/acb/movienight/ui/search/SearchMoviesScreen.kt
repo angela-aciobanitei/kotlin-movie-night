@@ -7,26 +7,22 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
-import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.ang.acb.movienight.R
-import com.ang.acb.movienight.domain.entities.Movie
 import com.ang.acb.movienight.ui.common.MovieItem
 import com.ang.acb.movienight.ui.common.PagingErrorItem
 import com.ang.acb.movienight.ui.common.PagingLoadingItem
 import com.ang.acb.movienight.ui.common.PagingLoadingView
 import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.flow.Flow
 
 @ExperimentalAnimationApi
 @ExperimentalComposeUiApi
@@ -39,9 +35,6 @@ fun SearchMoviesScreen(
 
     val keyboardController = LocalSoftwareKeyboardController.current
 
-    var searchQuery: TextFieldValue by remember { mutableStateOf(TextFieldValue("")) }
-    var searchResult: Flow<PagingData<Movie>>? by remember { mutableStateOf(null) }
-
     Scaffold(
         topBar = {
             TopAppBar(title = { Text(text = stringResource(R.string.search_movies_topbar_label)) })
@@ -52,17 +45,18 @@ fun SearchMoviesScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             SearchMoviesTextField(
-                value = searchQuery,
-                onValueChange = { searchQuery = it },
+                value = viewModel.searchQuery,
+                onValueChange = { viewModel.searchQuery = it },
                 search = {
-                    if (searchQuery.text.isNotBlank()) {
-                        searchResult = viewModel.searchMovies(searchQuery.text.trim())
+                    if (viewModel.searchQuery.text.isNotBlank()) {
+                        viewModel.searchResult =
+                            viewModel.searchMovies(viewModel.searchQuery.text.trim())
                     }
                 }
             )
 
             // TODO Handle empty search results
-            searchResult?.let {
+            viewModel.searchResult?.let {
                 val lazyPagingItems = it.collectAsLazyPagingItems()
 
                 LazyColumn {

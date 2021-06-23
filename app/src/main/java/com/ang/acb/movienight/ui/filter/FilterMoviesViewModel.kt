@@ -1,9 +1,13 @@
 package com.ang.acb.movienight.ui.filter
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import com.ang.acb.movienight.data.source.local.asStringResId
 import com.ang.acb.movienight.domain.entities.Movie
 import com.ang.acb.movienight.domain.entities.MovieFilter
 import com.ang.acb.movienight.domain.usecases.GetFilteredMoviesUseCase
@@ -17,6 +21,8 @@ class FilterMoviesViewModel @Inject constructor(
     private val getFilteredMoviesUseCase: GetFilteredMoviesUseCase,
 ) : ViewModel() {
 
+    var filter by mutableStateOf(MovieFilter.POPULAR)
+
     @FlowPreview
     fun getPagedMovies(filter: MovieFilter): Flow<PagingData<Movie>> {
         return Pager(
@@ -29,4 +35,6 @@ class FilterMoviesViewModel @Inject constructor(
             }
         ).flow
     }
+
+    fun getFilterLabel() = filter.asStringResId()
 }

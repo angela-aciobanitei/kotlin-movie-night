@@ -26,10 +26,10 @@ import com.google.accompanist.imageloading.ImageLoadState
 fun CastCard(
     cast: Cast,
     modifier: Modifier = Modifier,
-    onItemClick: (movieId: Long, castId: Long) -> Unit,
+    onItemClick: (castId: Long) -> Unit,
 ) {
     Card(modifier = modifier) {
-        Box(modifier = Modifier.clickable { onItemClick(cast.movieId, cast.id) }) {
+        Box(modifier = Modifier.clickable { onItemClick(cast.id) }) {
             val castAvatarUrl = CAST_AVATAR_URL + cast.profileImagePath
             val painter = rememberGlidePainter(request = castAvatarUrl, fadeIn = true)
 

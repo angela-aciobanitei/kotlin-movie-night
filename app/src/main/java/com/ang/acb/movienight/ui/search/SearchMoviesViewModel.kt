@@ -1,5 +1,9 @@
 package com.ang.acb.movienight.ui.search
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.lifecycle.ViewModel
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -16,6 +20,9 @@ import javax.inject.Inject
 class SearchMoviesViewModel @Inject constructor(
     private val searchMoviesUseCase: SearchMoviesUseCase,
 ) : ViewModel() {
+
+    var searchQuery: TextFieldValue by mutableStateOf(TextFieldValue(""))
+    var searchResult: Flow<PagingData<Movie>>? by mutableStateOf(null)
 
     @FlowPreview
     fun searchMovies(query: String): Flow<PagingData<Movie>> {

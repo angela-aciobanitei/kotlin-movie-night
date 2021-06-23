@@ -2,7 +2,7 @@ package com.ang.acb.movienight.ui.filter
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Scaffold
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -10,8 +10,6 @@ import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.ang.acb.movienight.R
-import com.ang.acb.movienight.data.source.local.asStringResId
-import com.ang.acb.movienight.domain.entities.MovieFilter
 import com.ang.acb.movienight.ui.common.*
 import kotlinx.coroutines.FlowPreview
 
@@ -21,17 +19,16 @@ fun FilterMoviesScreen(
     viewModel: FilterMoviesViewModel = hiltViewModel(),
     openMovieDetails: (movieId: Long) -> Unit
 ) {
-    var filter by remember { mutableStateOf(MovieFilter.POPULAR) }
 
     Scaffold(
         topBar = {
             FilterMoviesTopBar(
-                onFilterChanged = { filter = it },
-                filterLabel = filter.asStringResId()
+                onFilterChanged = { viewModel.filter = it },
+                filterLabel = viewModel.getFilterLabel()
             )
         }
     ) {
-        val lazyPagingItems = viewModel.getPagedMovies(filter).collectAsLazyPagingItems()
+        val lazyPagingItems = viewModel.getPagedMovies(viewModel.filter).collectAsLazyPagingItems()
 
         LazyColumn {
             items(lazyPagingItems) { item ->

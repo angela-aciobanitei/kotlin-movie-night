@@ -22,7 +22,7 @@ class SearchMoviesViewModel @Inject constructor(
 ) : ViewModel() {
 
     var searchQuery: TextFieldValue by mutableStateOf(TextFieldValue(""))
-    var searchResult: Flow<PagingData<Movie>>? by mutableStateOf(null)
+    var searchResults: Flow<PagingData<Movie>>? by mutableStateOf(null)
 
     @FlowPreview
     fun searchMovies(query: String): Flow<PagingData<Movie>> {
@@ -35,5 +35,11 @@ class SearchMoviesViewModel @Inject constructor(
                 )
             }
         ).flow
+    }
+
+    fun doSearch() {
+        if (searchQuery.text.isNotBlank()) {
+            searchResults = searchMovies(searchQuery.text.trim())
+        }
     }
 }

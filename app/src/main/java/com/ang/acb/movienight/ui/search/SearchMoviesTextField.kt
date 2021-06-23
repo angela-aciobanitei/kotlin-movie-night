@@ -33,7 +33,7 @@ import com.ang.acb.movienight.ui.theme.LighterGray
 fun SearchMoviesTextField(
     value: TextFieldValue,
     onValueChange: (TextFieldValue) -> Unit,
-    search: () -> Unit,
+    onSearch: () -> Unit,
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
 
@@ -72,7 +72,7 @@ fun SearchMoviesTextField(
         keyboardActions = KeyboardActions(
             onSearch = {
                 keyboardController?.hide()
-                search()
+                onSearch()
             }
         ),
         value = value,

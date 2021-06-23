@@ -26,7 +26,7 @@ fun MoviesBottomBar(
         items.forEach { screen ->
             BottomNavigationItem(
                 icon = { Icon(painterResource(screen.iconResId), contentDescription = null) },
-                label = { Text(stringResource(id = screen.labelResId)) },
+                label = { Text(stringResource(screen.labelResId)) },
                 // The selected state of each BottomNavigationItem can then be determined by
                 // comparing the item's route with the route of the current destination and
                 // its parent destinations (to handle cases when you are using nested navigation)

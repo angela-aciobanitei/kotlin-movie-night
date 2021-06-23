@@ -16,17 +16,16 @@ import kotlinx.coroutines.FlowPreview
 fun MainScreen() {
 
     val navController = rememberNavController()
-    val bottomNavItems = listOf(RootScreen.Discover, RootScreen.Search, RootScreen.Favorites)
-    val bottomNavRoutes = listOf(LeafScreen.Discover, LeafScreen.Search, LeafScreen.Favorites)
-        .map { it.route }
+    val rootScreens = listOf(RootScreen.Discover, RootScreen.Search, RootScreen.Favorites)
+    val mainRoutes = listOf(LeafScreen.Discover, LeafScreen.Search, LeafScreen.Favorites).map { it.route }
 
     val currentBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = currentBackStackEntry?.destination?.route
-    val showBottomBar = currentRoute in bottomNavRoutes // todo find a better way to determine this
+    val showBottomBar = currentRoute in mainRoutes
 
     Scaffold(
         bottomBar = {
-            if (showBottomBar) MoviesBottomBar(navController, bottomNavItems)
+            if (showBottomBar) MoviesBottomBar(navController, rootScreens)
         },
         content = {
             MoviesNavHost(navController)

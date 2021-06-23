@@ -15,14 +15,13 @@ import com.ang.acb.movienight.R
 
 @Composable
 fun CastDetailsTopBar(
-    title: String,
     upPressed: () -> Unit
 ) {
     TopAppBar(
         title = {
             Text(
                 modifier = Modifier.padding(end = 32.dp),
-                text = title,
+                text = stringResource(R.string.cast_details_topbar_label),
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )

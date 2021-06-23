@@ -9,7 +9,7 @@ import com.ang.acb.movienight.domain.entities.*
 fun MoviesResponse.asMovies() = Movies(
     movies = results.map { it.asMovie() },
     currentPage = page,
-    totalPages = totalPages
+    totalPages = totalPages,
 )
 
 fun NetworkMovie.asMovie() = Movie(
@@ -43,7 +43,7 @@ fun NetworkMovieDetails.asGenres(): List<Genre> {
         Genre(
             id = it.id,
             movieId = id,
-            name = it.name
+            name = it.name,
         )
     }?.toList() ?: emptyList()
 }
@@ -54,7 +54,7 @@ fun NetworkMovieDetails.asCast(): List<Cast> {
             id = it.id,
             movieId = id,
             actorName = it.actorName,
-            profileImagePath = it.profileImagePath
+            profileImagePath = it.profileImagePath,
         )
     }?.toList() ?: emptyList()
 }
@@ -65,7 +65,7 @@ fun NetworkMovieDetails.asVideos(): List<Trailer> {
             id = it.id,
             movieId = id,
             key = it.key,
-            name = it.name
+            name = it.name,
         )
     }?.toList() ?: emptyList()
 }
@@ -85,6 +85,7 @@ fun NetworkCastDetails.asCastDetails(): CastDetails {
         name = name,
         biography = biography,
         birthday = birthday,
-        profilePath = profilePath
+        placeOfBirth = placeOfBirth,
+        profilePath = profilePath,
     )
 }

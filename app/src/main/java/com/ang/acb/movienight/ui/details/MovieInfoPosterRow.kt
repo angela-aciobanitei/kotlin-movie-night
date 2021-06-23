@@ -61,11 +61,10 @@ private fun MovieTitleAndGenres(
             }
         }
     }
-
 }
 
 @Composable
-private fun Header(title: String) {
+fun Header(title: String) {
     Text(
         modifier = Modifier.fillMaxWidth(),
         text = title,

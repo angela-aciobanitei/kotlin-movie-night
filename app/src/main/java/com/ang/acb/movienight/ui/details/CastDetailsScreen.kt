@@ -22,12 +22,7 @@ fun CastDetailsScreen(
     upPressed: () -> Unit
 ) {
     Scaffold(
-        topBar = {
-            CastDetailsTopBar(
-                title = viewModel.castDetails?.name ?: "",
-                upPressed = upPressed
-            )
-        }
+        topBar = { CastDetailsTopBar(upPressed = upPressed) }
     ) {
         if (viewModel.errorMessage != null) {
             MessageBox(messageResId = viewModel.errorMessage!!)
@@ -35,14 +30,16 @@ fun CastDetailsScreen(
             if (viewModel.errorMessage != null) {
                 MessageBox(messageResId = viewModel.errorMessage!!)
             } else {
-                // todo finish screen
-                Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-                    MovieInfoHeader("Birthday: ${viewModel.castDetails?.birthday}")
-                    Spacer(modifier = Modifier.height(16.dp))
+                viewModel.castDetails?.let {
+                    Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+                        CastInfoAvatarRow(cast = it)
 
-                    MovieInfoHeader(stringResource(R.string.cast_details_biography_label))
-                    Text(viewModel.castDetails?.biography ?: "", modifier = Modifier.padding(16.dp))
-                    Spacer(modifier = Modifier.height(16.dp))
+                        if (it.biography != null && it.biography.isNotEmpty()) {
+                            MovieInfoHeader(stringResource(R.string.cast_details_biography_label))
+                            Text(it.biography, modifier = Modifier.padding(horizontal = 16.dp))
+                            Spacer(modifier = Modifier.height(16.dp))
+                        }
+                    }
                 }
             }
         }

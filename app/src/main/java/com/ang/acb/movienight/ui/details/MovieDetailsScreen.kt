@@ -59,7 +59,7 @@ fun MovieDetailsScreen(
                         Spacer(modifier = Modifier.height(16.dp))
 
                         // Movie overview
-                        if (movieDetails.movie.overview != null) {
+                        if (movieDetails.movie.overview.isNullOrEmpty().not()) {
                             MovieInfoHeader(title = stringResource(R.string.movie_details_overview_label))
                             Text(
                                 "${movieDetails.movie.overview}",

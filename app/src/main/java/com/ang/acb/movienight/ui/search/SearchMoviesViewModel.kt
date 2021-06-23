@@ -36,13 +36,13 @@ class SearchMoviesViewModel @Inject constructor(
                 .collectLatest { query ->
                     currentJob?.cancel()
                     currentJob = launch {
-                        searchResults = if (query.isNotBlank()) searchMovies(query.trim()) else null
+                        searchResults = if (query.isNotBlank()) search(query.trim()) else null
                     }
                 }
         }
     }
 
-    private fun searchMovies(query: String): Flow<PagingData<Movie>> {
+    private fun search(query: String): Flow<PagingData<Movie>> {
         return Pager(
             config = PagingConfig(enablePlaceholders = false, pageSize = 50),
             pagingSourceFactory = {

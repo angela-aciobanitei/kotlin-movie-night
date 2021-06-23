@@ -8,5 +8,6 @@ data class Cast(
     val actorName: String?,
     val profileImagePath: String?
 ) {
+    // todo this should be null if profileImagePath is null
     val profileImageUrl = Constants.CAST_AVATAR_URL + profileImagePath
 }

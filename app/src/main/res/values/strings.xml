@@ -34,4 +34,5 @@
     <string name="cast_details_biography_label">Biography</string>
     <string name="movie_details_similar_label">Similar movies</string>
     <string name="cast_details_topbar_label">About</string>
+    <string name="cast_details_see_on_imdb_label">See on IMDb</string>
 </resources>

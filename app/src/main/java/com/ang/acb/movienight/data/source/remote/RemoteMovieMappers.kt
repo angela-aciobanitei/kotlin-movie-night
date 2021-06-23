@@ -87,5 +87,6 @@ fun NetworkCastDetails.asCastDetails(): CastDetails {
         birthday = birthday,
         placeOfBirth = placeOfBirth,
         profilePath = profilePath,
+        imdbId = imdbId,
     )
 }

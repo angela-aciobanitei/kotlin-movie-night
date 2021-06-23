@@ -9,4 +9,5 @@ data class NetworkCastDetails(
     @SerializedName("place_of_birth") val placeOfBirth: String?,
     @SerializedName("biography") val biography: String?,
     @SerializedName("profile_path") val profilePath: String?,
+    @SerializedName("imdb_id") val imdbId: String?,
 )

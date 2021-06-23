@@ -6,23 +6,28 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ang.acb.movienight.R
 import kotlinx.coroutines.FlowPreview
 
-@ExperimentalAnimationApi
 @ExperimentalComposeUiApi
+@ExperimentalAnimationApi
 @FlowPreview
 @Composable
 fun SearchMoviesScreen(
     viewModel: SearchMoviesViewModel = hiltViewModel(),
     openMovieDetails: (movieId: Long) -> Unit
 ) {
+    val keyboardController = LocalSoftwareKeyboardController.current
+    var query by remember { mutableStateOf(TextFieldValue(viewModel.searchQuery.value)) }
+
     Scaffold(
         topBar = {
             TopAppBar(title = { Text(text = stringResource(R.string.search_movies_topbar_label)) })
@@ -33,16 +38,21 @@ fun SearchMoviesScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             SearchMoviesTextField(
-                value = viewModel.searchQuery,
-                onValueChange = { viewModel.searchQuery = it },
-                onSearch = { viewModel.doSearch() }
+                value = query,
+                onValueChange = { value ->
+                    query = value
+                    viewModel.updateQuery(value.text)
+                },
             )
 
             // TODO Handle empty search results
             viewModel.searchResults?.let {
                 SearchMoviesResults(
                     searchResults = it,
-                    openMovieDetails = openMovieDetails
+                    onItemClick = { movieId ->
+                        keyboardController?.hide()
+                        openMovieDetails(movieId)
+                    }
                 )
             }
         }

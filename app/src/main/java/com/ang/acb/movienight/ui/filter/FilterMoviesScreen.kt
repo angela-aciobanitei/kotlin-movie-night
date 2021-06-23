@@ -42,7 +42,6 @@ fun FilterMoviesScreen(
 
             lazyPagingItems.apply {
                 when {
-                    // Handle loading states
                     loadState.refresh is LoadState.Loading -> {
                         item { PagingLoadingView(modifier = Modifier.fillParentMaxSize()) }
                     }
@@ -51,25 +50,25 @@ fun FilterMoviesScreen(
                         item { PagingLoadingItem() }
                     }
 
-                    // Handle error states
                     // TODO Parse error response to get status message
                     // {"status_code":7,"status_message":"Invalid API key.","success":false}
                     loadState.refresh is LoadState.Error -> {
-                        val errorState = lazyPagingItems.loadState.refresh as LoadState.Error
+                        val state = lazyPagingItems.loadState.refresh as LoadState.Error
                         item {
                             PagingErrorMessage(
                                 modifier = Modifier.fillParentMaxSize(),
-                                message = errorState.error.message
+                                message = state.error.localizedMessage
                                     ?: stringResource(R.string.generic_error_message),
                                 onRetryClick = { retry() }
                             )
                         }
                     }
+
                     loadState.append is LoadState.Error -> {
-                        val errorState = lazyPagingItems.loadState.append as LoadState.Error
+                        val state = lazyPagingItems.loadState.append as LoadState.Error
                         item {
                             PagingErrorItem(
-                                message = errorState.error.message
+                                message = state.error.localizedMessage
                                     ?: stringResource(R.string.generic_error_message),
                                 onRetryClick = { retry() }
                             )

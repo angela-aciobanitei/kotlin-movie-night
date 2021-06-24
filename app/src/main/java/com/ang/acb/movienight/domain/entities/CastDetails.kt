@@ -1,6 +1,7 @@
 package com.ang.acb.movienight.domain.entities
 
-import com.ang.acb.movienight.utils.Constants
+import com.ang.acb.movienight.utils.Constants.CAST_AVATAR_URL
+import com.ang.acb.movienight.utils.Constants.CAST_IMDB_URL
 
 data class CastDetails(
     val id: Long,
@@ -11,7 +12,6 @@ data class CastDetails(
     val profilePath: String?,
     val imdbId: String?
 ) {
-    // todo this should be null if profilePath is null
-    val profileImageUrl = Constants.CAST_AVATAR_URL + profilePath
-    val imdbUrl = if (imdbId != null) "https://www.imdb.com/name/$imdbId" else null
+    val profileImageUrl = if (profilePath != null) CAST_AVATAR_URL + profilePath else profilePath
+    val imdbUrl = if (imdbId != null) CAST_IMDB_URL + imdbId else null
 }

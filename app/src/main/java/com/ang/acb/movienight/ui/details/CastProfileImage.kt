@@ -8,11 +8,12 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
@@ -26,26 +27,30 @@ fun CastProfileImage(
     modifier: Modifier = Modifier,
 ) {
     Box(modifier = modifier) {
-        val painter = rememberGlidePainter(request = profileImageUrl, fadeIn = true)
+        if (profileImageUrl == null) {
+            PlaceholderProfileImage(modifier.matchParentSize())
+        } else {
+            val painter = rememberGlidePainter(request = profileImageUrl, fadeIn = true)
 
-        Image(
-            painter = painter,
-            contentDescription = null,
-            modifier = Modifier
-                .matchParentSize()
-                .clip(MaterialTheme.shapes.medium),
-            contentScale = ContentScale.Crop,
-        )
+            Image(
+                painter = painter,
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .matchParentSize()
+                    .clip(MaterialTheme.shapes.medium),
+            )
 
-        when (painter.loadState) {
-            is ImageLoadState.Loading -> LoadingCastProfileImager(modifier)
-            is ImageLoadState.Error -> DefaultCastProfileImage(modifier)
+            when (painter.loadState) {
+                is ImageLoadState.Loading -> LoadingProfileImage(modifier.matchParentSize())
+                is ImageLoadState.Error -> PlaceholderProfileImage(modifier.matchParentSize())
+            }
         }
     }
 }
 
 @Composable
-private fun DefaultCastProfileImage(
+private fun PlaceholderProfileImage(
     modifier: Modifier = Modifier,
 ) {
     Box(
@@ -56,27 +61,26 @@ private fun DefaultCastProfileImage(
         contentAlignment = Alignment.Center,
     ) {
         Icon(
-            imageVector = Icons.Default.Person,
+            imageVector = Icons.Default.AccountCircle,
             contentDescription = null,
             tint = Purple700,
-            modifier = Modifier.align(alignment = Alignment.Center)
+            modifier = Modifier.scale(2f)
         )
     }
 }
 
 @Composable
-private fun LoadingCastProfileImager(
+private fun LoadingProfileImage(
     modifier: Modifier = Modifier,
 ) {
     Box(
-        modifier = modifier.background(
-            shape = MaterialTheme.shapes.medium,
-            color = Color.LightGray, // todo pick a nicer color
-        ),
+        modifier = modifier.clip(MaterialTheme.shapes.medium),
         contentAlignment = Alignment.Center,
     ) {
         CircularProgressIndicator(
-            modifier = Modifier.size(24.dp),
+            modifier = Modifier
+                .size(24.dp)
+                .align(Alignment.Center),
             strokeWidth = 2.dp
         )
     }

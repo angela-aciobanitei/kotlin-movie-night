@@ -9,7 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.ang.acb.movienight.domain.entities.Movie
-import com.ang.acb.movienight.utils.Constants.POSTER_URL
 
 @Composable
 fun MovieItem(
@@ -23,7 +22,7 @@ fun MovieItem(
             .fillMaxWidth()
     ) {
         MoviePoster(
-            posterUrl = POSTER_URL + movie.posterPath,
+            posterUrl = movie.posterUrl,
             modifier = Modifier
                 .weight(1f)
                 .aspectRatio(2 / 3f)

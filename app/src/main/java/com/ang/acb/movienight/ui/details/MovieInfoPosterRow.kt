@@ -14,7 +14,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ang.acb.movienight.domain.entities.MovieDetails
 import com.ang.acb.movienight.ui.common.MoviePoster
-import com.ang.acb.movienight.utils.Constants.POSTER_URL
 import com.google.accompanist.flowlayout.FlowRow
 
 @Composable
@@ -27,7 +26,7 @@ fun MovieInfoPosterRow(
             .fillMaxWidth()
     ) {
         MoviePoster(
-            posterUrl = POSTER_URL + movieDetails.movie.posterPath,
+            posterUrl = movieDetails.movie.posterUrl,
             modifier = Modifier
                 .weight(2f)
                 .aspectRatio(2 / 3f)
@@ -64,7 +63,7 @@ private fun MovieTitleAndGenres(
 }
 
 @Composable
-fun Header(title: String) {
+private fun Header(title: String) {
     Text(
         modifier = Modifier.fillMaxWidth(),
         text = title,

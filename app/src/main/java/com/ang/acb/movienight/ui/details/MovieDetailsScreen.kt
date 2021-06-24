@@ -18,7 +18,6 @@ import com.ang.acb.movienight.R
 import com.ang.acb.movienight.domain.entities.Trailer
 import com.ang.acb.movienight.ui.common.LoadingBox
 import com.ang.acb.movienight.ui.common.MessageBox
-import com.ang.acb.movienight.utils.Constants.BACKDROP_URL
 
 @Composable
 fun MovieDetailsScreen(
@@ -48,8 +47,8 @@ fun MovieDetailsScreen(
                 Column(Modifier.verticalScroll(scrollState)) {
                     viewModel.movieDetails?.let { movieDetails ->
                         // Movie backdrop image
-                        if (movieDetails.movie.backdropPath != null) {
-                            MovieBackdropImage(backdropUrl = BACKDROP_URL + movieDetails.movie.backdropPath)
+                        if (movieDetails.movie.backdropUrl != null) {
+                            MovieBackdropImage(backdropUrl = movieDetails.movie.backdropUrl)
                         }
 
                         // Movie poster

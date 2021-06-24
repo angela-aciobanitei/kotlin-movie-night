@@ -9,9 +9,10 @@ data class CastDetails(
     val birthday: String?,
     val placeOfBirth: String?,
     val biography: String?,
-    val profilePath: String?,
+    val profileImagePath: String?,
     val imdbId: String?
 ) {
-    val profileImageUrl = if (profilePath != null) CAST_AVATAR_URL + profilePath else profilePath
+    val profileImageUrl =
+        if (profileImagePath != null) CAST_AVATAR_URL + profileImagePath else profileImagePath
     val imdbUrl = if (imdbId != null) CAST_IMDB_URL + imdbId else null
 }

@@ -12,7 +12,6 @@ import androidx.compose.ui.unit.dp
 import com.ang.acb.movienight.domain.entities.Movie
 import com.ang.acb.movienight.ui.common.Carousel
 import com.ang.acb.movienight.ui.common.MoviePoster
-import com.ang.acb.movienight.utils.Constants
 
 @Composable
 fun SimilarMoviesCarousel(
@@ -29,7 +28,7 @@ fun SimilarMoviesCarousel(
         Card(modifier = modifier) {
             Box(modifier = Modifier.clickable { onItemClick(item.id) }) {
                 MoviePoster(
-                    posterUrl = Constants.POSTER_URL + item.posterPath,
+                    posterUrl = item.posterUrl,
                     modifier = Modifier
                         .padding(padding)
                         .fillParentMaxHeight()

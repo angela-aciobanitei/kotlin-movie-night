@@ -4,12 +4,13 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.request.RequestOptions
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.unit.dp
 import com.google.accompanist.glide.rememberGlidePainter
 import com.google.accompanist.imageloading.ImageLoadState
 
@@ -23,28 +24,21 @@ fun MovieBackdropImage(
             .aspectRatio(16f / 9),
         contentAlignment = Alignment.Center,
     ) {
-        val painter = rememberGlidePainter(
-            request = backdropUrl,
-            requestBuilder = {
-                val options = RequestOptions()
-                options.transform(CenterCrop())
-                apply(options)
-            },
-            fadeIn = true
-        )
+        val painter = rememberGlidePainter(request = backdropUrl, fadeIn = true)
 
-        Image(painter = painter, contentDescription = null)
+        Image(
+            painter = painter,
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.matchParentSize(),
+        )
 
         when (painter.loadState) {
             is ImageLoadState.Loading -> {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .aspectRatio(16f / 9),
-                    contentAlignment = Alignment.Center,
-                ) {
-                    CircularProgressIndicator()
-                }
+                CircularProgressIndicator(
+                    modifier = Modifier.size(24.dp),
+                    strokeWidth = 2.dp
+                )
             }
             is ImageLoadState.Error -> Box(modifier = Modifier.fillMaxWidth())
         }

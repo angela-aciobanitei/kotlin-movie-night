@@ -9,15 +9,15 @@ import androidx.compose.material.Card
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.PlayCircleOutline
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.ang.acb.movienight.R
 import com.ang.acb.movienight.domain.entities.Trailer
 import com.google.accompanist.glide.rememberGlidePainter
 import com.google.accompanist.imageloading.ImageLoadState
@@ -38,7 +38,10 @@ fun TrailerCard(
                 ),
             contentAlignment = Alignment.Center,
         ) {
-            val painter = rememberGlidePainter(request = trailer.youTubeThumbnailUrl, fadeIn = true)
+            val painter = rememberGlidePainter(
+                request = trailer.youTubeThumbnailUrl,
+                fadeIn = true,
+            )
 
             Image(
                 painter = painter,
@@ -58,7 +61,7 @@ fun TrailerCard(
                 }
                 else -> {
                     Icon(
-                        painter = painterResource(id = R.drawable.ic_play_circle_outline),
+                        imageVector = Icons.Default.PlayCircleOutline,
                         contentDescription = null,
                         tint = Color.Red,
                         modifier = Modifier

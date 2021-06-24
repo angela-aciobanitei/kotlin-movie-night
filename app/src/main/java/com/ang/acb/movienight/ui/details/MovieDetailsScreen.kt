@@ -19,8 +19,6 @@ import com.ang.acb.movienight.domain.entities.Trailer
 import com.ang.acb.movienight.ui.common.LoadingBox
 import com.ang.acb.movienight.ui.common.MessageBox
 import com.ang.acb.movienight.utils.Constants.BACKDROP_URL
-import com.ang.acb.movienight.utils.Constants.YOUTUBE_APP_BASE_URL
-import com.ang.acb.movienight.utils.Constants.YOUTUBE_WEB_BASE_URL
 
 @Composable
 fun MovieDetailsScreen(
@@ -118,18 +116,14 @@ fun MovieDetailsScreen(
 }
 
 private fun playVideo(trailer: Trailer, context: Context) {
-    // https://stackoverflow.com/questions/574195/android-youtube-app-play-video-intent
-    val appIntent = Intent(
-        Intent.ACTION_VIEW,
-        Uri.parse(YOUTUBE_APP_BASE_URL + trailer.key)
-    )
-    val webIntent = Intent(
-        Intent.ACTION_VIEW,
-        Uri.parse(YOUTUBE_WEB_BASE_URL + trailer.key)
-    )
-    if (appIntent.resolveActivity(context.packageManager) != null) {
-        context.startActivity(appIntent)
-    } else {
-        context.startActivity(webIntent)
+    if (trailer.key != null) {
+        val appIntent = Intent(Intent.ACTION_VIEW, Uri.parse(trailer.youTubeAppUrl))
+        val webIntent = Intent(Intent.ACTION_VIEW, Uri.parse(trailer.youTubeWebUrl))
+
+        if (appIntent.resolveActivity(context.packageManager) != null) {
+            context.startActivity(appIntent)
+        } else {
+            context.startActivity(webIntent)
+        }
     }
 }

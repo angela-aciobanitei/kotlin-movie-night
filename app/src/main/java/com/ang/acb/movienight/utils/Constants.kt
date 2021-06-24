@@ -10,9 +10,4 @@ object Constants {
     const val CAST_AVATAR_URL = IMAGE_BASE_URL + IMAGE_SIZE_W185
     const val POSTER_URL = IMAGE_BASE_URL + IMAGE_SIZE_W185
     const val BACKDROP_URL = IMAGE_BASE_URL + IMAGE_SIZE_W780
-
-    const val YOUTUBE_WEB_BASE_URL = "https://www.youtube.com/watch?v="
-    const val YOUTUBE_APP_BASE_URL = "vnd.youtube:"
-    const val YOUTUBE_TRAILER_THUMBNAIL_BASE_URL = "https://img.youtube.com/vi/"
-    const val YOUTUBE_TRAILER_THUMBNAIL_HQ = "/hqdefault.jpg"
 }

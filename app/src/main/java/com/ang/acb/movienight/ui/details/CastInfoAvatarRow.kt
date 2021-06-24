@@ -46,8 +46,8 @@ fun CastInfoAvatarRow(
                     text = stringResource(R.string.cast_details_see_on_imdb_label),
                     color = MaterialTheme.colors.primary,
                     modifier = Modifier
-                        .padding(16.dp)
                         .clickable { openImdb(cast.imdbUrl) }
+                        .padding(16.dp)
                 )
             }
         }

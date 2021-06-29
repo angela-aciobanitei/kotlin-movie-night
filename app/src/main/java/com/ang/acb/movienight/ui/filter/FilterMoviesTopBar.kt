@@ -3,7 +3,6 @@ package com.ang.acb.movienight.ui.filter
 import androidx.compose.foundation.layout.Box
 import androidx.compose.material.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.ang.acb.movienight.R
@@ -16,6 +15,8 @@ fun FilterMoviesTopBar(
     onFilterChanged: (filter: MovieFilter) -> Unit
 ) {
     TopAppBar(
+        backgroundColor = MaterialTheme.colors.surface.copy(alpha = 0.95f),
+        contentColor = MaterialTheme.colors.onSurface,
         title = { Text(text = stringResource(filterLabel)) },
         actions = { FilterMoviesMenu(onFilterChanged) }
     )
@@ -32,7 +33,6 @@ fun FilterMoviesMenu(
             Icon(
                 painter = painterResource(id = R.drawable.ic_sort),
                 contentDescription = null,
-                tint = Color.White
             )
         }
 

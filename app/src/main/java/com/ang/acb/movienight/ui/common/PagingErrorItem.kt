@@ -12,7 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.ang.acb.movienight.R
-import com.ang.acb.movienight.ui.theme.LightRed
 
 @Composable
 fun PagingErrorItem(
@@ -30,7 +29,7 @@ fun PagingErrorItem(
             maxLines = 1,
             modifier = Modifier.weight(1f),
             style = MaterialTheme.typography.h6,
-            color = LightRed,
+            color = MaterialTheme.colors.error,
         )
         OutlinedButton(onClick = onRetryClick) {
             Text(text = stringResource(R.string.try_again_button_label))

@@ -17,7 +17,6 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import com.ang.acb.movienight.ui.theme.Purple700
 import com.google.accompanist.glide.rememberGlidePainter
 import com.google.accompanist.imageloading.ImageLoadState
 
@@ -63,7 +62,7 @@ private fun PlaceholderProfileImage(
         Icon(
             imageVector = Icons.Default.AccountCircle,
             contentDescription = null,
-            tint = Purple700,
+            tint = MaterialTheme.colors.primary,
             modifier = Modifier.scale(2f)
         )
     }

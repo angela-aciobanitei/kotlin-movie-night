@@ -3,6 +3,7 @@ package com.ang.acb.movienight.ui.search
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
@@ -30,7 +31,11 @@ fun SearchMoviesScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text(text = stringResource(R.string.search_movies_topbar_label)) })
+            TopAppBar(
+                backgroundColor = MaterialTheme.colors.surface.copy(alpha = 0.95f),
+                contentColor = MaterialTheme.colors.onSurface,
+                title = { Text(text = stringResource(R.string.search_movies_topbar_label)) },
+            )
         }
     ) {
         Column(

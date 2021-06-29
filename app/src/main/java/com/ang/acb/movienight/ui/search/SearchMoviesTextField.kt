@@ -21,7 +21,6 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import com.ang.acb.movienight.R
 import com.ang.acb.movienight.ui.theme.DarkerGray
-import com.ang.acb.movienight.ui.theme.LightRed
 import com.ang.acb.movienight.ui.theme.LighterGray
 
 @ExperimentalAnimationApi
@@ -76,10 +75,10 @@ fun SearchMoviesTextField(
             disabledPlaceholderColor = LighterGray,
             backgroundColor = Color.White,
             cursorColor = DarkerGray,
-            errorCursorColor = LightRed,
+            errorCursorColor = MaterialTheme.colors.error,
             focusedIndicatorColor = LighterGray,
             unfocusedIndicatorColor = LighterGray,
-            errorIndicatorColor = LightRed,
+            errorIndicatorColor = MaterialTheme.colors.error,
         )
     )
 }

@@ -11,7 +11,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.ang.acb.movienight.R
-import com.ang.acb.movienight.ui.theme.LightRed
 
 @Composable
 fun PagingErrorMessage(
@@ -28,7 +27,7 @@ fun PagingErrorMessage(
             text = message,
             style = MaterialTheme.typography.h6,
             textAlign = TextAlign.Center,
-            color = LightRed
+            color = MaterialTheme.colors.error
         )
 
         Spacer(modifier = Modifier.height(16.dp))

@@ -13,10 +13,11 @@ import com.ang.acb.movienight.domain.entities.Movie
 @Composable
 fun MovieItem(
     movie: Movie,
-    onMovieClick: (movieId: Long) -> Unit
+    onMovieClick: (movieId: Long) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .clickable { onMovieClick(movie.id) }
             .padding(horizontal = 16.dp, vertical = 8.dp)
             .fillMaxWidth()

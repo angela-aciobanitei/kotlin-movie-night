@@ -1,10 +1,7 @@
 package com.ang.acb.movienight.ui.details
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -18,6 +15,8 @@ fun CastDetailsTopBar(
     upPressed: () -> Unit
 ) {
     TopAppBar(
+        backgroundColor = MaterialTheme.colors.surface.copy(alpha = 0.95f),
+        contentColor = MaterialTheme.colors.onSurface,
         title = {
             Text(
                 modifier = Modifier.padding(end = 32.dp),

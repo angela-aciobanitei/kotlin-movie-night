@@ -38,13 +38,18 @@ fun CastInfoAvatarRow(
             }
 
             if (cast.birthday.isNullOrEmpty().not() && cast.placeOfBirth.isNullOrEmpty().not()) {
-                MovieInfoHeader(title = "Born ${cast.birthday} in ${cast.placeOfBirth}")
+                Text(
+                    text = "Born ${cast.birthday} in ${cast.placeOfBirth}",
+                    style = MaterialTheme.typography.body2,
+                    modifier = Modifier.padding(16.dp)
+                )
             }
 
             if (cast.imdbUrl != null) {
                 Text(
                     text = stringResource(R.string.cast_details_see_on_imdb_label),
                     color = MaterialTheme.colors.primary,
+                    style = MaterialTheme.typography.body2,
                     modifier = Modifier
                         .clickable { openImdb(cast.imdbUrl) }
                         .padding(16.dp)

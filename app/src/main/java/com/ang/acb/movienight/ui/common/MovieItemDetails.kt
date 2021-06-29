@@ -5,10 +5,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.ang.acb.movienight.domain.entities.Movie
 
 @Composable
@@ -18,8 +15,8 @@ fun MovieItemDetails(
 ) {
     // todo make it prettier
     Column(modifier.fillMaxWidth()) {
-        val titleTextStyle = TextStyle(fontWeight = FontWeight.W700, fontSize = 18.sp)
-        val subtitleTextStyle = MaterialTheme.typography.caption
+        val titleTextStyle = MaterialTheme.typography.h6
+        val subtitleTextStyle = MaterialTheme.typography.overline
         Text(
             modifier = Modifier.padding(bottom = 8.dp),
             text = movie.title ?: "",

@@ -35,7 +35,7 @@ fun MovieNightTheme(
 
     MaterialTheme(
         colors = colors,
-        typography = Typography,
+        typography = moviesTypography,
         shapes = Shapes,
         content = content
     )

@@ -42,7 +42,7 @@ internal fun FavoriteMoviesScreen(
                 LazyColumn {
                     val items = viewModel.movies ?: emptyList()
                     itemsIndexed(items) { index, item ->
-                        val bottomPadding = if (index == items.size - 1) 56 else 0
+                        val bottomPadding = if (index == items.size - 1) 64 else 0
                         MovieItem(
                             movie = item,
                             onMovieClick = { movieId -> openMovieDetails(movieId) },

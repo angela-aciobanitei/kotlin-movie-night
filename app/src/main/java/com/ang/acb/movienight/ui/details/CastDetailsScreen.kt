@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -49,7 +50,11 @@ fun CastDetailsScreen(
 
                         if (it.biography.isNullOrEmpty().not()) {
                             MovieInfoHeader(stringResource(R.string.cast_details_biography_label))
-                            Text(it.biography!!, modifier = Modifier.padding(horizontal = 16.dp))
+                            Text(
+                                it.biography!!,
+                                style = MaterialTheme.typography.body2,
+                                modifier = Modifier.padding(horizontal = 16.dp),
+                            )
                             Spacer(modifier = Modifier.height(16.dp))
                         }
                     }

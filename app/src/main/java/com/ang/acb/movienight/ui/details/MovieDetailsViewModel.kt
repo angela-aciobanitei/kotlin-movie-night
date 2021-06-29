@@ -82,17 +82,17 @@ class MovieDetailsViewModel @Inject constructor(
         }
     }
 
-    fun onFavoriteClicked(movie: Movie) {
+    fun onFavoriteClicked() {
         viewModelScope.launch {
             isFavoriteLoading = true
             if (isFavorite == true) {
                 val deleted = deleteFavoriteMovieUseCase(movieId)
                 isFavorite = deleted.equals(1)
-                Timber.d("asd deleted from favorites $deleted movie with id = ${movie.id}")
+                Timber.d("asd deleted from favorites $deleted movie with id = $movieId")
             } else {
-                val savedId = saveFavoriteMovieUseCase(movie)
-                isFavorite = savedId.equals(movieId)
-                Timber.d("asd saved to favorites $savedId movie with id = ${movie.id}")
+                val savedId = movieDetails?.movie?.let { saveFavoriteMovieUseCase(it) }
+                isFavorite = savedId?.equals(movieId)
+                Timber.d("asd saved to favorites $savedId movie with id = $movieId")
             }
             isFavoriteLoading = false
         }

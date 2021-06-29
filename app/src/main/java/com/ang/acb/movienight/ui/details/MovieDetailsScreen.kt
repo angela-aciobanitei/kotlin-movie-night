@@ -34,6 +34,9 @@ fun MovieDetailsScreen(
             val title = viewModel.movieDetails?.movie?.title
             MovieDetailsTopBar(
                 title = title ?: "",
+                isFavorite = viewModel.isFavorite == true,
+                isFavoriteLoading = viewModel.isFavoriteLoading,
+                onFavoriteClicked = { viewModel.onFavoriteClicked() },
                 upPressed = upPressed
             )
         }
@@ -52,12 +55,7 @@ fun MovieDetailsScreen(
                         }
 
                         // Movie poster
-                        MovieInfoPosterRow(
-                            movieDetails = movieDetails,
-                            isFavorite = viewModel.isFavorite == true,
-                            isFavoriteLoading = viewModel.isFavoriteLoading,
-                            onFavoriteClicked = { viewModel.onFavoriteClicked(movieDetails.movie) }
-                        )
+                        MovieInfoPosterRow(movieDetails = movieDetails)
                         Spacer(modifier = Modifier.height(16.dp))
 
                         // Movie overview
@@ -75,12 +73,10 @@ fun MovieDetailsScreen(
                             MovieInfoHeader(title = stringResource(R.string.movie_details_cast_label))
                             CastCarousel(
                                 cast = movieDetails.cast,
+                                onItemClick = { castId -> openCastDetails(castId) },
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .height(160.dp),
-                                onItemClick = { castId ->
-                                    openCastDetails(castId)
-                                }
                             )
                             Spacer(modifier = Modifier.height(16.dp))
                         }
@@ -90,12 +86,10 @@ fun MovieDetailsScreen(
                             MovieInfoHeader(title = stringResource(R.string.movie_details_trailers_label))
                             TrailerCarousel(
                                 trailers = movieDetails.trailers,
+                                onItemClick = { trailer -> playVideo(trailer, context) },
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .height(128.dp),
-                                onItemClick = { trailer ->
-                                    playVideo(trailer, context)
-                                }
                             )
                             Spacer(modifier = Modifier.height(16.dp))
                         }

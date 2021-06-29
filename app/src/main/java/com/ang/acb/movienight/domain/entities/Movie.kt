@@ -11,7 +11,8 @@ data class Movie(
     val backdropPath: String?,
     val popularity: Double?,
     val voteAverage: Double?,
-    val voteCount: Int?
+    val voteCount: Int?,
+    val isFavorite: Boolean?,
 ) {
     val posterUrl = if (posterPath != null) Constants.POSTER_URL + posterPath else null
     val backdropUrl = if (backdropPath != null) Constants.BACKDROP_URL + backdropPath else null

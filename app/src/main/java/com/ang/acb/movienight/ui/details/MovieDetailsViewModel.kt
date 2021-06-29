@@ -9,9 +9,10 @@ import androidx.lifecycle.viewModelScope
 import com.ang.acb.movienight.R
 import com.ang.acb.movienight.domain.entities.Movie
 import com.ang.acb.movienight.domain.entities.MovieDetails
-import com.ang.acb.movienight.domain.usecases.GetMovieDetailsUseCase
-import com.ang.acb.movienight.domain.usecases.GetSimilarMoviesUseCase
+import com.ang.acb.movienight.domain.usecases.*
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
@@ -21,18 +22,24 @@ class MovieDetailsViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val getMovieDetailsUseCase: GetMovieDetailsUseCase,
     private val getSimilarMoviesUseCase: GetSimilarMoviesUseCase,
+    private val saveFavoriteMovieUseCase: SaveFavoriteMovieUseCase,
+    private val deleteFavoriteMovieUseCase: DeleteFavoriteMovieUseCase,
+    private val getFavoriteMovieUseCase: GetFavoriteMovieUseCase,
 ) : ViewModel() {
 
     val movieId: Long = savedStateHandle.get("movieId")!!
 
     var movieDetails: MovieDetails? by mutableStateOf(null)
     var similarMovies: List<Movie> by mutableStateOf(emptyList())
+    var isFavorite: Boolean? by mutableStateOf(null)
+    var isFavoriteLoading: Boolean by mutableStateOf(false)
     var isLoading: Boolean by mutableStateOf(false)
     var errorMessage: Int? by mutableStateOf(null)
 
     init {
         getMovieDetails(movieId)
         getSimilarMovies(movieId)
+        getIsFavorite(movieId)
     }
 
     private fun getMovieDetails(movieId: Long) {
@@ -60,5 +67,34 @@ class MovieDetailsViewModel @Inject constructor(
         }
     }
 
+    private fun getIsFavorite(movieId: Long) {
+        viewModelScope.launch {
+            isFavoriteLoading = true
+            getFavoriteMovieUseCase(movieId)
+                .catch {
+                    Timber.e(it)
+                    isFavoriteLoading = false
+                }
+                .collect {
+                    isFavorite = it?.isFavorite
+                    isFavoriteLoading = false
+                }
+        }
+    }
 
+    fun onFavoriteClicked(movie: Movie) {
+        viewModelScope.launch {
+            isFavoriteLoading = true
+            if (isFavorite == true) {
+                val deleted = deleteFavoriteMovieUseCase(movieId)
+                isFavorite = deleted.equals(1)
+                Timber.d("asd deleted from favorites $deleted movie with id = ${movie.id}")
+            } else {
+                val savedId = saveFavoriteMovieUseCase(movie)
+                isFavorite = savedId.equals(movieId)
+                Timber.d("asd saved to favorites $savedId movie with id = ${movie.id}")
+            }
+            isFavoriteLoading = false
+        }
+    }
 }

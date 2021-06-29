@@ -52,7 +52,12 @@ fun MovieDetailsScreen(
                         }
 
                         // Movie poster
-                        MovieInfoPosterRow(movieDetails = movieDetails)
+                        MovieInfoPosterRow(
+                            movieDetails = movieDetails,
+                            isFavorite = viewModel.isFavorite == true,
+                            isFavoriteLoading = viewModel.isFavoriteLoading,
+                            onFavoriteClicked = { viewModel.onFavoriteClicked(movieDetails.movie) }
+                        )
                         Spacer(modifier = Modifier.height(16.dp))
 
                         // Movie overview

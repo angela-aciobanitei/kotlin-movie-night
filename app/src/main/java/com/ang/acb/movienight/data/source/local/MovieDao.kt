@@ -14,9 +14,12 @@ interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMovie(movie: FavoriteMovie): Long
 
+    // When the return type is Flow<T>, querying an empty table throws a null pointer exception.
+    // When the return type is Flow<T?>, querying an empty table emits a null value.
     @Query("SELECT * FROM movie WHERE movie.id = :movieId")
-    fun getMovie(movieId: Long): Flow<FavoriteMovie>
+    fun getMovie(movieId: Long): Flow<FavoriteMovie?>
 
+    // When the return type is Flow<List<T>>, querying an empty table emits an empty list.
     @Query("SELECT * FROM movie WHERE is_favorite = 1")
     fun getAllFavoriteMovies(): Flow<List<FavoriteMovie>>
 
@@ -24,7 +27,7 @@ interface MovieDao {
     suspend fun updateFavorite(movieId: String, isFavorite: Boolean)
 
     @Query("DELETE FROM movie WHERE id = :movieId")
-    suspend fun deleteMovieById(movieId: String): Int
+    suspend fun deleteMovieById(movieId: Long): Int
 
     @Query("DELETE FROM movie")
     suspend fun deleteMovies()

@@ -1,10 +1,12 @@
 package com.ang.acb.movienight.ui.details
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -12,6 +14,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ang.acb.movienight.domain.entities.Movie
 import com.ang.acb.movienight.domain.entities.MovieDetails
 import com.ang.acb.movienight.ui.common.MoviePoster
 import com.google.accompanist.flowlayout.FlowRow
@@ -19,6 +22,9 @@ import com.google.accompanist.flowlayout.FlowRow
 @Composable
 fun MovieInfoPosterRow(
     movieDetails: MovieDetails,
+    isFavorite: Boolean,
+    isFavoriteLoading: Boolean,
+    onFavoriteClicked: (movie: Movie) -> Unit,
 ) {
     Row(
         modifier = Modifier
@@ -34,6 +40,9 @@ fun MovieInfoPosterRow(
 
         MovieTitleAndGenres(
             movieDetails = movieDetails,
+            isFavorite = isFavorite,
+            isFavoriteLoading = isFavoriteLoading,
+            onFavoriteClicked = onFavoriteClicked,
             modifier = Modifier
                 .weight(3f)
                 .padding(start = 16.dp)
@@ -44,12 +53,32 @@ fun MovieInfoPosterRow(
 @Composable
 private fun MovieTitleAndGenres(
     movieDetails: MovieDetails,
+    isFavorite: Boolean,
+    isFavoriteLoading: Boolean,
+    onFavoriteClicked: (movie: Movie) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(modifier.fillMaxWidth()) {
-        Header(title = movieDetails.movie.title ?: "")
+        Text(
+            modifier = Modifier.fillMaxWidth(),
+            text = movieDetails.movie.title ?: "",
+            style = TextStyle(fontSize = 18.sp, fontWeight = FontWeight.W700)
+        )
 
-        Spacer(modifier = Modifier.height(32.dp))
+        if (isFavoriteLoading) {
+            CircularProgressIndicator(
+                modifier = Modifier.size(24.dp),
+                strokeWidth = 2.dp
+            )
+        } else {
+            Icon(
+                modifier = Modifier
+                    .clickable { onFavoriteClicked(movieDetails.movie) }
+                    .padding(16.dp),
+                imageVector = if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                contentDescription = null,
+            )
+        }
 
         FlowRow(
             mainAxisSpacing = 4.dp,
@@ -60,15 +89,6 @@ private fun MovieTitleAndGenres(
             }
         }
     }
-}
-
-@Composable
-private fun Header(title: String) {
-    Text(
-        modifier = Modifier.fillMaxWidth(),
-        text = title,
-        style = TextStyle(fontSize = 18.sp, fontWeight = FontWeight.W700)
-    )
 }
 
 @Composable

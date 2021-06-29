@@ -68,23 +68,23 @@ class MovieRepository @Inject constructor(
         )
     }
 
-    override fun getFavoriteMovie(movieId: Long): Flow<Movie> {
-        return localMovieDataSource.getFavoriteMovie(movieId).map { it.asMovie() }
-    }
-
-    override fun getAllFavoriteMovies(): Flow<List<Movie>> {
-        return localMovieDataSource.getAllFavoriteMovies().map { it.asMovies() }
-    }
-
     override suspend fun updateFavoriteFlag(movieId: String, isFavorite: Boolean) {
         return localMovieDataSource.updateFavoriteFlag(movieId, isFavorite)
     }
 
-    override suspend fun deleteFavoriteMovie(movieId: String): Int {
+    override suspend fun deleteFavoriteMovie(movieId: Long): Int {
         return localMovieDataSource.deleteFavoriteMovie(movieId)
     }
 
     override suspend fun deleteAllFavoriteMovies() {
         return localMovieDataSource.deleteAllFavoriteMovies()
+    }
+
+    override fun getFavoriteMovie(movieId: Long): Flow<Movie?> {
+        return localMovieDataSource.getFavoriteMovie(movieId).map { it?.asMovie() }
+    }
+
+    override fun getAllFavoriteMovies(): Flow<List<Movie>> {
+        return localMovieDataSource.getAllFavoriteMovies().map { it.asMovies() }
     }
 }

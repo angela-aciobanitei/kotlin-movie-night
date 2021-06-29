@@ -21,6 +21,7 @@ fun FavoriteMovie.asMovie() = Movie(
     popularity = popularity,
     voteAverage = voteAverage,
     voteCount = voteCount,
+    isFavorite = isFavorite,
 )
 
 fun List<FavoriteMovie>.asMovies() = this.map { it.asMovie() }

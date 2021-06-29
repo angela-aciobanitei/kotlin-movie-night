@@ -17,9 +17,9 @@ interface MovieGateway {
     suspend fun getCastDetails(castId: Long): CastDetails
 
     suspend fun saveFavoriteMovie(movie: Movie): Long
-    fun getFavoriteMovie(movieId: Long): Flow<Movie>
-    fun getAllFavoriteMovies(): Flow<List<Movie>>
     suspend fun updateFavoriteFlag(movieId: String, isFavorite: Boolean)
-    suspend fun deleteFavoriteMovie(movieId: String): Int
+    suspend fun deleteFavoriteMovie(movieId: Long): Int
     suspend fun deleteAllFavoriteMovies()
+    fun getFavoriteMovie(movieId: Long): Flow<Movie?>
+    fun getAllFavoriteMovies(): Flow<List<Movie>>
 }

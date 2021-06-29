@@ -17,7 +17,7 @@ class LocalMovieDataSource @Inject constructor(
         }
     }
 
-    fun getFavoriteMovie(movieId: Long): Flow<FavoriteMovie> {
+    fun getFavoriteMovie(movieId: Long): Flow<FavoriteMovie?> {
         return movieDao.getMovie(movieId)
     }
 
@@ -31,7 +31,7 @@ class LocalMovieDataSource @Inject constructor(
         }
     }
 
-    suspend fun deleteFavoriteMovie(movieId: String): Int {
+    suspend fun deleteFavoriteMovie(movieId: Long): Int {
         return withContext(ioDispatcher) {
             movieDao.deleteMovieById(movieId)
         }

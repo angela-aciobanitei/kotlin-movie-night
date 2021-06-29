@@ -22,6 +22,7 @@ fun NetworkMovie.asMovie() = Movie(
     popularity = popularity,
     voteAverage = voteAverage,
     voteCount = voteCount,
+    isFavorite = null,
 )
 
 fun NetworkMovieDetails.asMovie(): Movie {
@@ -35,6 +36,7 @@ fun NetworkMovieDetails.asMovie(): Movie {
         popularity = popularity,
         voteAverage = voteAverage,
         voteCount = voteCount,
+        isFavorite = null,
     )
 }
 

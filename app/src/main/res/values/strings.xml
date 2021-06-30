@@ -37,7 +37,7 @@
     <string name="cast_details_biography_label">Biography</string>
     <string name="movie_details_similar_label">Similar movies</string>
     <string name="cast_details_topbar_label">About</string>
-    <string name="cast_details_see_on_imdb_label">See on IMDb</string>
+    <string name="cast_details_open_imdb_page">See IMDb page</string>
     <string name="cast_details_birthday">Birthday: %s</string>
     <string name="cast_details_birthplace">Birthplace: %s</string>
 </resources>

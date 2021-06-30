@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ang.acb.movienight.R
@@ -51,6 +52,7 @@ fun CastDetailsScreen(
                             MovieInfoHeader(stringResource(R.string.cast_details_biography_label))
                             Text(
                                 text = cast.biography,
+                                textAlign = TextAlign.Justify,
                                 modifier = Modifier.padding(horizontal = 16.dp),
                             )
                             Spacer(modifier = Modifier.height(16.dp))

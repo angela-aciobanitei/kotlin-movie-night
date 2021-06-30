@@ -59,7 +59,7 @@ fun CastInfoAvatarRow(
 
             if (cast.imdbUrl != null) {
                 Text(
-                    text = stringResource(R.string.cast_details_see_on_imdb_label),
+                    text = stringResource(R.string.cast_details_open_imdb_page),
                     color = MaterialTheme.colors.primary,
                     style = MaterialTheme.typography.subtitle2,
                     modifier = Modifier

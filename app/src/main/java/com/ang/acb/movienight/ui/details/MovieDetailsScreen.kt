@@ -6,13 +6,13 @@ import android.net.Uri
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ang.acb.movienight.R
@@ -63,7 +63,7 @@ fun MovieDetailsScreen(
                             MovieInfoHeader(title = stringResource(R.string.movie_details_overview_label))
                             Text(
                                 text = "${movieDetails.movie.overview}",
-                                style = MaterialTheme.typography.body2,
+                                textAlign = TextAlign.Justify,
                                 modifier = Modifier.padding(horizontal = 16.dp)
                             )
                             Spacer(modifier = Modifier.height(16.dp))

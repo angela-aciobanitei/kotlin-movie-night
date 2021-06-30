@@ -4,6 +4,12 @@ A movies app that fetches data using [TMDB](https://www.themoviedb.org/documenta
 
 The app uses clean architecture, MVVM, Kotlin coroutines, Flow and the latest Jetpack libraries, including Compose.
 
+## Clean Architecture
+The app consists of 3 layers for simplicity:
+* the _domain layer_ contains the business logic of the app. It holds the business models, the abstract definitions of the repositories, and the use cases.
+* the _data layer_ provides definitions of the data sources. It holds the concrete implementations of the repositories and other data sources like databases or network. 
+* the _presentation layer_ contains the UI-related code and makes use of the MVVM pattern in this case.
+
 ## Core Libraries
 *   [Hilt](https://dagger.dev/hilt/) for dependency injection
 *   [Kotlin Coroutines](https://kotlinlang.org/docs/coroutines-overview.html) and [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-flow/) for asynchronous programming

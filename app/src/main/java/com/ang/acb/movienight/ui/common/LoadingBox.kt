@@ -12,6 +12,8 @@ fun LoadingBox() {
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier.fillMaxSize(),
-        content = { CircularProgressIndicator() },
+        content = {
+            CircularProgressIndicator()
+        },
     )
 }

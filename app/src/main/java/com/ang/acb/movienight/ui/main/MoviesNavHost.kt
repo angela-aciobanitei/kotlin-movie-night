@@ -45,7 +45,7 @@ fun MoviesNavHost(
             addCastDetails(navController)
         }
 
-        // The favorites nested graph
+        // The "favorites" nested graph
         navigation(
             route = RootScreen.Favorites.route,
             startDestination = LeafScreen.Favorites.route

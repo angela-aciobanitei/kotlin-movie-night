@@ -47,7 +47,7 @@ private fun MovieInfo(
         Text(
             modifier = Modifier.fillMaxWidth(),
             text = movieDetails.movie.title ?: "",
-            style = MaterialTheme.typography.subtitle1,
+            style = MaterialTheme.typography.h6,
         )
 
         Spacer(modifier = Modifier.height(32.dp))

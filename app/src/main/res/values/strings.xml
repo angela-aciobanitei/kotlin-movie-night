@@ -16,7 +16,7 @@
 
     <!-- Search -->
     <string name="search_movies_topbar_label">Search movies</string>
-    <string name="search_movies_hint">Search Movies</string>
+    <string name="search_movies_hint">Search movies</string>
     <string name="clear_txt_icon_cd">Clear text</string>
     <string name="search_no_results_start">No results for</string>
     <string name="search_no_results_end">search term. Try searching for something different.</string>
@@ -28,6 +28,9 @@
 
     <!-- Movie Details -->
     <string name="get_movie_details_error_message">Could not fetch movie details</string>
+    <string name="movie_details_release_date">Release date: %s</string>
+    <string name="movie_details_vote_average">Vote average: %.1f</string>
+    <string name="movie_details_vote_count">Vote count: %d</string>
     <string name="movie_details_cast_label">Cast</string>
     <string name="movie_details_overview_label">Overview</string>
     <string name="movie_details_trailers_label">Trailers</string>
@@ -35,4 +38,6 @@
     <string name="movie_details_similar_label">Similar movies</string>
     <string name="cast_details_topbar_label">About</string>
     <string name="cast_details_see_on_imdb_label">See on IMDb</string>
+    <string name="cast_details_birthday">Birthday: %s</string>
+    <string name="cast_details_birthplace">Birthplace: %s</string>
 </resources>

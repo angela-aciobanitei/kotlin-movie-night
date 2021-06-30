@@ -57,7 +57,6 @@ fun MovieDetailsScreen(
 
                         // Movie poster
                         MovieInfoPosterRow(movieDetails = movieDetails)
-                        Spacer(modifier = Modifier.height(16.dp))
 
                         // Movie overview
                         if (movieDetails.movie.overview.isNullOrEmpty().not()) {

@@ -33,15 +33,27 @@ fun CastInfoAvatarRow(
                 .fillMaxWidth()
                 .weight(3f)
         ) {
-            if (cast.name.isNullOrEmpty().not()) {
-                MovieInfoHeader(title = "${cast.name}")
+            if (cast.name != null && cast.name.isNotEmpty()) {
+                MovieInfoHeader(title = cast.name)
             }
 
-            if (cast.birthday.isNullOrEmpty().not() && cast.placeOfBirth.isNullOrEmpty().not()) {
+            if (cast.birthday != null && cast.birthday.isNotEmpty()) {
                 Text(
-                    text = "Born ${cast.birthday} in ${cast.placeOfBirth}",
-                    style = MaterialTheme.typography.body2,
-                    modifier = Modifier.padding(16.dp)
+                    text = stringResource(
+                        id = R.string.cast_details_birthday,
+                        formatArgs = arrayOf(cast.birthday)
+                    ),
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+                )
+            }
+
+            if (cast.placeOfBirth != null && cast.placeOfBirth.isNotEmpty()) {
+                Text(
+                    text = stringResource(
+                        id = R.string.cast_details_birthplace,
+                        formatArgs = arrayOf(cast.placeOfBirth)
+                    ),
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
                 )
             }
 
@@ -49,7 +61,7 @@ fun CastInfoAvatarRow(
                 Text(
                     text = stringResource(R.string.cast_details_see_on_imdb_label),
                     color = MaterialTheme.colors.primary,
-                    style = MaterialTheme.typography.body2,
+                    style = MaterialTheme.typography.subtitle2,
                     modifier = Modifier
                         .clickable { openImdb(cast.imdbUrl) }
                         .padding(16.dp)

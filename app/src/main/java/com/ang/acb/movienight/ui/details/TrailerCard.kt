@@ -15,11 +15,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.ang.acb.movienight.domain.entities.Trailer
 import com.ang.acb.movienight.ui.theme.midnight50
+import com.ang.acb.movienight.ui.theme.red900
 import com.google.accompanist.glide.rememberGlidePainter
 import com.google.accompanist.imageloading.ImageLoadState
 
@@ -64,7 +64,7 @@ fun TrailerCard(
                     Icon(
                         imageVector = Icons.Default.PlayCircleOutline,
                         contentDescription = null,
-                        tint = Color.Red,
+                        tint = red900,
                         modifier = Modifier
                             .align(alignment = Alignment.Center)
                             .scale(2f)

@@ -43,11 +43,15 @@ fun FilterMoviesScreen(
             lazyPagingItems.apply {
                 when {
                     loadState.refresh is LoadState.Loading -> {
-                        item { PagingLoadingView(modifier = Modifier.fillParentMaxSize()) }
+                        item {
+                            PagingLoadingView(modifier = Modifier.fillParentMaxSize())
+                        }
                     }
 
                     loadState.append is LoadState.Loading -> {
-                        item { PagingLoadingItem() }
+                        item {
+                            PagingLoadingItem()
+                        }
                     }
 
                     loadState.refresh is LoadState.Error -> {

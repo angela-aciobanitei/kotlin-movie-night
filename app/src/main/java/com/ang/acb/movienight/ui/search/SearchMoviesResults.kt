@@ -10,10 +10,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.ang.acb.movienight.R
 import com.ang.acb.movienight.domain.entities.Movie
-import com.ang.acb.movienight.ui.common.MovieItem
-import com.ang.acb.movienight.ui.common.PagingErrorItem
-import com.ang.acb.movienight.ui.common.PagingLoadingItem
-import com.ang.acb.movienight.ui.common.PagingLoadingView
+import com.ang.acb.movienight.ui.common.*
 import kotlinx.coroutines.flow.Flow
 
 @Composable
@@ -45,7 +42,7 @@ fun SearchMoviesResults(
                 is LoadState.Error -> {
                     val state = lazyPagingItems.loadState.refresh as LoadState.Error
                     item {
-                        PagingErrorItem(
+                        PagingErrorMessage(
                             modifier = Modifier.fillParentMaxSize(),
                             message = state.error.localizedMessage
                                 ?: stringResource(R.string.generic_error_message),

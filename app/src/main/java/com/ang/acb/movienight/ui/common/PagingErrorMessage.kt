@@ -25,7 +25,7 @@ fun PagingErrorMessage(
     ) {
         Text(
             text = message,
-            style = MaterialTheme.typography.h6,
+            style = MaterialTheme.typography.subtitle2,
             textAlign = TextAlign.Center,
             color = MaterialTheme.colors.error
         )

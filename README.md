@@ -34,4 +34,4 @@ The app consists of 3 layers for simplicity:
     ```
     TMDB_API_KEY="Your API Key Here"
     ```
-* Note: since the project uses Jetpack Compose, you need to use the latest [Android Studio Arctic Fox]() release in order to be able to build the app.
+* Note: since the project uses Jetpack Compose, you need to use the latest [Android Studio Arctic Fox](https://developer.android.com/studio/preview) release in order to be able to build the app.

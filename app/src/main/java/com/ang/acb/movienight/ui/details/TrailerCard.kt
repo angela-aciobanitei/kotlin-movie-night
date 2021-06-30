@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.ang.acb.movienight.domain.entities.Trailer
+import com.ang.acb.movienight.ui.theme.midnight50
 import com.google.accompanist.glide.rememberGlidePainter
 import com.google.accompanist.imageloading.ImageLoadState
 
@@ -34,7 +35,7 @@ fun TrailerCard(
                 .clickable { onItemClick(trailer) }
                 .background(
                     shape = MaterialTheme.shapes.medium,
-                    color = Color.LightGray, // todo pick a nicer color
+                    color = midnight50,
                 ),
             contentAlignment = Alignment.Center,
         ) {

@@ -1,30 +1,34 @@
 package com.ang.acb.movienight.ui.main
 
-import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.MovieFilter
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.ui.graphics.vector.ImageVector
 import com.ang.acb.movienight.R
 
 sealed class RootScreen(
     val route: String,
-    @StringRes val labelResId: Int,
-    @DrawableRes val iconResId: Int
+    @StringRes val label: Int,
+    val icon: ImageVector,
 ) {
     object Discover : RootScreen(
         route = "discoverroot",
-        labelResId = R.string.bottom_nav_item_label_discover,
-        iconResId = R.drawable.ic_discover_movies
+        label = R.string.bottom_nav_item_label_discover,
+        icon = Icons.Default.MovieFilter,
     )
 
     object Search : RootScreen(
         route = "searchroot",
-        labelResId = R.string.bottom_nav_item_label_search,
-        iconResId = R.drawable.ic_search
+        label = R.string.bottom_nav_item_label_search,
+        icon = Icons.Default.Search,
     )
 
     object Favorites : RootScreen(
         route = "favoritesroot",
-        labelResId = R.string.bottom_nav_item_label_favorites,
-        iconResId = R.drawable.ic_favorite
+        label = R.string.bottom_nav_item_label_favorites,
+        icon = Icons.Default.Favorite,
     )
 }
 

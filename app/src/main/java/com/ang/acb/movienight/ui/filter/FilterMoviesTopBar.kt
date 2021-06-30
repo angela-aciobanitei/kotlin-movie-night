@@ -2,10 +2,10 @@ package com.ang.acb.movienight.ui.filter
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Sort
 import androidx.compose.runtime.*
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import com.ang.acb.movienight.R
 import com.ang.acb.movienight.data.source.local.asStringResId
 import com.ang.acb.movienight.domain.entities.MovieFilter
 
@@ -31,7 +31,7 @@ fun FilterMoviesMenu(
     Box {
         IconButton(onClick = { expanded = true }) {
             Icon(
-                painter = painterResource(id = R.drawable.ic_sort),
+                imageVector = Icons.Default.Sort,
                 contentDescription = null,
             )
         }

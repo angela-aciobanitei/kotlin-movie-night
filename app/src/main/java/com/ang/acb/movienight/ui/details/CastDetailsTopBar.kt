@@ -2,9 +2,10 @@ package com.ang.acb.movienight.ui.details
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -28,7 +29,7 @@ fun CastDetailsTopBar(
         navigationIcon = {
             IconButton(onClick = upPressed) {
                 Icon(
-                    painter = painterResource(R.drawable.ic_arrow_back),
+                    imageVector = Icons.Default.ArrowBack,
                     contentDescription = stringResource(R.string.topbar_up_button_content_description),
                 )
             }

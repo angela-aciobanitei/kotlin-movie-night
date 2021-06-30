@@ -13,72 +13,86 @@ private val regular = Font(R.font.poppins_regular, FontWeight.W400)
 private val medium = Font(R.font.poppins_medium, FontWeight.W500)
 private val bold = Font(R.font.poppins_bold, FontWeight.W700)
 
-private val moviesFontFamily = FontFamily(fonts = listOf(light, regular, medium, bold))
+val moviesFontFamily = FontFamily(fonts = listOf(light, regular, medium, bold))
 
+// see: https://material.io/design/typography/the-type-system.html#type-scale
 val moviesTypography = Typography(
     h1 = TextStyle(
         fontFamily = moviesFontFamily,
-        fontWeight = FontWeight.W300,
-        fontSize = 96.sp
+        fontWeight = FontWeight.Light,
+        fontSize = 93.sp,
+        letterSpacing = (-1.5).sp,
     ),
     h2 = TextStyle(
         fontFamily = moviesFontFamily,
-        fontWeight = FontWeight.W400,
-        fontSize = 60.sp
+        fontWeight = FontWeight.Light,
+        fontSize = 58.sp,
+        letterSpacing = (-0.5).sp,
     ),
     h3 = TextStyle(
         fontFamily = moviesFontFamily,
-        fontWeight = FontWeight.W600,
-        fontSize = 48.sp
+        fontWeight = FontWeight.Normal,
+        fontSize = 46.sp,
+        letterSpacing = 0.sp,
     ),
     h4 = TextStyle(
         fontFamily = moviesFontFamily,
-        fontWeight = FontWeight.W600,
-        fontSize = 34.sp
+        fontWeight = FontWeight.Normal,
+        fontSize = 33.sp,
+        letterSpacing = 0.25.sp,
     ),
     h5 = TextStyle(
         fontFamily = moviesFontFamily,
-        fontWeight = FontWeight.W600,
-        fontSize = 24.sp
+        fontWeight = FontWeight.Normal,
+        fontSize = 23.sp,
+        letterSpacing = 0.sp,
     ),
     h6 = TextStyle(
         fontFamily = moviesFontFamily,
-        fontWeight = FontWeight.W400,
-        fontSize = 20.sp
+        fontWeight = FontWeight.Medium,
+        fontSize = 19.sp,
+        letterSpacing = 0.15.sp,
     ),
     subtitle1 = TextStyle(
         fontFamily = moviesFontFamily,
-        fontWeight = FontWeight.W500,
-        fontSize = 16.sp
+        fontWeight = FontWeight.Normal,
+        fontSize = 15.sp,
+        letterSpacing = 0.15.sp,
     ),
     subtitle2 = TextStyle(
         fontFamily = moviesFontFamily,
-        fontWeight = FontWeight.W600,
-        fontSize = 14.sp
+        fontWeight = FontWeight.Medium,
+        fontSize = 13.sp,
+        letterSpacing = 0.1.sp,
     ),
     body1 = TextStyle(
         fontFamily = moviesFontFamily,
-        fontWeight = FontWeight.W600,
-        fontSize = 16.sp
+        fontWeight = FontWeight.Normal,
+        fontSize = 15.sp,
+        letterSpacing = 0.5.sp,
     ),
     body2 = TextStyle(
         fontFamily = moviesFontFamily,
-        fontWeight = FontWeight.W400,
-        fontSize = 14.sp
+        fontWeight = FontWeight.Normal,
+        fontSize = 13.sp,
+        letterSpacing = 0.25.sp,
     ),
     button = TextStyle(
         fontFamily = moviesFontFamily,
-        fontWeight = FontWeight.W600,
-        fontSize = 14.sp
+        fontWeight = FontWeight.Medium,
+        fontSize = 13.sp,
+        letterSpacing = 1.25.sp,
     ),
     caption = TextStyle(
         fontFamily = moviesFontFamily,
-        fontWeight = FontWeight.W500,
-        fontSize = 12.sp
+        fontWeight = FontWeight.Normal,
+        fontSize = 12.sp,
+        letterSpacing = 0.4.sp,
     ),
     overline = TextStyle(
         fontFamily = moviesFontFamily,
-        fontWeight = FontWeight.W400,
-        fontSize = 12.sp
+        fontWeight = FontWeight.Normal,
+        fontSize = 10.sp,
+        letterSpacing = 1.5.sp
     )
 )

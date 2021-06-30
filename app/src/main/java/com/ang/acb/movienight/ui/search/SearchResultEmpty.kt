@@ -19,7 +19,6 @@ import com.ang.acb.movienight.R
 fun SearchResultEmptyMessage(
     searchTerm: String,
 ) {
-
     Text(modifier = Modifier
         .fillMaxWidth()
         .padding(16.dp),
@@ -35,5 +34,6 @@ fun SearchResultEmptyMessage(
                 append(" $searchTerm ")
             }
             append(stringResource(R.string.search_no_results_end))
-        })
+        }
+    )
 }

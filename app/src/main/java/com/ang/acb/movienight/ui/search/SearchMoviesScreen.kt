@@ -50,9 +50,9 @@ fun SearchMoviesScreen(
                 },
             )
 
-            // TODO Handle empty search results
             viewModel.searchResults?.let {
                 SearchMoviesResults(
+                    searchTerm = query.text,
                     searchResults = it,
                     onItemClick = { movieId ->
                         keyboardController?.hide()

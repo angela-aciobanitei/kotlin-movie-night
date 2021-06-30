@@ -18,6 +18,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Composable
 fun SearchMoviesResults(
+    searchTerm: String,
     searchResults: Flow<PagingData<Movie>>,
     onItemClick: (movieId: Long) -> Unit,
 ) {
@@ -34,16 +35,14 @@ fun SearchMoviesResults(
         }
 
         lazyPagingItems.apply {
-            when {
-                loadState.refresh is LoadState.Loading -> {
-                    item { PagingLoadingView(modifier = Modifier.fillParentMaxSize()) }
+            when (loadState.refresh) {
+                is LoadState.Loading -> {
+                    item {
+                        PagingLoadingView(modifier = Modifier.fillParentMaxSize())
+                    }
                 }
 
-                loadState.append is LoadState.Loading -> {
-                    item { PagingLoadingItem() }
-                }
-
-                loadState.refresh is LoadState.Error -> {
+                is LoadState.Error -> {
                     val state = lazyPagingItems.loadState.refresh as LoadState.Error
                     item {
                         PagingErrorItem(
@@ -55,7 +54,23 @@ fun SearchMoviesResults(
                     }
                 }
 
-                loadState.append is LoadState.Error -> {
+                LoadState.NotLoading(true) -> {
+                    if (lazyPagingItems.itemCount == 0) {
+                        item {
+                            SearchResultEmptyMessage(searchTerm)
+                        }
+                    }
+                }
+            }
+
+            when (loadState.append) {
+                is LoadState.Loading -> {
+                    item {
+                        PagingLoadingItem()
+                    }
+                }
+
+                is LoadState.Error -> {
                     val state = lazyPagingItems.loadState.append as LoadState.Error
                     item {
                         PagingErrorItem(
@@ -63,6 +78,14 @@ fun SearchMoviesResults(
                                 ?: stringResource(R.string.generic_error_message),
                             onRetryClick = { retry() }
                         )
+                    }
+                }
+
+                LoadState.NotLoading(true) -> {
+                    if (lazyPagingItems.itemCount == 0) {
+                        item {
+                            SearchResultEmptyMessage(searchTerm)
+                        }
                     }
                 }
             }

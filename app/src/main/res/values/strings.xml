@@ -19,7 +19,7 @@
     <string name="search_movies_hint">Search movies</string>
     <string name="clear_txt_icon_cd">Clear text</string>
     <string name="search_no_results_start">No results for</string>
-    <string name="search_no_results_end">search term. Try searching for something different.</string>
+    <string name="search_no_results_end">Try searching for something different.</string>
 
     <!-- Favorites -->
     <string name="favorites_topbar_label">Your Favorites</string>

@@ -50,8 +50,6 @@ fun FilterMoviesScreen(
                         item { PagingLoadingItem() }
                     }
 
-                    // TODO Parse error response to get status message
-                    // {"status_code":7,"status_message":"Invalid API key.","success":false}
                     loadState.refresh is LoadState.Error -> {
                         val state = lazyPagingItems.loadState.refresh as LoadState.Error
                         item {

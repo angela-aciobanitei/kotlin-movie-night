@@ -27,12 +27,13 @@ fun SearchResultEmptyMessage(
             append(stringResource(R.string.search_no_results_start))
             withStyle(
                 style = SpanStyle(
-                    fontWeight = FontWeight.Bold,
+                    fontWeight = FontWeight.Medium,
                     color = MaterialTheme.colors.primary
                 )
             ) {
-                append(" $searchTerm ")
+                append(" $searchTerm")
             }
+            append(". ")
             append(stringResource(R.string.search_no_results_end))
         }
     )

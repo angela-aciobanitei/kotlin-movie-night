@@ -57,6 +57,7 @@ fun MovieDetailsScreen(
 
                         // Movie poster
                         MovieInfoPosterRow(movieDetails = movieDetails)
+                        MovieInfoRating(movie = movieDetails.movie)
 
                         // Movie overview
                         if (movieDetails.movie.overview.isNullOrEmpty().not()) {

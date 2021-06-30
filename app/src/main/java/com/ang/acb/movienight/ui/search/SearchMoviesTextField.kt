@@ -32,7 +32,7 @@ fun SearchMoviesTextField(
     OutlinedTextField(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 8.dp),
+            .padding(16.dp),
         leadingIcon = {
             Icon(
                 imageVector = Icons.Default.Search,

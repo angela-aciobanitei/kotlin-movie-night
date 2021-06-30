@@ -1,6 +1,8 @@
 # Movie Night
 
-A movies app that fetches data using [TMDB](https://www.themoviedb.org/documentation/api?language=en-US). The app uses clean architecture, MVVM, Kotlin coroutines, Flow and the latest Jetpack libraries, including Compose.
+A movies app that fetches data using [TMDB](https://www.themoviedb.org/documentation/api?language=en-US), allowing users to filter the movies by most popular, top rated, or similar criteria. Users can also search for a movie, find more details about a movie, or mark their favourite movies.
+
+The app uses clean architecture, MVVM, Kotlin coroutines, Flow and the latest Jetpack libraries, including Compose.
 
 ## Core Libraries
 *   [Hilt](https://dagger.dev/hilt/) for dependency injection

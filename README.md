@@ -25,11 +25,13 @@ The app consists of 3 layers for simplicity:
 ## Installing the App
 
 *   Clone this repository
-```
-git https://github.com/angela-aciobanitei/kotlin-movie-night.git
-```
+    ```
+    git https://github.com/angela-aciobanitei/kotlin-movie-night.git
+    ```
 *   Go to [The Movie Database](https://developers.themoviedb.org/3/getting-started/introduction) page and register for an API key.
 *   Import the project in Android Studio and add the TMDB API Key inside the `gradle.properties` file.
-```
-TMDB_API_KEY="Your API Key Here"
-```
+
+    ```
+    TMDB_API_KEY="Your API Key Here"
+    ```
+* Note: since the project uses Jetpack Compose, you need to use the latest [Android Studio Arctic Fox]() release in order to be able to build the app.

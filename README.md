@@ -4,10 +4,6 @@ A movies app that fetches data using [TMDB](https://www.themoviedb.org/documenta
 
 The app uses clean architecture, MVVM, Kotlin coroutines, Flow and the latest Jetpack libraries, including Compose.
 
-## Demo
-
-https://user-images.githubusercontent.com/37955938/124138798-eb19c080-da7e-11eb-910c-a4d42cc30bc6.mp4
-
 ## Core Libraries
 *   [Hilt](https://dagger.dev/hilt/) for dependency injection
 *   [Kotlin Coroutines](https://kotlinlang.org/docs/coroutines-overview.html) and [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-flow/) for asynchronous programming
@@ -33,3 +29,9 @@ https://user-images.githubusercontent.com/37955938/124138798-eb19c080-da7e-11eb-
     TMDB_API_KEY="Your API Key Here"
     ```
 * Note: since the project uses Jetpack Compose, you need to use the latest [Android Studio Arctic Fox](https://developer.android.com/studio/preview) release in order to be able to build the app.
+
+## Demo
+
+https://user-images.githubusercontent.com/37955938/124139986-046f3c80-da80-11eb-8cb7-51fece9b9362.mp4
+
+https://user-images.githubusercontent.com/37955938/124140010-0a651d80-da80-11eb-979c-311fdb499fad.mp4

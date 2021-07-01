@@ -1,6 +1,6 @@
 # Movie Night
 
-[![codebeat badge](https://codebeat.co/badges/7fac844a-b554-4704-a686-7195c889e845)](https://codebeat.co/projects/github-com-angela-aciobanitei-kotlin-movie-night-master)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/b1e1e2a292654975a5048249ded316b1)](https://www.codacy.com/gh/angela-aciobanitei/kotlin-movie-night/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=angela-aciobanitei/kotlin-movie-night&amp;utm_campaign=Badge_Grade) [![codebeat badge](https://codebeat.co/badges/7fac844a-b554-4704-a686-7195c889e845)](https://codebeat.co/projects/github-com-angela-aciobanitei-kotlin-movie-night-master)
 
 A movies app that fetches data using [TMDB](https://www.themoviedb.org/documentation/api?language=en-US), allowing users to filter the movies by most popular, top rated, or similar criteria. Users can also search for a movie, find more details about a movie, or mark their favourite movies.
 

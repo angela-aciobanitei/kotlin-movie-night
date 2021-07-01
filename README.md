@@ -1,5 +1,7 @@
 # Movie Night
 
+[![codebeat badge](https://codebeat.co/badges/7fac844a-b554-4704-a686-7195c889e845)](https://codebeat.co/projects/github-com-angela-aciobanitei-kotlin-movie-night-master)
+
 A movies app that fetches data using [TMDB](https://www.themoviedb.org/documentation/api?language=en-US), allowing users to filter the movies by most popular, top rated, or similar criteria. Users can also search for a movie, find more details about a movie, or mark their favourite movies.
 
 The app uses clean architecture, MVVM, Kotlin coroutines, Flow and the latest Jetpack libraries, including Compose.

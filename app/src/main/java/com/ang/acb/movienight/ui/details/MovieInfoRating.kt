@@ -5,9 +5,7 @@ import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.People
-import androidx.compose.material.icons.filled.PermContactCalendar
-import androidx.compose.material.icons.filled.StarBorder
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,9 +29,9 @@ fun MovieInfoRating(
         ) {
 
             if (movie.releaseDate != null) {
-                Icon(imageVector = Icons.Default.PermContactCalendar, contentDescription = null)
+                Icon(imageVector = Icons.Default.DateRange, contentDescription = null)
                 Text(
-                    text = movie.releaseDate ?: "",
+                    text = movie.releaseDate,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.padding(horizontal = 4.dp)
                 )

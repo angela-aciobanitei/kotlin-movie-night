@@ -6,24 +6,15 @@ plugins {
 }
 
 android {
-    compileSdk rootProject.compile_sdk_version
-    buildToolsVersion rootProject.build_tools_version
+    compileSdk Sdk.compile
+    buildToolsVersion BuildTools.buildTools
 
     defaultConfig {
         applicationId "com.ang.acb.movienight"
-        minSdk rootProject.min_sdk_version
-        targetSdk rootProject.target_sdk_version
+        minSdk Sdk.min
+        targetSdk Sdk.target
         versionCode 1
         versionName "1.0"
-
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments += [
-                        "room.schemaLocation"  : "$projectDir/schemas".toString(),
-                        "room.incremental"     : "true",
-                        "room.expandProjection": "true"]
-            }
-        }
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -48,7 +39,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = jvm_version
+        jvmTarget = Jvm.version
         useIR = true
     }
 
@@ -57,8 +48,8 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion compose_version
-        kotlinCompilerVersion koltin_version
+        kotlinCompilerExtensionVersion AndroidX.compose
+        kotlinCompilerVersion Kotlin.lang
     }
 }
 
@@ -66,63 +57,64 @@ kapt {
     correctErrorTypes true
 }
 
-// Dependency versions are defined in the top level build.gradle file.
 dependencies {
+    implementation(project(":domain"))
+    implementation(project(":data"))
+
     // Kotlin Couroutines
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$koltin_coroutines_version"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$koltin_coroutines_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Kotlin.coroutines}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Kotlin.coroutines}"
 
     // Hilt
-    implementation "com.google.dagger:hilt-android:$hilt_version"
-    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+    implementation "com.google.dagger:hilt-android:${Google.hilt}"
+    kapt "com.google.dagger:hilt-compiler:${Google.hilt}"
 
     // Room
-    implementation "androidx.room:room-runtime:$room_version"
-    implementation "androidx.room:room-ktx:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-runtime:${AndroidX.room}"
+    implementation "androidx.room:room-ktx:${AndroidX.room}"
+    kapt "androidx.room:room-compiler:${AndroidX.room}"
 
     // AndroidX
-    implementation "androidx.core:core-ktx:$androidx_core_version"
-    implementation "androidx.annotation:annotation:$androidx_annotations_version"
-    implementation "androidx.appcompat:appcompat:$appcompat_version"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
-    implementation "androidx.compose.ui:ui:$compose_version"
-    implementation "androidx.compose.material:material:$compose_version"
-    implementation "androidx.compose.ui:ui-tooling:$compose_version"
-    implementation "androidx.compose.material:material-icons-core:$compose_version"
-    implementation "androidx.compose.material:material-icons-extended:$compose_version"
-    implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
-    implementation "androidx.activity:activity-compose:$activity_compose_version"
-    implementation "androidx.navigation:navigation-compose:$navigation_compose_version"
-    implementation "androidx.hilt:hilt-navigation-compose:$hilt_navigation_compose_version"
-    implementation "androidx.paging:paging-compose:$paging_compose_version"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$viewmodel_compose_version"
+    implementation "androidx.core:core-ktx:${AndroidX.core}"
+    implementation "androidx.annotation:annotation:${AndroidX.annotations}"
+    implementation "androidx.appcompat:appcompat:${AndroidX.appcompat}"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:${AndroidX.lifecycle}"
+    implementation "androidx.compose.ui:ui:${AndroidX.compose}"
+    implementation "androidx.compose.material:material:${AndroidX.compose}"
+    implementation "androidx.compose.ui:ui-tooling:${AndroidX.compose}"
+    implementation "androidx.compose.material:material-icons-core:${AndroidX.compose}"
+    implementation "androidx.compose.material:material-icons-extended:${AndroidX.compose}"
+    implementation "androidx.compose.runtime:runtime-livedata:${AndroidX.compose}"
+    implementation "androidx.activity:activity-compose:${AndroidX.activityCompose}"
+    implementation "androidx.navigation:navigation-compose:${AndroidX.navigationCompose}"
+    implementation "androidx.hilt:hilt-navigation-compose:${AndroidX.hiltNavigationCompose}"
+    implementation "androidx.paging:paging-compose:${AndroidX.pagingCompose}"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:${AndroidX.viewModelCompose}"
 
     // Google
-    implementation "com.google.android.material:material:$material_version"
-    implementation "com.google.accompanist:accompanist-glide:$accompanist_glide_version"
-    implementation "com.google.accompanist:accompanist-flowlayout:$accompanist_flowlayout_version"
-    implementation "com.google.accompanist:accompanist-insets:$accompanist_insets_version"
-    implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_systemui_version"
+    implementation "com.google.android.material:material:${Google.material}"
+    implementation "com.google.accompanist:accompanist-glide:${Google.accompanistGlide}"
+    implementation "com.google.accompanist:accompanist-flowlayout:${Google.accompanistFlowLayout}"
+    implementation "com.google.accompanist:accompanist-insets:${Google.accompanistInsets}"
+    implementation "com.google.accompanist:accompanist-systemuicontroller:${Google.accompanistSystemUI}"
 
     // Networking
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-scalars:$retrofit_version"
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_logging_version"
+    implementation "com.squareup.retrofit2:retrofit:${Network.retrofit}"
+    implementation "com.squareup.retrofit2:converter-gson:${Network.retrofit}"
+    implementation "com.squareup.retrofit2:converter-scalars:${Network.retrofit}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${Network.okhttpLogging}"
 
     // Utils
-    implementation "com.jakewharton.threetenabp:threetenabp:$threetenbp_version"
-    implementation "com.jakewharton.timber:timber:$timber_version"
+    implementation "com.jakewharton.threetenabp:threetenabp:${Utils.threeTenBp}"
+    implementation "com.jakewharton.timber:timber:${Utils.timber}"
 
     // Testing
-    testImplementation "junit:junit:$junit_version"
-    testImplementation "androidx.room:room-testing:$room_version"
-    testImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
-    kaptTest "com.google.dagger:hilt-compiler:$hilt_version"
-    androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
-    kaptAndroidTest "com.google.dagger:hilt-compiler:$hilt_version"
-    androidTestImplementation "androidx.test.ext:junit: $junit_ext_version"
-    androidTestImplementation "androidx.test.espresso:espresso-core: $espresso_core_version"
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+    testImplementation "junit:junit:${Testing.junit}"
+    testImplementation "androidx.room:room-testing:${AndroidX.room}"
+    testImplementation "com.google.dagger:hilt-android-testing:${Google.hilt}"
+    kaptTest "com.google.dagger:hilt-compiler:${Google.hilt}"
+    androidTestImplementation "com.google.dagger:hilt-android-testing:${Google.hilt}"
+    kaptAndroidTest "com.google.dagger:hilt-compiler:${Google.hilt}"
+    androidTestImplementation "androidx.test.ext:junit: ${Testing.junitExt}"
+    androidTestImplementation "androidx.test.espresso:espresso-core: ${Testing.espresso}"
 }

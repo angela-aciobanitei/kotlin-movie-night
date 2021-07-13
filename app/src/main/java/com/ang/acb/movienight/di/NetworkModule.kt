@@ -2,7 +2,7 @@ package com.ang.acb.movienight.di
 
 import com.ang.acb.movienight.BuildConfig
 import com.ang.acb.movienight.data.source.remote.MovieService
-import com.ang.acb.movienight.utils.Constants.TMDB_BASE_URL
+import com.ang.acb.movienight.domain.utils.Constants.TMDB_BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

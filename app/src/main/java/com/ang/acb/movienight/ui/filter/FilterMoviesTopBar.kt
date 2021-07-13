@@ -6,8 +6,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Sort
 import androidx.compose.runtime.*
 import androidx.compose.ui.res.stringResource
-import com.ang.acb.movienight.data.source.local.asStringResId
 import com.ang.acb.movienight.domain.entities.MovieFilter
+import com.ang.acb.movienight.ui.common.asStringResId
 
 @Composable
 fun FilterMoviesTopBar(

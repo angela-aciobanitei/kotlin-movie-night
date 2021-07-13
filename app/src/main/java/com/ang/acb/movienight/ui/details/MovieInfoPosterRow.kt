@@ -57,7 +57,7 @@ private fun MovieInfo(
             crossAxisSpacing = 8.dp,
         ) {
             movieDetails.genres.forEach {
-                if (it.name != null) GenreChip(genreName = it.name)
+                if (it.name != null) GenreChip(genreName = it.name!!)
             }
         }
     }

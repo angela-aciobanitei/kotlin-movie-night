@@ -7,10 +7,10 @@ import androidx.lifecycle.ViewModel
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.ang.acb.movienight.data.source.local.asStringResId
 import com.ang.acb.movienight.domain.entities.Movie
 import com.ang.acb.movienight.domain.entities.MovieFilter
 import com.ang.acb.movienight.domain.usecases.GetFilteredMoviesUseCase
+import com.ang.acb.movienight.ui.common.asStringResId
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow

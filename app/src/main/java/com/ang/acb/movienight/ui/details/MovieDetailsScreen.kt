@@ -52,7 +52,7 @@ fun MovieDetailsScreen(
                     viewModel.movieDetails?.let { movieDetails ->
                         // Movie backdrop image
                         if (movieDetails.movie.backdropUrl != null) {
-                            MovieBackdropImage(backdropUrl = movieDetails.movie.backdropUrl)
+                            MovieBackdropImage(backdropUrl = movieDetails.movie.backdropUrl!!)
                         }
 
                         // Movie poster

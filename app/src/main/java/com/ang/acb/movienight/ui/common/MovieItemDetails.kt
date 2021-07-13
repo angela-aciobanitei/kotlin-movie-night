@@ -42,7 +42,7 @@ fun MovieItemDetails(
             Text(
                 text = stringResource(
                     id = R.string.movie_details_release_date,
-                    formatArgs = arrayOf(movie.releaseDate)
+                    formatArgs = arrayOf(movie.releaseDate!!)
                 ),
                 style = subtitleTextStyle
             )
@@ -52,7 +52,7 @@ fun MovieItemDetails(
             Text(
                 text = stringResource(
                     id = R.string.movie_details_vote_average,
-                    formatArgs = arrayOf(movie.voteAverage)
+                    formatArgs = arrayOf(movie.voteAverage!!)
                 ),
                 style = subtitleTextStyle
             )
@@ -62,7 +62,7 @@ fun MovieItemDetails(
             Text(
                 text = stringResource(
                     id = R.string.movie_details_vote_count,
-                    formatArgs = arrayOf(movie.voteCount)
+                    formatArgs = arrayOf(movie.voteCount!!)
                 ),
                 style = subtitleTextStyle
             )

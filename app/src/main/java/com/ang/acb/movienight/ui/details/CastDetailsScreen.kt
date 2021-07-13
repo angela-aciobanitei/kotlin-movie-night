@@ -48,10 +48,10 @@ fun CastDetailsScreen(
                             openImdb = { imdbUrl -> openImdbPage(imdbUrl, context) }
                         )
 
-                        if (cast.biography != null && cast.biography.isNotEmpty()) {
+                        if (cast.biography.isNullOrEmpty().not()) {
                             MovieInfoHeader(stringResource(R.string.cast_details_biography_label))
                             Text(
-                                text = cast.biography,
+                                text = cast.biography!!,
                                 textAlign = TextAlign.Justify,
                                 modifier = Modifier.padding(horizontal = 16.dp),
                             )

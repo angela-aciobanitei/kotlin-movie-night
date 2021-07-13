@@ -60,6 +60,8 @@ object Testing {
     const val espresso = "3.4.0"
     const val hamcrest = "2.2"
     const val junit = "4.13.2"
+    const val mockito = "2.8.9"
+    const val mockWebServer = "4.4.0"
 }
 
 object Utils {

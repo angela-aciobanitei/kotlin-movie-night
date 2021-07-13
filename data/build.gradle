@@ -68,6 +68,8 @@ dependencies {
     testImplementation "androidx.test.ext:junit:${Testing.junitExt}"
     testImplementation "androidx.arch.core:core-testing:${Testing.archCore}"
     testImplementation "androidx.room:room-testing:${AndroidX.room}"
+    testImplementation "com.squareup.okhttp3:mockwebserver:${Testing.mockWebServer}"
+    testImplementation "org.mockito:mockito-core:${Testing.mockito}"
     testImplementation "com.google.dagger:hilt-android-testing:${Google.hilt}"
     kaptTest "com.google.dagger:hilt-compiler:${Google.hilt}"
 

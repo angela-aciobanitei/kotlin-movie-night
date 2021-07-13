@@ -31,6 +31,12 @@ android {
     kotlinOptions {
         jvmTarget = Jvm.version
     }
+    // Build fails after adding the test coroutines dependency
+    // https://github.com/Kotlin/kotlinx.coroutines/issues/2023
+    packagingOptions {
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.1'
+    }
 }
 
 dependencies {
@@ -52,4 +58,28 @@ dependencies {
 
     // Utils
     implementation "com.jakewharton.timber:timber:${Utils.timber}"
+
+    // Testing
+    testImplementation "junit:junit:${Testing.junit}"
+    testImplementation "org.hamcrest:hamcrest-library:${Testing.hamcrest}"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Kotlin.coroutines}"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Kotlin.coroutines}"
+    testImplementation "androidx.test:core:${Testing.androidxCore}"
+    testImplementation "androidx.test.ext:junit:${Testing.junitExt}"
+    testImplementation "androidx.arch.core:core-testing:${Testing.archCore}"
+    testImplementation "androidx.room:room-testing:${AndroidX.room}"
+    testImplementation "com.google.dagger:hilt-android-testing:${Google.hilt}"
+    kaptTest "com.google.dagger:hilt-compiler:${Google.hilt}"
+
+    kaptAndroidTest "com.google.dagger:hilt-compiler:${Google.hilt}"
+    androidTestImplementation "com.google.dagger:hilt-android-testing:${Google.hilt}"
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Kotlin.coroutines}"
+    androidTestImplementation "androidx.test:core:${Testing.androidxCore}"
+    androidTestImplementation "androidx.test:runner:${Testing.runner}" // AndroidJUnitRunner
+    androidTestImplementation "androidx.test:rules:${Testing.rules}"  // JUnit Rules
+    androidTestImplementation "androidx.test.ext:junit:${Testing.junitExt}" // Assertions
+    androidTestImplementation "androidx.test.ext:truth:${Testing.truthExt}"
+    androidTestImplementation "org.hamcrest:hamcrest-library:${Testing.hamcrest}"
+    androidTestImplementation "androidx.arch.core:core-testing:${Testing.archCore}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${Testing.espresso}"
 }

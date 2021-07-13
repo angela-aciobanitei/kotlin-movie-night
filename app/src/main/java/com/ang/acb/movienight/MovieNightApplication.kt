@@ -1,7 +1,6 @@
-package com.ang.acb.movienight.ui
+package com.ang.acb.movienight
 
 import android.app.Application
-import com.ang.acb.movienight.BuildConfig
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 

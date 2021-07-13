@@ -26,21 +26,20 @@ object Google {
     const val accompanistFlowLayout = "0.11.1"
     const val accompanistInsets = "0.11.1"
     const val accompanistSystemUI = "0.11.1"
-    const val activityCompose = "1.3.0-beta02"
     const val hilt = "2.37"
     const val material = "1.4.0"
 }
 
 object AndroidX {
-    const val activityCompose = "1.3.0-beta02"
+    const val activityCompose = "1.3.0-rc01"
     const val annotations = "1.2.0"
     const val appcompat = "1.3.0"
     const val core = "1.6.0"
-    const val compose = "1.0.0-beta09"
+    const val compose = "1.0.0-rc01"
     const val lifecycle = "2.3.1"
     const val hiltNavigationCompose = "1.0.0-alpha03"
-    const val navigationCompose = "2.4.0-alpha03"
-    const val pagingCompose = "1.0.0-alpha10"
+    const val navigationCompose = "2.4.0-alpha04"
+    const val pagingCompose = "1.0.0-alpha11"
     const val viewModelCompose = "1.0.0-alpha07"
     const val room = "2.3.0"
 }

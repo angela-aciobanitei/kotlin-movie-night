@@ -6,7 +6,6 @@ plugins {
 
 android {
     compileSdk Sdk.compile
-    buildToolsVersion BuildTools.buildTools
 
     defaultConfig {
         minSdk Sdk.min
@@ -25,11 +24,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = Jvm.version
+        jvmTarget = Jvm.target
     }
     // Build fails after adding the test coroutines dependency
     // https://github.com/Kotlin/kotlinx.coroutines/issues/2023

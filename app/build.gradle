@@ -7,7 +7,6 @@ plugins {
 
 android {
     compileSdk Sdk.compile
-    buildToolsVersion BuildTools.buildTools
 
     defaultConfig {
         applicationId "com.ang.acb.movienight"
@@ -17,9 +16,6 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary true
-        }
     }
 
     buildTypes {
@@ -34,12 +30,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = Jvm.version
+        jvmTarget = Jvm.target
         useIR = true
     }
 
@@ -49,7 +45,6 @@ android {
 
     composeOptions {
         kotlinCompilerExtensionVersion AndroidX.compose
-        kotlinCompilerVersion Kotlin.lang
     }
 }
 
@@ -61,7 +56,7 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":data"))
 
-    // Kotlin Couroutines
+    // Kotlin Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Kotlin.coroutines}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Kotlin.coroutines}"
 
@@ -79,6 +74,7 @@ dependencies {
     implementation "androidx.annotation:annotation:${AndroidX.annotations}"
     implementation "androidx.appcompat:appcompat:${AndroidX.appcompat}"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:${AndroidX.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:${AndroidX.lifecycleCompose}"
     implementation "androidx.compose.ui:ui:${AndroidX.compose}"
     implementation "androidx.compose.material:material:${AndroidX.compose}"
     implementation "androidx.compose.ui:ui-tooling:${AndroidX.compose}"
@@ -89,14 +85,13 @@ dependencies {
     implementation "androidx.navigation:navigation-compose:${AndroidX.navigationCompose}"
     implementation "androidx.hilt:hilt-navigation-compose:${AndroidX.hiltNavigationCompose}"
     implementation "androidx.paging:paging-compose:${AndroidX.pagingCompose}"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:${AndroidX.viewModelCompose}"
 
     // Google
     implementation "com.google.android.material:material:${Google.material}"
-    implementation "com.google.accompanist:accompanist-glide:${Google.accompanistGlide}"
-    implementation "com.google.accompanist:accompanist-flowlayout:${Google.accompanistFlowLayout}"
-    implementation "com.google.accompanist:accompanist-insets:${Google.accompanistInsets}"
-    implementation "com.google.accompanist:accompanist-systemuicontroller:${Google.accompanistSystemUI}"
+    implementation "com.google.accompanist:accompanist-glide:${Google.glide}"
+    implementation "com.google.accompanist:accompanist-flowlayout:${Google.accompanist}"
+    implementation "com.google.accompanist:accompanist-insets:${Google.accompanist}"
+    implementation "com.google.accompanist:accompanist-systemuicontroller:${Google.accompanist}"
 
     // Networking
     implementation "com.squareup.retrofit2:retrofit:${Network.retrofit}"

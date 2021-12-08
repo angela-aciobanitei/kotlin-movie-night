@@ -6,7 +6,6 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.navigation.*
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.navArgument
 import com.ang.acb.movienight.ui.details.CastDetailsScreen
 import com.ang.acb.movienight.ui.details.MovieDetailsScreen
 import com.ang.acb.movienight.ui.favorites.FavoriteMoviesScreen
@@ -59,6 +58,9 @@ fun MoviesNavHost(
 
 @FlowPreview
 private fun NavGraphBuilder.addDiscover(navController: NavController) {
+    // TODO FIXME: java.lang.IllegalArgumentException: No destination with ID -997165748
+    //  is on the NavController's back stack. The current destination is
+    //  Destination(0x1ac7e3a1) route=movie/{movieId}
     composable(LeafScreen.Discover.route) {
         FilterMoviesScreen(
             openMovieDetails = { showId ->

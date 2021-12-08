@@ -30,8 +30,6 @@ The app uses clean architecture, MVVM, Kotlin coroutines, Flow and the latest Je
     ```
     TMDB_API_KEY="Your API Key Here"
     ```
-    
-*   Note: since the project uses Jetpack Compose, you need to use the latest [Android Studio Arctic Fox](https://developer.android.com/studio/preview) release in order to be able to build the app.
 
 ## Demo
 

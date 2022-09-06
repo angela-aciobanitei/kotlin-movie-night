@@ -22,7 +22,10 @@ fun SearchMoviesResults(
     val lazyPagingItems = searchResults.collectAsLazyPagingItems()
 
     LazyColumn {
-        items(lazyPagingItems) { item ->
+        items(
+            items = lazyPagingItems,
+            key = { item -> item.id }
+        ) { item ->
             if (item != null) {
                 MovieItem(
                     movie = item,
@@ -51,7 +54,7 @@ fun SearchMoviesResults(
                     }
                 }
 
-                LoadState.NotLoading(true) -> {
+                LoadState.NotLoading(endOfPaginationReached = true) -> {
                     if (lazyPagingItems.itemCount == 0) {
                         item {
                             SearchResultEmptyMessage(searchTerm)
@@ -79,7 +82,7 @@ fun SearchMoviesResults(
                     }
                 }
 
-                LoadState.NotLoading(true) -> {
+                LoadState.NotLoading(endOfPaginationReached = true) -> {
                     if (lazyPagingItems.itemCount == 0) {
                         item {
                             SearchResultEmptyMessage(searchTerm)

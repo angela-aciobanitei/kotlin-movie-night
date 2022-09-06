@@ -19,7 +19,6 @@ fun FilterMoviesScreen(
     viewModel: FilterMoviesViewModel = hiltViewModel(),
     openMovieDetails: (movieId: Long) -> Unit
 ) {
-    // todo@ang Content padding parameter it is not used
     Scaffold(
         topBar = {
             FilterMoviesTopBar(
@@ -28,12 +27,13 @@ fun FilterMoviesScreen(
             )
         },
         content = { padding ->
-            val lazyPagingItems = viewModel.getPagedMovies(viewModel.filter).collectAsLazyPagingItems()
+            val lazyPagingItems =
+                viewModel.getPagedMovies(viewModel.filter).collectAsLazyPagingItems()
 
-            LazyColumn (contentPadding = padding) {
+            LazyColumn(contentPadding = padding) {
                 items(
                     items = lazyPagingItems,
-                    // The key is important so the Lazy list can remember your
+                    // The key is important so the lazy list can remember your
                     // scroll position when more items are fetched!
                     key = { item -> item.id }
                 ) { item ->

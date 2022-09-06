@@ -3,6 +3,7 @@ package com.ang.acb.movienight.ui.search
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -29,7 +30,6 @@ fun SearchMoviesScreen(
     val keyboardController = LocalSoftwareKeyboardController.current
     var query by remember { mutableStateOf(TextFieldValue(viewModel.searchQuery.value)) }
 
-    // todo@ang Content padding parameter it is not used
     Scaffold(
         topBar = {
             TopAppBar(
@@ -38,9 +38,11 @@ fun SearchMoviesScreen(
                 title = { Text(text = stringResource(R.string.search_movies_topbar_label)) },
             )
         },
-        content = {
+        content = { padding ->
             Column(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(padding),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 SearchMoviesTextField(

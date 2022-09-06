@@ -42,79 +42,84 @@ fun MovieDetailsScreen(
                 onFavoriteClicked = { viewModel.onFavoriteClicked() },
                 upPressed = upPressed
             )
-        }
-    ) {
-        if (viewModel.isLoading) {
-            LoadingBox()
-        } else {
-            if (viewModel.errorMessage != null) {
-                MessageBox(messageResId = viewModel.errorMessage!!)
+        },
+        content = { padding ->
+            if (viewModel.isLoading) {
+                LoadingBox()
             } else {
-                Column(Modifier.verticalScroll(scrollState)) {
-                    viewModel.movieDetails?.let { movieDetails ->
-                        // Movie backdrop image
-                        if (movieDetails.movie.backdropUrl != null) {
-                            MovieBackdropImage(backdropUrl = movieDetails.movie.backdropUrl!!)
-                        }
+                if (viewModel.errorMessage != null) {
+                    MessageBox(messageResId = viewModel.errorMessage!!)
+                } else {
+                    Column(
+                        Modifier
+                            .verticalScroll(scrollState)
+                            .padding(padding)
+                    ) {
+                        viewModel.movieDetails?.let { movieDetails ->
+                            // Movie backdrop image
+                            if (movieDetails.movie.backdropUrl != null) {
+                                MovieBackdropImage(backdropUrl = movieDetails.movie.backdropUrl!!)
+                            }
 
-                        // Movie poster
-                        MovieInfoPosterRow(movieDetails = movieDetails)
-                        MovieInfoRating(movie = movieDetails.movie)
+                            // Movie poster
+                            MovieInfoPosterRow(movieDetails = movieDetails)
+                            MovieInfoRating(movie = movieDetails.movie)
 
-                        // Movie overview
-                        if (movieDetails.movie.overview.isNullOrEmpty().not()) {
-                            MovieInfoHeader(title = stringResource(R.string.movie_details_overview_label))
-                            Text(
-                                text = "${movieDetails.movie.overview}",
-                                textAlign = TextAlign.Justify,
-                                modifier = Modifier.padding(horizontal = 16.dp)
-                            )
-                            Spacer(modifier = Modifier.height(16.dp))
-                        }
+                            // Movie overview
+                            if (movieDetails.movie.overview.isNullOrEmpty().not()) {
+                                MovieInfoHeader(title = stringResource(R.string.movie_details_overview_label))
+                                Text(
+                                    text = "${movieDetails.movie.overview}",
+                                    textAlign = TextAlign.Justify,
+                                    modifier = Modifier.padding(horizontal = 16.dp)
+                                )
+                                Spacer(modifier = Modifier.height(16.dp))
+                            }
 
-                        // Movie cast
-                        if (movieDetails.cast.isNotEmpty()) {
-                            MovieInfoHeader(title = stringResource(R.string.movie_details_cast_label))
-                            CastCarousel(
-                                cast = movieDetails.cast,
-                                onItemClick = { cast -> openCastDetails(cast) },
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .height(160.dp),
-                            )
-                            Spacer(modifier = Modifier.height(16.dp))
-                        }
+                            // Movie cast
+                            if (movieDetails.cast.isNotEmpty()) {
+                                MovieInfoHeader(title = stringResource(R.string.movie_details_cast_label))
+                                CastCarousel(
+                                    cast = movieDetails.cast,
+                                    onItemClick = { cast -> openCastDetails(cast) },
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(160.dp),
+                                )
+                                Spacer(modifier = Modifier.height(16.dp))
+                            }
 
-                        // Movie trailers
-                        if (movieDetails.trailers.isNotEmpty()) {
-                            MovieInfoHeader(title = stringResource(R.string.movie_details_trailers_label))
-                            TrailerCarousel(
-                                trailers = movieDetails.trailers,
-                                onItemClick = { trailer -> playVideo(trailer, context) },
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .height(128.dp),
-                            )
-                            Spacer(modifier = Modifier.height(16.dp))
-                        }
+                            // Movie trailers
+                            if (movieDetails.trailers.isNotEmpty()) {
+                                MovieInfoHeader(title = stringResource(R.string.movie_details_trailers_label))
+                                TrailerCarousel(
+                                    trailers = movieDetails.trailers,
+                                    onItemClick = { trailer -> playVideo(trailer, context) },
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(128.dp),
+                                )
+                                Spacer(modifier = Modifier.height(16.dp))
+                            }
 
-                        // Similar movies
-                        if (viewModel.similarMovies.isNotEmpty()) {
-                            MovieInfoHeader(title = stringResource(R.string.movie_details_similar_label))
-                            SimilarMoviesCarousel(
-                                movies = viewModel.similarMovies,
-                                onItemClick = { openSimilarMovieDetails(it) },
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .height(160.dp),
-                            )
-                            Spacer(modifier = Modifier.height(16.dp))
+                            // Similar movies
+                            if (viewModel.similarMovies.isNotEmpty()) {
+                                MovieInfoHeader(title = stringResource(R.string.movie_details_similar_label))
+                                SimilarMoviesCarousel(
+                                    movies = viewModel.similarMovies,
+                                    onItemClick = { openSimilarMovieDetails(it) },
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(160.dp),
+                                )
+                                Spacer(modifier = Modifier.height(16.dp))
+                            }
                         }
                     }
                 }
             }
         }
-    }
+    )
 }
 
 private fun playVideo(trailer: Trailer, context: Context) {

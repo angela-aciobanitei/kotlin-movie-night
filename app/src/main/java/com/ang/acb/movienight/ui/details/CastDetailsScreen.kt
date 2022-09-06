@@ -32,37 +32,43 @@ fun CastDetailsScreen(
     val context = LocalContext.current
     val scrollState = rememberScrollState()
 
-    // todo@ang Content padding parameter it is not used
     Scaffold(
-        topBar = { CastDetailsTopBar(upPressed = upPressed) }
-    ) {
-        if (viewModel.isLoading) {
-            LoadingBox()
-        } else {
-            if (viewModel.errorMessage != null) {
-                MessageBox(messageResId = viewModel.errorMessage!!)
+        topBar = {
+            CastDetailsTopBar(upPressed = upPressed)
+        },
+        content = { padding ->
+            if (viewModel.isLoading) {
+                LoadingBox()
             } else {
-                viewModel.castDetails?.let { cast ->
-                    Column(modifier = Modifier.verticalScroll(scrollState)) {
-                        CastInfoAvatarRow(
-                            cast = cast,
-                            openImdb = { imdbUrl -> openImdbPage(imdbUrl, context) }
-                        )
-
-                        if (cast.biography.isNullOrEmpty().not()) {
-                            MovieInfoHeader(stringResource(R.string.cast_details_biography_label))
-                            Text(
-                                text = cast.biography!!,
-                                textAlign = TextAlign.Justify,
-                                modifier = Modifier.padding(horizontal = 16.dp),
+                if (viewModel.errorMessage != null) {
+                    MessageBox(messageResId = viewModel.errorMessage!!)
+                } else {
+                    viewModel.castDetails?.let { cast ->
+                        Column(
+                            modifier = Modifier
+                                .verticalScroll(scrollState)
+                                .padding(padding)
+                        ) {
+                            CastInfoAvatarRow(
+                                cast = cast,
+                                openImdb = { imdbUrl -> openImdbPage(imdbUrl, context) }
                             )
-                            Spacer(modifier = Modifier.height(16.dp))
+
+                            if (cast.biography.isNullOrEmpty().not()) {
+                                MovieInfoHeader(stringResource(R.string.cast_details_biography_label))
+                                Text(
+                                    text = cast.biography!!,
+                                    textAlign = TextAlign.Justify,
+                                    modifier = Modifier.padding(horizontal = 16.dp),
+                                )
+                                Spacer(modifier = Modifier.height(16.dp))
+                            }
                         }
                     }
                 }
             }
         }
-    }
+    )
 }
 
 private fun openImdbPage(imdbUrl: String, context: Context) {

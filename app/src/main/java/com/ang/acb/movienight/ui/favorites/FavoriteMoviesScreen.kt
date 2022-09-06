@@ -17,7 +17,6 @@ import com.ang.acb.movienight.ui.common.LoadingBox
 import com.ang.acb.movienight.ui.common.MessageBox
 import com.ang.acb.movienight.ui.common.MovieItem
 
-// todo@ang Content padding parameter it is not used
 @Composable
 internal fun FavoriteMoviesScreen(
     viewModel: FavoritesViewModel = hiltViewModel(),
@@ -30,28 +29,30 @@ internal fun FavoriteMoviesScreen(
                 contentColor = MaterialTheme.colors.onSurface,
                 title = { Text(stringResource(R.string.favorites_topbar_label)) },
             )
-        }
-    ) {
-        if (viewModel.isLoading) {
-            LoadingBox()
-        } else {
-            if (viewModel.errorMessage != null) {
-                MessageBox(messageResId = viewModel.errorMessage!!)
-            } else if (viewModel.movies?.isEmpty() == true) {
-                MessageBox(messageResId = R.string.no_favorites_hint_message)
+        },
+        content = { padding ->
+            if (viewModel.isLoading) {
+                LoadingBox()
             } else {
-                LazyColumn {
-                    val items = viewModel.movies ?: emptyList()
-                    itemsIndexed(items) { index, item ->
-                        val bottomPadding = if (index == items.size - 1) 64 else 0
-                        MovieItem(
-                            movie = item,
-                            onMovieClick = { movieId -> openMovieDetails(movieId) },
-                            modifier = Modifier.padding(bottom = bottomPadding.dp),
-                        )
+                if (viewModel.errorMessage != null) {
+                    MessageBox(messageResId = viewModel.errorMessage!!)
+                } else if (viewModel.movies?.isEmpty() == true) {
+                    MessageBox(messageResId = R.string.no_favorites_hint_message)
+                } else {
+                    LazyColumn(contentPadding = padding) {
+                        val items = viewModel.movies ?: emptyList()
+
+                        itemsIndexed(items) { index, item ->
+                            val bottomPadding = if (index == items.size - 1) 64 else 0
+                            MovieItem(
+                                movie = item,
+                                onMovieClick = { movieId -> openMovieDetails(movieId) },
+                                modifier = Modifier.padding(bottom = bottomPadding.dp),
+                            )
+                        }
                     }
                 }
             }
         }
-    }
+    )
 }

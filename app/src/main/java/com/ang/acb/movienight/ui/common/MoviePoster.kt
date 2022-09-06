@@ -20,6 +20,7 @@ import com.ang.acb.movienight.ui.theme.midnight50
 import com.google.accompanist.glide.rememberGlidePainter
 import com.google.accompanist.imageloading.ImageLoadState
 
+// TODO Accompanist-Glide is now deprecated. Consider using Coil
 @Composable
 fun MoviePoster(
     posterUrl: String?,
@@ -51,6 +52,7 @@ fun MoviePoster(
                     )
                 }
                 is ImageLoadState.Error -> MoviePosterPlaceholder(modifier)
+                else -> {}
             }
         }
     }

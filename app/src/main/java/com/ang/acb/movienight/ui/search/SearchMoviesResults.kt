@@ -58,6 +58,7 @@ fun SearchMoviesResults(
                         }
                     }
                 }
+                else -> {}
             }
 
             when (loadState.append) {
@@ -85,6 +86,7 @@ fun SearchMoviesResults(
                         }
                     }
                 }
+                else -> {}
             }
         }
     }

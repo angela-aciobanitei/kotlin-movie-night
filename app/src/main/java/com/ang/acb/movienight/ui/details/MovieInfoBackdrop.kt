@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.google.accompanist.glide.rememberGlidePainter
 import com.google.accompanist.imageloading.ImageLoadState
 
+// TODO Accompanist-Glide is now deprecated. Consider using Coil
 @Composable
 fun MovieBackdropImage(
     backdropUrl: String,
@@ -41,6 +42,7 @@ fun MovieBackdropImage(
                 )
             }
             is ImageLoadState.Error -> Box(modifier = Modifier.fillMaxWidth())
+            else -> {}
         }
     }
 }

@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    compileSdk Sdk.compile
+    compileSdk Versions.compile_sdk
 
     defaultConfig {
-        minSdk Sdk.min
-        targetSdk Sdk.target
+        minSdk Versions.min_sdk
+        targetSdk Versions.target_sdk
         versionCode 1
         versionName "1.0"
 
@@ -28,59 +28,60 @@ android {
         targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = Jvm.target
+        jvmTarget = Versions.jvm_target
     }
     // Build fails after adding the test coroutines dependency
     // https://github.com/Kotlin/kotlinx.coroutines/issues/2023
     packagingOptions {
-        exclude 'META-INF/AL2.0'
-        exclude 'META-INF/LGPL2.1'
+        resources {
+            excludes += ['META-INF/AL2.0', 'META-INF/LGPL2.1']
+        }
     }
 }
 
 dependencies {
     implementation(project(":domain"))
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Kotlin.coroutines}"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Kotlin.coroutines}"
-    implementation "javax.inject:javax.inject:${Jvm.inject}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlin_coroutines}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlin_coroutines}"
+    implementation "javax.inject:javax.inject:${Versions.jvm_inject}"
 
     // Networking
-    implementation "com.squareup.retrofit2:retrofit:${Network.retrofit}"
-    implementation "com.squareup.retrofit2:converter-gson:${Network.retrofit}"
-    implementation "com.squareup.retrofit2:converter-scalars:${Network.retrofit}"
-    implementation "com.squareup.okhttp3:logging-interceptor:${Network.okhttpLogging}"
+    implementation "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    implementation "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
+    implementation "com.squareup.retrofit2:converter-scalars:${Versions.retrofit}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp_logging}"
 
     // Room
-    implementation "androidx.room:room-runtime:${AndroidX.room}"
-    implementation "androidx.room:room-ktx:${AndroidX.room}"
-    kapt "androidx.room:room-compiler:${AndroidX.room}"
+    implementation "androidx.room:room-runtime:${Versions.room}"
+    implementation "androidx.room:room-ktx:${Versions.room}"
+    kapt "androidx.room:room-compiler:${Versions.room}"
 
     // Utils
-    implementation "com.jakewharton.timber:timber:${Utils.timber}"
+    implementation "com.jakewharton.timber:timber:${Versions.timber}"
 
     // Testing
     testImplementation "junit:junit:${Testing.junit}"
     testImplementation "org.hamcrest:hamcrest-library:${Testing.hamcrest}"
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Kotlin.coroutines}"
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Kotlin.coroutines}"
-    testImplementation "androidx.test:core:${Testing.androidxCore}"
-    testImplementation "androidx.test.ext:junit:${Testing.junitExt}"
-    testImplementation "androidx.arch.core:core-testing:${Testing.archCore}"
-    testImplementation "androidx.room:room-testing:${AndroidX.room}"
-    testImplementation "com.squareup.okhttp3:mockwebserver:${Testing.mockWebServer}"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.kotlin_coroutines}"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlin_coroutines}"
+    testImplementation "androidx.test:core:${Testing.androidx_core}"
+    testImplementation "androidx.test.ext:junit:${Testing.junit_ext}"
+    testImplementation "androidx.arch.core:core-testing:${Testing.arch_core}"
+    testImplementation "androidx.room:room-testing:${Versions.room}"
+    testImplementation "com.squareup.okhttp3:mockwebserver:${Testing.mock_web_server}"
     testImplementation "org.mockito:mockito-core:${Testing.mockito}"
-    testImplementation "com.google.dagger:hilt-android-testing:${Google.hilt}"
-    kaptTest "com.google.dagger:hilt-compiler:${Google.hilt}"
+    testImplementation "com.google.dagger:hilt-android-testing:${Versions.di_hilt}"
+    kaptTest "com.google.dagger:hilt-compiler:${Versions.di_hilt}"
 
-    kaptAndroidTest "com.google.dagger:hilt-compiler:${Google.hilt}"
-    androidTestImplementation "com.google.dagger:hilt-android-testing:${Google.hilt}"
-    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Kotlin.coroutines}"
-    androidTestImplementation "androidx.test:core:${Testing.androidxCore}"
+    kaptAndroidTest "com.google.dagger:hilt-compiler:${Versions.di_hilt}"
+    androidTestImplementation "com.google.dagger:hilt-android-testing:${Versions.di_hilt}"
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.kotlin_coroutines}"
+    androidTestImplementation "androidx.test:core:${Testing.androidx_core}"
     androidTestImplementation "androidx.test:runner:${Testing.runner}" // AndroidJUnitRunner
     androidTestImplementation "androidx.test:rules:${Testing.rules}"  // JUnit Rules
-    androidTestImplementation "androidx.test.ext:junit:${Testing.junitExt}" // Assertions
-    androidTestImplementation "androidx.test.ext:truth:${Testing.truthExt}"
+    androidTestImplementation "androidx.test.ext:junit:${Testing.junit_ext}" // Assertions
+    androidTestImplementation "androidx.test.ext:truth:${Testing.truth_ext}"
     androidTestImplementation "org.hamcrest:hamcrest-library:${Testing.hamcrest}"
-    androidTestImplementation "androidx.arch.core:core-testing:${Testing.archCore}"
+    androidTestImplementation "androidx.arch.core:core-testing:${Testing.arch_core}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${Testing.espresso}"
 }

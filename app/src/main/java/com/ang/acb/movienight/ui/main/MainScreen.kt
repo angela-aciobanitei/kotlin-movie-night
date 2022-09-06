@@ -27,6 +27,7 @@ fun MainScreen() {
     val currentRoute = currentBackStackEntry?.destination?.route
     val showBottomBar = currentRoute in mainRoutes
 
+    // todo@ang Content padding parameter it is not used
     Scaffold(
         bottomBar = {
             if (showBottomBar) MoviesBottomBar(navController, rootScreens)

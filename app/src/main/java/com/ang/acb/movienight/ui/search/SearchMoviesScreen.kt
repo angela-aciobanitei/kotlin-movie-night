@@ -29,6 +29,7 @@ fun SearchMoviesScreen(
     val keyboardController = LocalSoftwareKeyboardController.current
     var query by remember { mutableStateOf(TextFieldValue(viewModel.searchQuery.value)) }
 
+    // todo@ang Content padding parameter it is not used
     Scaffold(
         topBar = {
             TopAppBar(

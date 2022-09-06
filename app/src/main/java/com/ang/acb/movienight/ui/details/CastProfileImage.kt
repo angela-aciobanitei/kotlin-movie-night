@@ -20,6 +20,7 @@ import com.ang.acb.movienight.ui.theme.midnight50
 import com.google.accompanist.glide.rememberGlidePainter
 import com.google.accompanist.imageloading.ImageLoadState
 
+// TODO Accompanist-Glide is now deprecated. Consider using Coil
 @Composable
 fun CastProfileImage(
     profileImageUrl: String?,
@@ -43,6 +44,7 @@ fun CastProfileImage(
             when (painter.loadState) {
                 is ImageLoadState.Loading -> LoadingProfileImage(modifier.matchParentSize())
                 is ImageLoadState.Error -> PlaceholderProfileImage(modifier.matchParentSize())
+                else -> {}
             }
         }
     }

@@ -15,12 +15,12 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.FlowPreview
 
+@ExperimentalAnimationApi
+@ExperimentalComposeUiApi
+@FlowPreview
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    @ExperimentalAnimationApi
-    @ExperimentalComposeUiApi
-    @FlowPreview
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

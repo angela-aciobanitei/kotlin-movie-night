@@ -20,6 +20,7 @@ fun FilterMoviesScreen(
     openMovieDetails: (movieId: Long) -> Unit
 ) {
 
+    // todo@ang Content padding parameter it is not used
     Scaffold(
         topBar = {
             FilterMoviesTopBar(

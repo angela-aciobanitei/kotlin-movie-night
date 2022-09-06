@@ -6,12 +6,12 @@ plugins {
 }
 
 android {
-    compileSdk Sdk.compile
+    compileSdk Versions.compile_sdk
 
     defaultConfig {
         applicationId "com.ang.acb.movienight"
-        minSdk Sdk.min
-        targetSdk Sdk.target
+        minSdk Versions.min_sdk
+        targetSdk Versions.target_sdk
         versionCode 1
         versionName "1.0"
 
@@ -35,8 +35,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = Jvm.target
-        useIR = true
+        jvmTarget = Versions.jvm_target
     }
 
     buildFeatures {
@@ -44,7 +43,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion AndroidX.compose
+        kotlinCompilerExtensionVersion Versions.compose_compiler
     }
 }
 
@@ -57,59 +56,63 @@ dependencies {
     implementation(project(":data"))
 
     // Kotlin Coroutines
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Kotlin.coroutines}"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Kotlin.coroutines}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlin_coroutines}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlin_coroutines}"
 
     // Hilt
-    implementation "com.google.dagger:hilt-android:${Google.hilt}"
-    kapt "com.google.dagger:hilt-compiler:${Google.hilt}"
+    implementation "com.google.dagger:hilt-android:${Versions.di_hilt}"
+    kapt "com.google.dagger:hilt-compiler:${Versions.di_hilt}"
 
     // Room
-    implementation "androidx.room:room-runtime:${AndroidX.room}"
-    implementation "androidx.room:room-ktx:${AndroidX.room}"
-    kapt "androidx.room:room-compiler:${AndroidX.room}"
+    implementation "androidx.room:room-runtime:$Versions.room}"
+    implementation "androidx.room:room-ktx:${Versions.room}"
+    kapt "androidx.room:room-compiler:${Versions.room}"
 
     // AndroidX
-    implementation "androidx.core:core-ktx:${AndroidX.core}"
-    implementation "androidx.annotation:annotation:${AndroidX.annotations}"
-    implementation "androidx.appcompat:appcompat:${AndroidX.appcompat}"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:${AndroidX.lifecycle}"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:${AndroidX.lifecycleCompose}"
-    implementation "androidx.compose.ui:ui:${AndroidX.compose}"
-    implementation "androidx.compose.material:material:${AndroidX.compose}"
-    implementation "androidx.compose.ui:ui-tooling:${AndroidX.compose}"
-    implementation "androidx.compose.material:material-icons-core:${AndroidX.compose}"
-    implementation "androidx.compose.material:material-icons-extended:${AndroidX.compose}"
-    implementation "androidx.compose.runtime:runtime-livedata:${AndroidX.compose}"
-    implementation "androidx.activity:activity-compose:${AndroidX.activityCompose}"
-    implementation "androidx.navigation:navigation-compose:${AndroidX.navigationCompose}"
-    implementation "androidx.hilt:hilt-navigation-compose:${AndroidX.hiltNavigationCompose}"
-    implementation "androidx.paging:paging-compose:${AndroidX.pagingCompose}"
+    implementation "androidx.core:core-ktx:${Versions.androidx_core}"
+    implementation "androidx.activity:activity-ktx:${Versions.androidx_activity}"
+    implementation "androidx.annotation:annotation:${Versions.annotations}"
+    implementation "androidx.appcompat:appcompat:${Versions.appcompat}"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
+
+    // Compose
+    implementation "androidx.compose.ui:ui:${Versions.compose_core}"
+    implementation "androidx.compose.ui:ui-tooling:${Versions.compose_core}"
+    implementation "androidx.compose.ui:ui-tooling-preview:${Versions.compose_core}"
+    implementation "androidx.compose.material:material:${Versions.compose_core}"
+    implementation "androidx.compose.material:material-icons-core:${Versions.compose_core}"
+    implementation "androidx.compose.material:material-icons-extended:${Versions.compose_core}"
+    implementation "androidx.compose.runtime:runtime-livedata:${Versions.compose_core}"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.compose_view_model}"
+    implementation "androidx.activity:activity-compose:${Versions.compose_activity}"
+    implementation "androidx.navigation:navigation-compose:${Versions.compose_navigation}"
+    implementation "androidx.hilt:hilt-navigation-compose:${Versions.compose_hilt_navigation}"
+    implementation "androidx.paging:paging-compose:${Versions.compose_paging}"
 
     // Google
-    implementation "com.google.android.material:material:${Google.material}"
-    implementation "com.google.accompanist:accompanist-glide:${Google.glide}"
-    implementation "com.google.accompanist:accompanist-flowlayout:${Google.accompanist}"
-    implementation "com.google.accompanist:accompanist-insets:${Google.accompanist}"
-    implementation "com.google.accompanist:accompanist-systemuicontroller:${Google.accompanist}"
+    implementation "com.google.android.material:material:${Versions.material}"
+    implementation "com.google.accompanist:accompanist-glide:${Versions.glide}"
+    implementation "com.google.accompanist:accompanist-flowlayout:${Versions.accompanist}"
+    implementation "com.google.accompanist:accompanist-insets:${Versions.accompanist}"
+    implementation "com.google.accompanist:accompanist-systemuicontroller:${Versions.accompanist}"
 
     // Networking
-    implementation "com.squareup.retrofit2:retrofit:${Network.retrofit}"
-    implementation "com.squareup.retrofit2:converter-gson:${Network.retrofit}"
-    implementation "com.squareup.retrofit2:converter-scalars:${Network.retrofit}"
-    implementation "com.squareup.okhttp3:logging-interceptor:${Network.okhttpLogging}"
+    implementation "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    implementation "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
+    implementation "com.squareup.retrofit2:converter-scalars:${Versions.retrofit}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp_logging}"
 
     // Utils
-    implementation "com.jakewharton.threetenabp:threetenabp:${Utils.threeTenBp}"
-    implementation "com.jakewharton.timber:timber:${Utils.timber}"
+    implementation "com.jakewharton.threetenabp:threetenabp:${Versions.three_ten_bp}"
+    implementation "com.jakewharton.timber:timber:${Versions.timber}"
 
     // Testing
     testImplementation "junit:junit:${Testing.junit}"
-    testImplementation "androidx.room:room-testing:${AndroidX.room}"
-    testImplementation "com.google.dagger:hilt-android-testing:${Google.hilt}"
-    kaptTest "com.google.dagger:hilt-compiler:${Google.hilt}"
-    androidTestImplementation "com.google.dagger:hilt-android-testing:${Google.hilt}"
-    kaptAndroidTest "com.google.dagger:hilt-compiler:${Google.hilt}"
-    androidTestImplementation "androidx.test.ext:junit: ${Testing.junitExt}"
+    testImplementation "androidx.room:room-testing:${Versions.room}"
+    testImplementation "com.google.dagger:hilt-android-testing:${Versions.di_hilt}"
+    kaptTest "com.google.dagger:hilt-compiler:${Versions.di_hilt}"
+    androidTestImplementation "com.google.dagger:hilt-android-testing:${Versions.di_hilt}"
+    kaptAndroidTest "com.google.dagger:hilt-compiler:${Versions.di_hilt}"
+    androidTestImplementation "androidx.test.ext:junit: ${Testing.junit_ext}"
     androidTestImplementation "androidx.test.espresso:espresso-core: ${Testing.espresso}"
 }

@@ -17,6 +17,7 @@ import com.ang.acb.movienight.ui.common.LoadingBox
 import com.ang.acb.movienight.ui.common.MessageBox
 import com.ang.acb.movienight.ui.common.MovieItem
 
+// todo@ang Content padding parameter it is not used
 @Composable
 internal fun FavoriteMoviesScreen(
     viewModel: FavoritesViewModel = hiltViewModel(),

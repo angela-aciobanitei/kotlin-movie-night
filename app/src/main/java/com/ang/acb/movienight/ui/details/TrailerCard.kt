@@ -23,6 +23,7 @@ import com.ang.acb.movienight.ui.theme.red900
 import com.google.accompanist.glide.rememberGlidePainter
 import com.google.accompanist.imageloading.ImageLoadState
 
+// TODO Accompanist-Glide is now deprecated. Consider using Coil
 @Composable
 fun TrailerCard(
     trailer: Trailer,

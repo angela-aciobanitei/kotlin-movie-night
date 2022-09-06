@@ -22,6 +22,7 @@ object Versions {
     const val compose_hilt_navigation = "1.0.0"
     const val compose_view_model = "2.4.0"
     const val compose_paging = "1.0.0-alpha14"
+    const val compose_coil = "2.2.0"
 
     const val room = "2.4.3"
     const val androidx_core = "1.8.0"

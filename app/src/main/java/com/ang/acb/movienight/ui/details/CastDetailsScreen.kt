@@ -24,7 +24,6 @@ import com.ang.acb.movienight.ui.common.LoadingBox
 import com.ang.acb.movienight.ui.common.MessageBox
 import timber.log.Timber
 
-// todo@ang Content padding parameter it is not used
 @Composable
 fun CastDetailsScreen(
     viewModel: CastDetailsViewModel = hiltViewModel(),
@@ -33,6 +32,7 @@ fun CastDetailsScreen(
     val context = LocalContext.current
     val scrollState = rememberScrollState()
 
+    // todo@ang Content padding parameter it is not used
     Scaffold(
         topBar = { CastDetailsTopBar(upPressed = upPressed) }
     ) {

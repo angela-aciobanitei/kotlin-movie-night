@@ -88,6 +88,7 @@ dependencies {
     implementation "androidx.navigation:navigation-compose:${Versions.compose_navigation}"
     implementation "androidx.hilt:hilt-navigation-compose:${Versions.compose_hilt_navigation}"
     implementation "androidx.paging:paging-compose:${Versions.compose_paging}"
+    implementation "io.coil-kt:coil-compose:${Versions.compose_coil}"
 
     // Google
     implementation "com.google.android.material:material:${Versions.material}"

@@ -27,44 +27,43 @@ fun MoviesNavHost(
         // The "discover" nested graph
         navigation(
             route = RootScreen.Discover.route,
-            startDestination = LeafScreen.Discover.route
+            startDestination = LeafScreen.Discover.createRoute(RootScreen.Discover)
         ) {
-            addDiscover(navController)
-            addShowDetails(navController)
-            addCastDetails(navController)
+            addDiscover(navController, RootScreen.Discover)
+            addMovieDetails(navController, RootScreen.Discover)
+            addCastDetails(navController, RootScreen.Discover)
         }
 
         // The "search" nested graph
         navigation(
             route = RootScreen.Search.route,
-            startDestination = LeafScreen.Search.route
+            startDestination = LeafScreen.Search.createRoute(RootScreen.Search)
         ) {
-            addSearch(navController)
-            addShowDetails(navController)
-            addCastDetails(navController)
+            addSearch(navController, RootScreen.Search)
+            addMovieDetails(navController, RootScreen.Search)
+            addCastDetails(navController, RootScreen.Search)
         }
 
         // The "favorites" nested graph
         navigation(
             route = RootScreen.Favorites.route,
-            startDestination = LeafScreen.Favorites.route
+            startDestination = LeafScreen.Favorites.createRoute(RootScreen.Favorites)
         ) {
-            addFavorites(navController)
-            addShowDetails(navController)
-            addCastDetails(navController)
+            addFavorites(navController, RootScreen.Favorites)
+            addMovieDetails(navController, RootScreen.Favorites)
+            addCastDetails(navController, RootScreen.Favorites)
         }
     }
 }
 
 @FlowPreview
-private fun NavGraphBuilder.addDiscover(navController: NavController) {
-    // TODO FIXME: java.lang.IllegalArgumentException: No destination with ID -997165748
-    //  is on the NavController's back stack. The current destination is
-    //  Destination(0x1ac7e3a1) route=movie/{movieId}
-    composable(LeafScreen.Discover.route) {
+private fun NavGraphBuilder.addDiscover(navController: NavController, rootScreen: RootScreen) {
+    composable(
+        route = LeafScreen.Discover.createRoute(rootScreen)
+    ) {
         FilterMoviesScreen(
-            openMovieDetails = { showId ->
-                navController.navigate(LeafScreen.MovieDetails.createRoute(showId))
+            openMovieDetails = { movieId ->
+                navController.navigate(LeafScreen.MovieDetails.createRoute(rootScreen, movieId))
             },
         )
     }
@@ -73,53 +72,53 @@ private fun NavGraphBuilder.addDiscover(navController: NavController) {
 @FlowPreview
 @ExperimentalComposeUiApi
 @ExperimentalAnimationApi
-private fun NavGraphBuilder.addSearch(navController: NavController) {
-    composable(LeafScreen.Search.route) {
-        SearchMoviesScreen(
-            openMovieDetails = { showId ->
-                navController.navigate(LeafScreen.MovieDetails.createRoute(showId))
-            },
-        )
-    }
-}
-
-private fun NavGraphBuilder.addFavorites(navController: NavController) {
-    composable(LeafScreen.Favorites.route) {
-        FavoriteMoviesScreen(
-            openMovieDetails = { showId ->
-                navController.navigate(LeafScreen.MovieDetails.createRoute(showId))
-            },
-        )
-    }
-}
-
-private fun NavGraphBuilder.addShowDetails(navController: NavController) {
+private fun NavGraphBuilder.addSearch(navController: NavController, rootScreen: RootScreen) {
     composable(
-        route = LeafScreen.MovieDetails.route,
-        arguments = listOf(
-            navArgument("movieId") { type = NavType.LongType }
+        route = LeafScreen.Search.createRoute(rootScreen)
+    ) {
+        SearchMoviesScreen(
+            openMovieDetails = { movieId ->
+                navController.navigate(LeafScreen.MovieDetails.createRoute(rootScreen, movieId))
+            },
         )
+    }
+}
+
+private fun NavGraphBuilder.addFavorites(navController: NavController, rootScreen: RootScreen) {
+    composable(
+        route = LeafScreen.Favorites.createRoute(rootScreen)
+    ) {
+        FavoriteMoviesScreen(
+            openMovieDetails = { movieId ->
+                navController.navigate(LeafScreen.MovieDetails.createRoute(rootScreen, movieId))
+            },
+        )
+    }
+}
+
+private fun NavGraphBuilder.addMovieDetails(navController: NavController, rootScreen: RootScreen) {
+    composable(
+        route = LeafScreen.MovieDetails.createRoute(rootScreen),
+        arguments = listOf(navArgument("movieId") { type = NavType.LongType })
     ) {
         MovieDetailsScreen(
             upPressed = {
                 navController.popBackStack()
             },
-            openCastDetails = { castId ->
-                navController.navigate(LeafScreen.CastDetails.createRoute(castId))
+            openCastDetails = { cast ->
+                navController.navigate(LeafScreen.CastDetails.createRoute(rootScreen, castId = cast.id, movieId = cast.movieId))
             },
             openSimilarMovieDetails = { movieId ->
-                navController.navigate(LeafScreen.MovieDetails.createRoute(movieId))
+                navController.navigate(LeafScreen.MovieDetails.createRoute(rootScreen, movieId = movieId))
             }
         )
     }
 }
 
-private fun NavGraphBuilder.addCastDetails(navController: NavController) {
+private fun NavGraphBuilder.addCastDetails(navController: NavController, rootScreen: RootScreen) {
     composable(
-        route = LeafScreen.CastDetails.route,
-        arguments = listOf(
-            navArgument("castId") { type = NavType.LongType }
-        )
+        route = LeafScreen.CastDetails.createRoute(rootScreen),
+        arguments = listOf(navArgument("castId") { type = NavType.LongType })
     ) {
         CastDetailsScreen(
             upPressed = {

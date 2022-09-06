@@ -16,6 +16,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ang.acb.movienight.R
+import com.ang.acb.movienight.domain.entities.Cast
 import com.ang.acb.movienight.domain.entities.Trailer
 import com.ang.acb.movienight.ui.common.LoadingBox
 import com.ang.acb.movienight.ui.common.MessageBox
@@ -24,7 +25,7 @@ import com.ang.acb.movienight.ui.common.MessageBox
 @Composable
 fun MovieDetailsScreen(
     viewModel: MovieDetailsViewModel = hiltViewModel(),
-    openCastDetails: (castId: Long) -> Unit,
+    openCastDetails: (cast: Cast) -> Unit,
     openSimilarMovieDetails: (movieId: Long) -> Unit,
     upPressed: () -> Unit,
 ) {
@@ -76,7 +77,7 @@ fun MovieDetailsScreen(
                             MovieInfoHeader(title = stringResource(R.string.movie_details_cast_label))
                             CastCarousel(
                                 cast = movieDetails.cast,
-                                onItemClick = { castId -> openCastDetails(castId) },
+                                onItemClick = { cast -> openCastDetails(cast) },
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .height(160.dp),

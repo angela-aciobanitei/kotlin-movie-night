@@ -12,7 +12,7 @@ import com.ang.acb.movienight.ui.common.Carousel
 @Composable
 fun CastCarousel(
     cast: List<Cast>,
-    onItemClick: (castId: Long) -> Unit,
+    onItemClick: (cast: Cast) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Carousel(

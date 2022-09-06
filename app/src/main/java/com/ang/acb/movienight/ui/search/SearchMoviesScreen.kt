@@ -37,30 +37,31 @@ fun SearchMoviesScreen(
                 contentColor = MaterialTheme.colors.onSurface,
                 title = { Text(text = stringResource(R.string.search_movies_topbar_label)) },
             )
-        }
-    ) {
-        Column(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            SearchMoviesTextField(
-                value = query,
-                onValueChange = { value ->
-                    query = value
-                    viewModel.updateQuery(value.text)
-                },
-            )
-
-            viewModel.searchResults?.let {
-                SearchMoviesResults(
-                    searchTerm = query.text,
-                    searchResults = it,
-                    onItemClick = { movieId ->
-                        keyboardController?.hide()
-                        openMovieDetails(movieId)
-                    }
+        },
+        content = {
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                SearchMoviesTextField(
+                    value = query,
+                    onValueChange = { value ->
+                        query = value
+                        viewModel.updateQuery(value.text)
+                    },
                 )
+
+                viewModel.searchResults?.let {
+                    SearchMoviesResults(
+                        searchTerm = query.text,
+                        searchResults = it,
+                        onItemClick = { movieId ->
+                            keyboardController?.hide()
+                            openMovieDetails(movieId)
+                        }
+                    )
+                }
             }
         }
-    }
+    )
 }

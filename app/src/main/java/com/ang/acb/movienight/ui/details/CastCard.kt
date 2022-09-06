@@ -10,12 +10,12 @@ import com.ang.acb.movienight.domain.entities.Cast
 fun CastCard(
     cast: Cast,
     modifier: Modifier = Modifier,
-    onItemClick: (castId: Long) -> Unit,
+    onItemClick: (cast: Cast) -> Unit,
 ) {
     Card(modifier = modifier) {
         CastProfileImage(
             profileImageUrl = cast.profileImageUrl,
-            modifier = Modifier.clickable { onItemClick(cast.id) },
+            modifier = Modifier.clickable { onItemClick(cast) },
         )
     }
 }

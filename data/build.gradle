@@ -10,8 +10,6 @@ android {
     defaultConfig {
         minSdk Versions.min_sdk
         targetSdk Versions.target_sdk
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -37,6 +35,7 @@ android {
             excludes += ['META-INF/AL2.0', 'META-INF/LGPL2.1']
         }
     }
+    namespace 'com.ang.acb.movienight.data'
 }
 
 dependencies {
@@ -60,28 +59,28 @@ dependencies {
     implementation "com.jakewharton.timber:timber:${Versions.timber}"
 
     // Testing
-    testImplementation "junit:junit:${Testing.junit}"
-    testImplementation "org.hamcrest:hamcrest-library:${Testing.hamcrest}"
+    testImplementation "junit:junit:${Versions.testing_junit}"
+    testImplementation "org.hamcrest:hamcrest-library:${Versions.testing_hamcrest}"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.kotlin_coroutines}"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlin_coroutines}"
-    testImplementation "androidx.test:core:${Testing.androidx_core}"
-    testImplementation "androidx.test.ext:junit:${Testing.junit_ext}"
-    testImplementation "androidx.arch.core:core-testing:${Testing.arch_core}"
+    testImplementation "androidx.test:core:${Versions.testing_androidx_core}"
+    testImplementation "androidx.test.ext:junit:${Versions.testing_junit_ext}"
+    testImplementation "androidx.arch.core:core-testing:${Versions.testing_arch_core}"
     testImplementation "androidx.room:room-testing:${Versions.room}"
-    testImplementation "com.squareup.okhttp3:mockwebserver:${Testing.mock_web_server}"
-    testImplementation "org.mockito:mockito-core:${Testing.mockito}"
+    testImplementation "com.squareup.okhttp3:mockwebserver:${Versions.testing_mock_web_server}"
+    testImplementation "org.mockito:mockito-core:${Versions.testing_mockito}"
     testImplementation "com.google.dagger:hilt-android-testing:${Versions.di_hilt}"
     kaptTest "com.google.dagger:hilt-compiler:${Versions.di_hilt}"
 
     kaptAndroidTest "com.google.dagger:hilt-compiler:${Versions.di_hilt}"
     androidTestImplementation "com.google.dagger:hilt-android-testing:${Versions.di_hilt}"
     androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.kotlin_coroutines}"
-    androidTestImplementation "androidx.test:core:${Testing.androidx_core}"
-    androidTestImplementation "androidx.test:runner:${Testing.runner}" // AndroidJUnitRunner
-    androidTestImplementation "androidx.test:rules:${Testing.rules}"  // JUnit Rules
-    androidTestImplementation "androidx.test.ext:junit:${Testing.junit_ext}" // Assertions
-    androidTestImplementation "androidx.test.ext:truth:${Testing.truth_ext}"
-    androidTestImplementation "org.hamcrest:hamcrest-library:${Testing.hamcrest}"
-    androidTestImplementation "androidx.arch.core:core-testing:${Testing.arch_core}"
-    androidTestImplementation "androidx.test.espresso:espresso-core:${Testing.espresso}"
+    androidTestImplementation "androidx.test:core:${Versions.testing_androidx_core}"
+    androidTestImplementation "androidx.test:runner:${Versions.testing_runner}" // AndroidJUnitRunner
+    androidTestImplementation "androidx.test:rules:${Versions.testing_rules}"  // JUnit Rules
+    androidTestImplementation "androidx.test.ext:junit:${Versions.testing_junit_ext}" // Assertions
+    androidTestImplementation "androidx.test.ext:truth:${Versions.testing_truth_ext}"
+    androidTestImplementation "org.hamcrest:hamcrest-library:${Versions.testing_hamcrest}"
+    androidTestImplementation "androidx.arch.core:core-testing:${Versions.testing_arch_core}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${Versions.testing_espresso}"
 }

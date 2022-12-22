@@ -45,6 +45,7 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion Versions.compose_compiler
     }
+    namespace 'com.ang.acb.movienight'
 }
 
 kapt {
@@ -76,13 +77,15 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
 
     // Compose
-    implementation "androidx.compose.ui:ui:${Versions.compose_core}"
-    implementation "androidx.compose.ui:ui-tooling:${Versions.compose_core}"
-    implementation "androidx.compose.ui:ui-tooling-preview:${Versions.compose_core}"
-    implementation "androidx.compose.material:material:${Versions.compose_core}"
-    implementation "androidx.compose.material:material-icons-core:${Versions.compose_core}"
-    implementation "androidx.compose.material:material-icons-extended:${Versions.compose_core}"
-    implementation "androidx.compose.runtime:runtime-livedata:${Versions.compose_core}"
+    implementation(platform("androidx.compose:compose-bom:${Versions.compose_bom_version}"))
+    implementation("androidx.compose.runtime:runtime")
+    implementation "androidx.compose.material:material"
+    implementation "androidx.compose.material:material-icons-core"
+    implementation "androidx.compose.material:material-icons-extended"
+    implementation "androidx.compose.ui:ui"
+    implementation "androidx.compose.ui:ui-tooling-preview"
+    debugImplementation "androidx.compose.ui:ui-tooling"
+
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.compose_view_model}"
     implementation "androidx.activity:activity-compose:${Versions.compose_activity}"
     implementation "androidx.navigation:navigation-compose:${Versions.compose_navigation}"
@@ -108,12 +111,14 @@ dependencies {
     implementation "com.jakewharton.timber:timber:${Versions.timber}"
 
     // Testing
-    testImplementation "junit:junit:${Testing.junit}"
+    testImplementation "junit:junit:${Versions.testing_junit}"
     testImplementation "androidx.room:room-testing:${Versions.room}"
     testImplementation "com.google.dagger:hilt-android-testing:${Versions.di_hilt}"
     kaptTest "com.google.dagger:hilt-compiler:${Versions.di_hilt}"
     androidTestImplementation "com.google.dagger:hilt-android-testing:${Versions.di_hilt}"
     kaptAndroidTest "com.google.dagger:hilt-compiler:${Versions.di_hilt}"
-    androidTestImplementation "androidx.test.ext:junit: ${Testing.junit_ext}"
-    androidTestImplementation "androidx.test.espresso:espresso-core: ${Testing.espresso}"
+    androidTestImplementation "androidx.test.ext:junit: ${Versions.testing_junit_ext}"
+    androidTestImplementation "androidx.test.espresso:espresso-core: ${Versions.testing_espresso}"
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4"
+    debugImplementation "androidx.compose.ui:ui-test-manifest"
 }

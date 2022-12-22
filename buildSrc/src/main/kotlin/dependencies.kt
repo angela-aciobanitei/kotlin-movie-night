@@ -34,7 +34,6 @@ object Versions {
     const val lifecycle = "2.5.1"
     const val material = "1.7.0"
     const val accompanist = "0.21.1-beta"
-    const val glide = "0.15.0"
     const val retrofit = "2.9.0"
     const val okhttp_logging = "4.9.1"
     const val three_ten_bp = "1.3.1"

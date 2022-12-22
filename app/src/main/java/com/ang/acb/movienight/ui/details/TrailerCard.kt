@@ -1,29 +1,20 @@
 package com.ang.acb.movienight.ui.details
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.Card
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.PlayCircleOutline
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.platform.LocalContext
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.ang.acb.movienight.domain.entities.Trailer
 import com.ang.acb.movienight.ui.theme.midnight50
-import com.ang.acb.movienight.ui.theme.red900
-import com.google.accompanist.glide.rememberGlidePainter
-import com.google.accompanist.imageloading.ImageLoadState
 
-// TODO Accompanist-Glide is now deprecated. Consider using Coil
 @Composable
 fun TrailerCard(
     trailer: Trailer,
@@ -40,38 +31,15 @@ fun TrailerCard(
                 ),
             contentAlignment = Alignment.Center,
         ) {
-            val painter = rememberGlidePainter(
-                request = trailer.youTubeThumbnailUrl,
-                fadeIn = true,
-            )
-
-            Image(
-                painter = painter,
+            // TODO Use a placeholder on error
+            AsyncImage(
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data(trailer.youTubeThumbnailUrl)
+                    .build(),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.matchParentSize(),
             )
-
-            when (painter.loadState) {
-                is ImageLoadState.Loading -> {
-                    CircularProgressIndicator(
-                        modifier = Modifier
-                            .align(Alignment.Center)
-                            .size(24.dp),
-                        strokeWidth = 2.dp
-                    )
-                }
-                else -> {
-                    Icon(
-                        imageVector = Icons.Default.PlayCircleOutline,
-                        contentDescription = null,
-                        tint = red900,
-                        modifier = Modifier
-                            .align(alignment = Alignment.Center)
-                            .scale(2f)
-                    )
-                }
-            }
         }
     }
 }

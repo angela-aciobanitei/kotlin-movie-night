@@ -21,7 +21,6 @@ import com.ang.acb.movienight.domain.entities.Trailer
 import com.ang.acb.movienight.ui.common.LoadingBox
 import com.ang.acb.movienight.ui.common.MessageBox
 
-// todo@ang Content padding parameter it is not used
 @Composable
 fun MovieDetailsScreen(
     viewModel: MovieDetailsViewModel = hiltViewModel(),

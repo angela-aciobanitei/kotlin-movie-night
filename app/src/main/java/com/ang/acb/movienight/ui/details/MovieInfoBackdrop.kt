@@ -1,20 +1,16 @@
 package com.ang.acb.movienight.ui.details
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.size
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.unit.dp
-import com.google.accompanist.glide.rememberGlidePainter
-import com.google.accompanist.imageloading.ImageLoadState
+import androidx.compose.ui.platform.LocalContext
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 
-// TODO Accompanist-Glide is now deprecated. Consider using Coil
 @Composable
 fun MovieBackdropImage(
     backdropUrl: String,
@@ -25,24 +21,14 @@ fun MovieBackdropImage(
             .aspectRatio(16f / 9),
         contentAlignment = Alignment.Center,
     ) {
-        val painter = rememberGlidePainter(request = backdropUrl, fadeIn = true)
-
-        Image(
-            painter = painter,
+        AsyncImage(
+            model = ImageRequest.Builder(LocalContext.current)
+                .data(backdropUrl)
+                .crossfade(500)
+                .build(),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier.matchParentSize(),
         )
-
-        when (painter.loadState) {
-            is ImageLoadState.Loading -> {
-                CircularProgressIndicator(
-                    modifier = Modifier.size(24.dp),
-                    strokeWidth = 2.dp
-                )
-            }
-            is ImageLoadState.Error -> Box(modifier = Modifier.fillMaxWidth())
-            else -> {}
-        }
     }
 }

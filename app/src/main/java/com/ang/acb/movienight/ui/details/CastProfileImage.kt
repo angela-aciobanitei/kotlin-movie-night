@@ -1,10 +1,7 @@
 package com.ang.acb.movienight.ui.details
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.size
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
@@ -15,38 +12,29 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.platform.LocalContext
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.ang.acb.movienight.ui.theme.midnight50
-import com.google.accompanist.glide.rememberGlidePainter
-import com.google.accompanist.imageloading.ImageLoadState
 
-// TODO Accompanist-Glide is now deprecated. Consider using Coil
 @Composable
 fun CastProfileImage(
     profileImageUrl: String?,
     modifier: Modifier = Modifier,
 ) {
     Box(modifier = modifier) {
-        if (profileImageUrl == null) {
-            PlaceholderProfileImage(modifier.matchParentSize())
-        } else {
-            val painter = rememberGlidePainter(request = profileImageUrl, fadeIn = true)
-
-            Image(
-                painter = painter,
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .matchParentSize()
-                    .clip(MaterialTheme.shapes.medium),
-            )
-
-            when (painter.loadState) {
-                is ImageLoadState.Loading -> LoadingProfileImage(modifier.matchParentSize())
-                is ImageLoadState.Error -> PlaceholderProfileImage(modifier.matchParentSize())
-                else -> {}
-            }
-        }
+        // TODO Use placeholder on error
+        AsyncImage(
+            model = ImageRequest.Builder(LocalContext.current)
+                .data(profileImageUrl)
+                .crossfade(500)
+                .build(),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .matchParentSize()
+                .clip(MaterialTheme.shapes.medium),
+        )
     }
 }
 
@@ -66,23 +54,6 @@ private fun PlaceholderProfileImage(
             contentDescription = null,
             tint = MaterialTheme.colors.primary,
             modifier = Modifier.scale(2f)
-        )
-    }
-}
-
-@Composable
-private fun LoadingProfileImage(
-    modifier: Modifier = Modifier,
-) {
-    Box(
-        modifier = modifier.clip(MaterialTheme.shapes.medium),
-        contentAlignment = Alignment.Center,
-    ) {
-        CircularProgressIndicator(
-            modifier = Modifier
-                .size(24.dp)
-                .align(Alignment.Center),
-            strokeWidth = 2.dp
         )
     }
 }

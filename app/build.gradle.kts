@@ -102,7 +102,6 @@ dependencies {
 
     // Google
     implementation("com.google.android.material:material:${Versions.material}")
-    implementation("com.google.accompanist:accompanist-glide:${Versions.glide}")
     implementation("com.google.accompanist:accompanist-flowlayout:${Versions.accompanist}")
     implementation("com.google.accompanist:accompanist-insets:${Versions.accompanist}")
     implementation("com.google.accompanist:accompanist-systemuicontroller:${Versions.accompanist}")

@@ -6,7 +6,7 @@ object Versions {
     const val jvm_target = "11"
     const val jvm_inject = "1"
 
-    const val gradle = "7.3.1"
+    const val gradle = "7.4.0"
 
     const val di_hilt = "2.44"
 

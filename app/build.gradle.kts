@@ -70,17 +70,18 @@ dependencies {
     implementation("com.google.dagger:hilt-android:${Versions.di_hilt}")
     kapt("com.google.dagger:hilt-compiler:${Versions.di_hilt}")
 
-    // Room
-    implementation("androidx.room:room-runtime:${Versions.room}")
-    implementation("androidx.room:room-ktx:${Versions.room}")
-    kapt("androidx.room:room-compiler:${Versions.room}")
-
     // AndroidX
     implementation("androidx.core:core-ktx:${Versions.androidx_core}")
-    implementation("androidx.activity:activity-ktx:${Versions.androidx_activity}")
+    implementation("androidx.activity:activity-ktx:${Versions.activity}")
+    implementation("androidx.activity:activity-compose:${Versions.activity}")
     implementation("androidx.annotation:annotation:${Versions.annotations}")
     implementation("androidx.appcompat:appcompat:${Versions.appcompat}")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.lifecycle_view_model_compose}")
+    implementation("androidx.navigation:navigation-compose:${Versions.navigation_compose}")
+    implementation("androidx.hilt:hilt-navigation-compose:${Versions.hilt_navigation_compose}")
+    implementation("androidx.paging:paging-compose:${Versions.paging_compose}")
+    implementation("io.coil-kt:coil-compose:${Versions.coil_compose}")
 
     // Compose BOM
     implementation(platform("androidx.compose:compose-bom:${Versions.compose_bom_version}"))
@@ -92,19 +93,16 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     debugImplementation("androidx.compose.ui:ui-tooling")
 
-    // Other Compose libs
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.compose_view_model}")
-    implementation("androidx.activity:activity-compose:${Versions.compose_activity}")
-    implementation("androidx.navigation:navigation-compose:${Versions.compose_navigation}")
-    implementation("androidx.hilt:hilt-navigation-compose:${Versions.compose_hilt_navigation}")
-    implementation("androidx.paging:paging-compose:${Versions.compose_paging}")
-    implementation("io.coil-kt:coil-compose:${Versions.compose_coil}")
-
     // Google
     implementation("com.google.android.material:material:${Versions.material}")
     implementation("com.google.accompanist:accompanist-flowlayout:${Versions.accompanist}")
     implementation("com.google.accompanist:accompanist-insets:${Versions.accompanist}")
     implementation("com.google.accompanist:accompanist-systemuicontroller:${Versions.accompanist}")
+
+    // Room
+    implementation("androidx.room:room-runtime:${Versions.room}")
+    implementation("androidx.room:room-ktx:${Versions.room}")
+    kapt("androidx.room:room-compiler:${Versions.room}")
 
     // Networking
     implementation("com.squareup.retrofit2:retrofit:${Versions.retrofit}")

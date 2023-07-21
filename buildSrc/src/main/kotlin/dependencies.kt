@@ -3,10 +3,10 @@ object Versions {
     const val target_sdk = 33
     const val compile_sdk = 33
 
-    const val jvm_target = "11"
+    const val jvm_target = "17"
     const val jvm_inject = "1"
 
-    const val gradle = "7.4.2"
+    const val gradle = "8.0.2"
     const val di_hilt = "2.45"
 
     const val kotlin_lang = "1.8.10"

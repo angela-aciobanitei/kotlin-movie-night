@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="11">
-      <module name="MovieNight.app" target="17" />
-      <module name="MovieNight.buildSrc" target="17" />
-      <module name="MovieNight.buildSrc.main" target="17" />
-      <module name="MovieNight.buildSrc.test" target="17" />
-      <module name="MovieNight.data" target="17" />
-    </bytecodeTargetLevel>
+    <bytecodeTargetLevel target="17" />
   </component>
 </project>

@@ -37,8 +37,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
@@ -47,6 +47,7 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 
     composeOptions {
@@ -78,7 +79,7 @@ dependencies {
     implementation("androidx.appcompat:appcompat:${Versions.appcompat}")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.lifecycle_view_model_compose}")
-    implementation("androidx.navigation:navigation-compose:${Versions.navigation_compose}")
+    implementation("androidx.navigation:navigation-compose:2.6.0")
     implementation("androidx.hilt:hilt-navigation-compose:${Versions.hilt_navigation_compose}")
     implementation("androidx.paging:paging-compose:${Versions.paging_compose}")
     implementation("io.coil-kt:coil-compose:${Versions.coil_compose}")
